@@ -1,0 +1,68 @@
+[
+  {
+    "title": "Orientation",
+    "path": "01",
+    "description": "overview, agreement, processes.",
+    "date": "01-11-2016"
+  },
+  {
+    "title": "Web 101",
+    "path": "02",
+    "description": "sketching and sharing.",
+    "date": "01-25-2016"
+  },
+  {
+    "title": "Programming 101",
+    "path": "03",
+    "description": "Data: collect and consume data.",
+    "date": "02-01-2016"
+  },
+  {
+    "title": "Design 101",
+    "path": "04",
+    "description": "Gestalt principles. Color. Grid. Type. Context.",
+    "date": "02-08-2016"
+  },
+  {
+    "title": "Programming 102",
+    "path": "05",
+    "description": "Data: filter, shape, and visualize.",
+    "date": "02-22-2016"
+  },
+  {
+    "title": "Interaction 101",
+    "path": "06",
+    "description": "Shneiderman’s Mantra. First proposals due.",
+    "date": "02-29-2016"
+  },
+  {
+    "title": "Week 7, TBD",
+    "path": "07",
+    "description": "Driven by project requirements.",
+    "date": "03-14-2016"
+  },
+  {
+    "title": "Week 8, TBD",
+    "path": "08",
+    "description": "Driven by project requirements.",
+    "date": "03-28-2016"
+  },
+  {
+    "title": "Week 9, TBD",
+    "path": "09",
+    "description": "Driven by project requirements.",
+    "date": "04-04-2016"
+  },
+  {
+    "title": "Week 10, TBD",
+    "path": "10",
+    "description": "Driven by project requirements.",
+    "date": "04-11-2016"
+  },
+  {
+    "title": "Week 11, TBD",
+    "path": "11",
+    "description": "Driven by project requirements.",
+    "date": "04-25-2016"
+  }
+]

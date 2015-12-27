@@ -1,0 +1,26 @@
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: hsla(180,20%,90%,1.0);
+  color: hsal(180,30%,20%,1.0);
+  margin: 2em;
+  line-height: 1.1em;
+  font-size: 14px;
+}
+
+span.date {
+  font-family: monospace;
+}
+span.title {
+  font-weight: bold;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+span.description {
+  font-weight: normal;
+  margin-left: 0.3em;
+}
+span.title::before {
+  content: " – ";
+}
+span.title::after {
+  content: ":";
+}
