@@ -1,19 +1,52 @@
 body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background-color: hsla(180,20%,90%,1.0);
-  color: hsal(180,30%,20%,1.0);
+  font-family: 'Railway', sans-serif;
+  background-color: hsla(180,10%,90%,1.0);
+  color: hsla(0, 10%, 30%, 1.0);
   margin: 2em;
-  line-height: 1.1em;
   font-size: 14px;
 }
 
+h1, h2, h3, h4, h5, strong {
+  color: hsla(0, 5%, 60%, 1.0);
+  text-transform: uppercase;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial ,sans-serif;
+  margin-top: 1.5em;
+  margin-bottom: 0.25em;
+}
+
+ul {
+  padding-right: 6em;
+  padding-left: 2em;
+  list-style: none;
+}
+
+p, li {
+  font-family: 'Raleway', sans-serif;
+  line-height: 1.7em;
+  color: hsla(0, 10%, 30%, 1.0);
+}
+
+li {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  line-height: 1.25em;
+  font-size: 12px;
+}
+.fixed-width {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
 span.date {
   font-family: monospace;
 }
 span.title {
   font-weight: bold;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial ,sans-serif;
+  color: hsla(0, 5%, 60%, 1.0);
 }
+
 span.description {
   font-weight: normal;
   margin-left: 0.3em;
