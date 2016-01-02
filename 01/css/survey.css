@@ -1,0 +1,22 @@
+svg {
+  width: 600px;
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.axis-label {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.left-vertical {
+  transform: rotate(-90deg);
+	transform-origin: left bottom 0;
+}
+
+.under-svg {
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+}
