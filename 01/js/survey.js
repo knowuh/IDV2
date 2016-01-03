@@ -1,24 +1,23 @@
 (function() {
   var data = [];
-  var axisOptions = [
-    "criticalcommunication",
-    "criticalcommunication_2",
-    "graphicdesign",
-    "graphicdesign_2",
-    "howlongdidittakeyoutogethere",
-    "howmanyhoursperweekcanyoudevotetothisclass",
-    "howmuchsleepdidyougetlastnight",
-    "howtallareyou",
-    "javascriptwebdevelopment",
-    "javascriptwebdevelopment_2",
-    "whatdoyouwanttogetoutofthisclass",
-    "whenwasthelasttimeyoudrewapicture",
-    "whenwasthelasttimeyouwenttothebeach",
-    "whenwasthelasttimeyouwenttothemfa"
+  var dimensions = [
+    { key: "criticalcommunication", value: 'Communication'},
+    { key: "criticalcommunication_2", value: "Communication 2"},
+    { key: "graphicdesign", value: "Graphic Design"},
+    { key: "graphicdesign_2", value: "Graphic Design 2"},
+    { key: "howlongdidittakeyoutogethere", value: "Travel Time"},
+    { key: "howmanyhoursperweekcanyoudevotetothisclass", value: "Hours devoted"},
+    { key: "howmuchsleepdidyougetlastnight", value: "Sleep"},
+    { key: "howtallareyou", value: "Height"},
+    { key: "javascriptwebdevelopment", value: "Software"},
+    { key: "javascriptwebdevelopment_2", value: "Software 2"},
+    { key: "whenwasthelasttimeyoudrewapicture", value: "Drew"},
+    { key: "whenwasthelasttimeyouwenttothebeach", value: "Beach"},
+    { key: "whenwasthelasttimeyouwenttothemfa", value: "MFA"}
   ];
 
-  xAxis = axisOptions[0];
-  yAxis = axisOptions[1];
+  xAxis = dimensions[0];
+  yAxis = dimensions[1];
 
   var xLabel = function(svg, text) {
     var leftMargin = 20;
@@ -81,10 +80,10 @@
         return 'hsla(' + hue + ', 20%, 40%, 1.0)';
       })
       .attr("cx", function(d,i){
-        return xScale(parseInt(d[xAxis]));
+        return xScale(parseInt(d[xAxis.key]));
       })
       .attr("cy", function(d,i){
-        return yScale(parseInt(d[yAxis]));
+        return yScale(parseInt(d[yAxis.key]));
       });
 
     circles.exit().remove();
@@ -95,19 +94,23 @@
     drawSurvey(data);
   };
 
+  var findDimension = function(key) {
+    return _.find(dimensions,function(o) { return o.key === key});
+  };
+
   var setAxis = function(x,y){
-    xAxis = x || xAxis;
-    yAxis = y || yAxis;
-    d3.select("#y-label").text(yAxis);
-    d3.select("#x-label").text(xAxis);
+    xAxis = findDimension(x) || xAxis;
+    yAxis = findDimension(y) || yAxis;
+    d3.select("#y-label").text(yAxis.value);
+    d3.select("#x-label").text(xAxis.value);
     drawSurvey(data);
   };
 
   var populateDropdown = function(selector, selectFun) {
     $(selector).empty();
     $(selector).off("change");
-    _.map(axisOptions, function(option) {
-      var optionItem = '<option value="' + option + '">' + option + '</option>';
+    _.map(dimensions, function(option) {
+      var optionItem = '<option value="' + option.key + '">' + option.value + '</option>';
       $(selector).append(optionItem);
     });
     $(selector).on("change", selectFun);
@@ -123,8 +126,8 @@
     doLoad();
     var interval = 5000;
     setInterval(doLoad, interval);
-    populateDropdown("#selectX", function(e) { setAxis(this.value,yAxis);  });
-    populateDropdown("#selectY", function(e) { setAxis(xAxis, this.value); });
+    populateDropdown("#selectX", function(e) { setAxis(this.value, yAxis);  });
+    populateDropdown("#selectY", function(e) { setAxis(xAxis, this.value);  });
   });
 
 })();
