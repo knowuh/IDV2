@@ -11,7 +11,7 @@ Software sketching is an important practice for those who wish to communicate wi
 Students will leave this course knowing how to create and publish rich interactive data experiences on a schedule. They will be comfortable sketching and presenting rough ideas for feedback. They will favor an iterative design process to refine ideas and meet deadlines. Students will be able to articulate design  decisions made during project planning meetings.
 
 ### Structure
-The first five weeks of this studio build an experience with tools, and practices critical to completing a final capstone project. In this period, students explore data design challenges in a low risk environment. Fast iterations establish a processes and cadence required for completing final projects. We begin our design challenges sets together in class to address new technical hurdles. Students finish the exercises outside of class, preparing for a discussion the following week.
+The first five weeks of this studio build an experience with tools, and practices critical to completing a final capstone project. In this period, students explore data design challenges in a low risk environment. Fast iterations establish a processes and cadence required for completing final projects. We begin our design challenges together in class to address new technical hurdles. Students finish the exercises outside of class, preparing for a discussion the following week.
 
 In the last five weeks of this course, we shift our emphasis to the production of the capstone project. The daily schedule is the same, but we trim technical demonstrations to make more time for charette and production.
 
