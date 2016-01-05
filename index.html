@@ -13,62 +13,97 @@
         <link rel="stylesheet" href="template/css/normalize.min.css">
         <link rel="stylesheet" href="template/css/boilerplate.css">
         <link rel="stylesheet" href="template/css/main.css">
-
-        <script src="template/js/vendor/modernizer.min.js"></script>
-        <script src="template/js/vendor/jquery.min.js"></script>
-        <script src="template/js/vendor/d3.min.js"></script>
-        <script src="template/js/vendor/lodash.min.js"></script>
-        <script src="js/main.js"></script>
-        <script src="template/js/spreadsheet.js"></script>
-
     </head>
     <body>
         <div class="fixed-width">
           <h1>Information Design Visualization Studio 2</h1>
-          <h3><a id="Structure"></a>Course Structure:</h3>
-            <p>The first five weeks of this studio build a foundational experience
-              with tools, and practices critical to completing the final
-              portfolio project.
-              In this period, students are given design challenges to explore
-              portfolio topics and data in a low risk environment.
-              These fast iterations establish a processes and cadence required for
-              completing final projects. The sketches will be started
-              collaboratively in class, however students are expected to complete
-              and apply finishing touches on the exercises outside for
-              presentation the following week.
-              Enrichment materials will be assigned in this period to encourage
-              new directions of exploration. Each week one student will also lead
-              a 10 minute design analysis on a datavisualization piece
-              ‘found in the wild’. After five weeks, the emphasis of the studio
-              shifts to the production of the final portfolio project.
-              The daily structure is unchanged, but technical demonstrations are
-              replaced by charette and hands on work directly producing and
-              refining the portfolio piece.
-            </p>
-          <h3><a id="Weekly_Structure"></a>Weekly Structure:</h3>
-            <ul>
-            <li><code>5:30 – 6:20</code>
-              <strong>Critique &amp; charette</strong>.
-              Work from previous week is presented at the start of the class.
-              Students are expected to discuss: the formal elements,
-              visual impact, legibility, social context,
-              and implications of the work presented.
-              Presenters are expected to speak clearly about their intentions,
-              process, and pitfalls they encountered.
-              Reviewers are expected to suggest next steps for strengthening,
-              extending, or rethinking the design. Presenters will demonstrate
-              active listening and their willingness to revise, by restating the
-              comments and suggestions that most resonated with them.
-            </li>
-            <li><code>6:20 - 6:30</code> <strong>Student presentation</strong>. Each week a student will present an interactive data vislualization to the class, and lead an design analysis.</li>
-            <li><code>6:30 - 6:40</code> <strong>Break</strong>.</li>
-            <li><code>6:40 - 7:15</code> <strong>Informal lecture</strong>.  Introduction of new technical material required to complete projects (eg: consuming the twitter API), or design case studies.</li>
-            <li><code>7:15 – 8:00</code> <strong>Work together</strong>. We  work together on a single laptop to complete code that addresses or technical needs. This code is shared on github, and can be used by student teams as a launching point for their work.</li>
-            <li><code>8:00 - 8:10</code> <strong>Break</strong>.</li>
-            <li><code>8:10 - 9:00</code> <strong>Independent or team work</strong>. Students work alone or in small groups on portfolio / challenge. This is a great time for students to help each other, or ask me for help.</li>
-            </ul>
-          <h3><a id="ClassSchedlue"></a>Class Schedule:</h3>
-          <ul id="schedule"></div>
+          <h3><a id="Overview_2"></a>Overview</h3>
+          <p>Every day Twitter users compose more than 500 million tweets,  and Instgram users upload more than 58 million photos.  Social platforms organize individuals around shared values and common concerns, sometimes with profound effect. Torrents of social data cry out for innovative visual interpretations. We can explore how new ideas gain cultural salience by designing these experiences.</p>
+          <p>In this studio we will transform social data into visual experiences about people, places, and ideas. We will extract timelines of images, locations, sentiments, and relationships. These timelines will open up doors for new stories, and prompt us to ask new questions. How do ideas born in social media enter mass media and our political discourse? What cultural events precipitate these ideas? Which ideas maturate into social movements?</p>
+          <p>Software sketching is an important practice for those who wish to communicate with data. This studio will teach the required software development practices as an integrated part of our of design process. Little prior coding familiarity is assumed. Students will be using JavaScript to explore data, and draw interactive graphics using D3 or similar toolkits. Students will need to understand fundamental programming concepts and data structures.</p>
+          <h3><a id="Objective_9"></a>Objective</h3>
+          <p>Students will leave this course knowing how to create and publish rich interactive data experiences on a schedule. They will be comfortable sketching and presenting rough ideas for feedback. They will favor an iterative design process to refine ideas and meet deadlines. Students will be able to articulate design  decisions made during project planning meetings.</p>
+          <h3><a id="Structure_12"></a>Structure</h3>
+          <p>The first five weeks of this studio build an experience with tools, and practices critical to completing a final capstone project. In this period, students explore data design challenges in a low risk environment. Fast iterations establish a processes and cadence required for completing final projects. We begin our design challenges together in class to address new technical hurdles. Students finish the exercises outside of class, preparing for a discussion the following week.</p>
+          <p>In the last five weeks of this course, we shift our emphasis to the production of the capstone project. The daily schedule is the same, but we trim technical demonstrations to make more time for charette and production.</p>
+          <p>Reading and viewing materials will also be assigned. We discuss these materials to encourage new directions for exploration.</p>
+          <p>Finally, over the course of 11 weeks each student will lead a short critique on a data interactive they found in the wild. We use these show and tell sessions to hone our communication skills and to foster new ideas.</p>
+          <h3><a id="Grading_22"></a>Grading:</h3>
+          <p>Students will show continuous improvement in their ability to execute and defend their design solutions.</p>
+          <p>The grading system follows the <a href="http://www.northeastern.edu/registrar/gradingsystem.html">University Policies</a>.</p>
+          <h5><a id="Criteria_27"></a>Criteria:</h5>
+          <ul>
+          <li>
+          <p><strong>70% Project work – presentation, and defense:</strong> Data visualizations will be evaluated on clarity, efficiency, originality, and emotional impact. Work should be grounded in data, informed by critical thinking, guided by cognitive principles, and refined on the basis of feedback given in class. The work should communicate on its own, but students must also defend the design decisions made in their process.</p>
+          </li>
+          <li>
+          <p><strong>20% class participation:</strong> The studio is a community. Modern design challenges require collaboration and communication. Students are expected to offer respectful and insightful design critique. Students must offer sophisticated and challenging ideas in design charettes. Students in this studio are expected to challenge and elevate each other.</p>
+          </li>
+          <li>
+          <p><strong>10% peer evaluation:</strong> As a community, students will be evaluated in part their peers.</p>
+          </li>
+          </ul>
+          <h5><a id="Integrity_33"></a>Integrity</h5>
+          <p>Students will abide by Northeastern University’s <a href="http://www.northeastern.edu/osccr/academicintegrity/">Academic Integrity Policy</a>.</p>
+          <h5><a id="Attendance_36"></a>Attendance</h5>
+          <p>Students are expected to attend all classes. Absence for health or personal reasons should be communicated to the lecturer. Tardiness and unexcused absences will impact student grades.</p>
+          <h3><a id="Schedule_39"></a>Schedule</h3>
+          <ol>
+          <li><code>Jan 11</code> <strong>Orientation</strong>: Overview, agreement, processes.</li>
+          <li><code>Jan 25</code> <strong>Web 101</strong>: Publishing workflow: HTML / CSS and git.</li>
+          <li><code>Feb 1</code> <strong>Programming 101</strong>: JavaScript, D3, SVG.</li>
+          <li><code>Feb 8</code> <strong>Design 101</strong>: Gestalt principles.</li>
+          <li><code>Feb 22</code> <strong>Programming 102</strong>: Collect, filter, and shape data.</li>
+          <li><code>Feb 29</code> <strong>Interaction 101</strong>: (MIDPOINT) Mutliple dipiction, and the interaction mantra. Capstone proposals due.</li>
+          <li><code>Mar 14</code> <strong>TBD</strong>: Driven by project requirements.</li>
+          <li><code>Mar 28</code> <strong>TBD</strong>: Driven by project requirements.</li>
+          <li><code>Apr 4</code> <strong>TBD</strong>: Driven by project requirements.</li>
+          <li><code>Apr 11</code> <strong>TBD</strong>: Driven by project requirements.</li>
+          <li><code>Apr 25</code> <strong>TBD</strong>: Driven by project requirements.</li>
+          </ol>
+          <h3><a id="Weekly_Structure_53"></a>Weekly Structure</h3>
+          <ul>
+          <li><code>5:30 – 6:20</code> <strong>Critique &amp; charette</strong>. Students present work from previous week at the start of the class. Students will critique the formal elements of the design, visual impact, legibility, and context of the work shown. Presenters will explain their intentions and process. Reviewers suggest next steps for strengthening, extending, or rethinking the design. Presenters will show their willingness to revise, by restating the comments and suggestions that most resonated with them.</li>
+          <li><code>6:20 - 6:30</code> <strong>Student presentation</strong>. Each week a student will present an interactive data visualization to the class, and lead an design analysis.</li>
+          <li><code>6:30 - 6:40</code> <strong>Break</strong>.</li>
+          <li><code>6:40 - 7:15</code> <strong>Informal lecture</strong>.  Introduction of new technical material required to complete projects (eg: consuming the twitter API), or design case studies.</li>
+          <li><code>7:15 – 8:00</code> <strong>Work together</strong>. We work together on a single laptop to complete code that addresses or technical needs. This code is shared on github, and can be used by student teams as a launching point for their work.</li>
+          <li><code>8:00 - 8:10</code> <strong>Break</strong>.</li>
+          <li><code>8:10 - 9:00</code> <strong>Independent or team work</strong>. Students work alone or in small groups on capstone project or weekly challenges. This is a great time for students to help each other, or ask me for help.</li>
+          </ul>
+          <h4><a id="Books_62"></a>Books:</h4>
+          <ul>
+          <li><a href="http://www.amazon.com/Interactive-Data-Visualization-Scott-Murray/dp/1449339735/ref=sr_1_2?ie=UTF8&amp;qid=1451940377&amp;sr=8-2&amp;keywords=D3+data">Interactive Data Visualization for the Web</a> - Murray</li>
+          <li><a href="https://www.amazon.com/gp/product/1592538061/ref=ox_sc_sfl_title_14?ie=UTF8&amp;psc=1&amp;smid=ATVPDKIKX0DER">Design for Information: An Introduction to the Histories, Theories, and Best Practices Behind Effective Information Visualizations</a> - Meirelles</li>
+          <li><a href="http://www.amazon.com/Primer-Visual-Literacy-Donis-Dondis/dp/0262540290/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1451940566&amp;sr=1-1&amp;keywords=primer+of+visual+literacy">Primer of Visual Literacy</a> – Dondis</li>
+          </ul>
+          <h4><a id="Papers_67"></a>Papers:</h4>
+          <ul>
+          <li><a href="http://pablobarbera.com/static/barbera_polarization_APSA.pdf">How Social Media Reduces Mass Political Polarization. Evidence from Germany, Spain, and the U.S.</a></li>
+          <li><a href="https://reutersinstitute.politics.ox.ac.uk/sites/default/files/Journalism%20in%20the%20Age%20of%20Social%20Media.pdf">Journalism in the age of Social Media</a></li>
+          <li><a href="http://eprints.lse.ac.uk/62075/1/__lse.ac.uk_storage_LIBRARY_Secondary_libfile_shared_repository_Content_Livingstone,%20S_From%20mass%20to%20social%20media_Livingstone_From%20mass%20to%20social_2015.pdf">From mass to social media?: advancing accounts of social change </a></li>
+          <li><a href="http://crisislex.org/papers/icwsm2015_climate_change_media_gap.pdf">Comparing Events Coverage in Online News and Social Media:
+          The Case of Climate Change</a></li>
+          </ul>
+          <h4><a id="Websites_etc_74"></a>Websites &amp;etc:</h4>
+          <ul>
+          <li><a href="http://rogerdudler.github.io/git-guide/">Git guide</a></li>
+          <li><a href="https://git-scm.com/book/en/v2">Painfully complete git book</a></li>
+          <li><a href="http://lisacharlotterost.github.io/2015/12/19/Meaning-and-Beauty-in-Data-Vis/">Meaning and Beauty in data vis</a></li>
+          <li><a href="https://flowingdata.com/2015/12/22/10-best-data-visualization-projects-of-2015/">10 Best Data Visualization Projects of 2015</a></li>
+          <li><a href="http://worrydream.com/">Bret Victor</a></li>
+          <li><a href="https://www.youtube.com/watch?v=0fKBhvDjuy0">Powers of 10</a></li>
+          <li><a href="https://www.youtube.com/watch?v=Ln8UwPd1z20">Calendar of the Universe</a></li>
+          </ul>
+          <h4><a id="Tools_83"></a>Tools:</h4>
+          <ul>
+          <li><a href="http://codepen.io/pen/">Code Pen</a></li>
+          <li><a href="http://github.com">Github</a></li>
+          <li><a href="http://dillinger.io/">Markdown editor</a></li>
+          <li><a href="http://www.jsoneditoronline.org/">JSON Validator</a></li>
+          <li><a href="https://jsonformatter.curiousconcept.com/">Alternate JSON Validator</a></li>
+          </ul>
+
         </div>
     </body>
 </html>
