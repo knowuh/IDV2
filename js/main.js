@@ -7,7 +7,7 @@
       .append("span").attr("class", "title")
         .text(function(d) { return d.title;})
       .append("span").attr("class", "description")
-        .text(function(d) { return d.description;});;
+        .text(function(d) { return d.description;});
   };
 
   var makeLinks=function(dataLinks) {
