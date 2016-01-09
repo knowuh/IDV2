@@ -50,13 +50,15 @@
 
   var drawSurvey = function(data) {
     var svg = d3.select("#survey");
-    var radius = 10;
+    var radius = 100 / data.length;
     var width = 600 - radius;
     var height = 400 - radius;
+    var leftMargin = 40;
+    
 
-    var xScale = d3.scale.linear()
-      .domain([0,10])
-      .range([radius,width]);
+    var xScale = d3.scale.ordinal()
+      .domain(d3.range(data.length))
+      .rangeRoundPoints([leftMargin, width]);
 
     var yScale = d3.scale.linear()
       .domain([0,10])
@@ -71,16 +73,21 @@
 
     circles
       .enter()
-      .append("circle");
-
+      .append("circle")
+      .append("title")
+      .text(function(d, i) { return "name:" + d.name});
+    
     circles
       .attr('r', radius)
       .attr('fill', function(d,i) {
         var hue = colorScale(i);
         return 'hsla(' + hue + ', 20%, 40%, 1.0)';
       })
+      .attr("title", function(d,i){ 
+        return d.name; 
+      })
       .attr("cx", function(d,i){
-        return xScale(parseInt(d[xAxis.key]));
+        return xScale(i);
       })
       .attr("cy", function(d,i){
         return yScale(parseInt(d[yAxis.key]));
@@ -95,14 +102,12 @@
   };
 
   var findDimension = function(key) {
-    return _.find(dimensions,function(o) { return o.key === key});
+    return _.find(dimensions,function(o) { return o.key === key; });
   };
 
   var setAxis = function(x,y){
-    xAxis = findDimension(x) || xAxis;
     yAxis = findDimension(y) || yAxis;
     d3.select("#y-label").text(yAxis.value);
-    d3.select("#x-label").text(xAxis.value);
     drawSurvey(data);
   };
 
@@ -117,8 +122,7 @@
   };
 
   $(document).ready(function() {
-    yLabel(d3.select("#survey"), "woo");
-    xLabel(d3.select("#survey"), "boo");
+    yLabel(d3.select("#survey"), "y axis label");
     var doLoad = function() {
       loadSpreadsheet("1tL7m0JNa0CZwEyU9WmB3u8j5T829jqtbnu-26ibPp5E", setData);
     };
@@ -126,7 +130,6 @@
     doLoad();
     var interval = 5000;
     setInterval(doLoad, interval);
-    populateDropdown("#selectX", function(e) { setAxis(this.value, yAxis);  });
     populateDropdown("#selectY", function(e) { setAxis(xAxis, this.value);  });
   });
 
