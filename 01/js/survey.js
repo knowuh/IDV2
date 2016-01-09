@@ -50,10 +50,11 @@
 
   var drawSurvey = function(data) {
     var svg = d3.select("#survey");
-    var radius = 10;
+    var radius = 100 / data.length;
     var width = 600 - radius;
     var height = 400 - radius;
     var leftMargin = 40;
+    
 
     var xScale = d3.scale.ordinal()
       .domain(d3.range(data.length))

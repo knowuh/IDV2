@@ -3,8 +3,8 @@
 ## Materials:
 * Pencils, index cards, sharpie, clip, stickers.
 * Handout: [how to survive a critique](http://www.aiga.org/how-to-survive-a-critique/)
-* Handout: PS Guide
-* Handout: PS1
+* Handout: [Problem set guide](../ps-guide.html)
+* Handout: [Problem set 1](./ps01.html)
 
 ## Intro:
 We are here to get to know each other, review the syllabus, talk about
@@ -15,9 +15,9 @@ we need to participate in this class. I hope to learn your names.
 * Fear & imposter syndrome.
 * Grow your peers.
 * Your destinies are linked.
-* Tone matters. Be critical. Be empathetic. Details.
-* Assume best intentions.
-* We need more questions asked.
+* Tone matters. Be critical. Be empathetic.
+* Assume good intentions.
+* Honor questions.
 * We wont know all the answers.
 * Review key points in [Social rules for learning](https://www.recurse.com/manual#sub-sec-social-rules)
 
@@ -25,9 +25,11 @@ we need to participate in this class. I hope to learn your names.
 * Backgrounds; who is from fine art, design, computation, or other?
 * Student goals and expectations for studio 2, and and the Information Design and Visualization program.
 * Gauge interest level and existing experience with: Web development, Processing, D3, SVG, design, programming, critique, statistics, JSON, design process.
-* Online survey
+* Other interests design, research, or technical experience?
+* Complete [online survey](https://docs.google.com/forms/d/1RvLaAHinst8UhbfZqr30kelJFN9M1W9uPuzJnMmhacg/viewform)
+* Look at [survey results](survey.html)
 
-## Your Coach 15 minutes
+## Your Coach 10 minutes
 * Fine art Background, and computer interest from early age
   * Mom
   * Punch cards
@@ -43,79 +45,70 @@ we need to participate in this class. I hope to learn your names.
 * Printing
 * Memory Issues
 
-## Personal Data cards 15 minutes
+## Personal data index cards (15 minutes)
 * Help me learn your names, interests, talents.
 * I am visual learner, show me who you are.
-* This should be functional.
+* This should be "functional".
 * 12 minutes to work.
-* Final must be on one card.
+* Present one index card.
 
-## Discuss Data Cards 15 minutes
+## Discuss Data Cards (15m)
 
-## Break 15 minutes
+## Break (15m)
 
 ## Work Expectations
-* We all do the dishes.
-* We are experimenting, learning, and taking risks.
+* We do the dishes.
+* We experimenting, and taking risks.
 * The cadence of failure.
 * The secret of photography.
 * Sketch everything.
 * Steal & Cheat.
-* Some restrictions apply.
+* Attribution and precedence.
 * Frame one thing.
-* Kai-Zen.
+* Kaizen.
 * Free Gym Membership.
 * Super Hero.
 
 ## How problem sets work.
-* TODO: Put link here to how it works.
+* Lets review [the problem set guide](../ps-guide.html)
 
 ## Lecture: Git, github, assignment submission.
 * gauge: shell, editors, git, github, versioning tools.
 * git theory
 * git practice
-  * from the shell
-    * checkout
-    * pull
-    * branch
-    * commit
-    * pull request
   * with github desktop client
     * checkout
     * pull
     * branch
     * commit
     * pull request
-  * with source tree
+  * from the shell
     * checkout
     * pull
     * branch
     * commit
     * pull request
 
+## I do a simple first take on PS1
+* brackets &etc
+* make folder
+* hello world example
 
-* I do the very first part of the problem set with the class.
-* Students work together to setup
-
-
-* About my background.
-* Read and discuss the syllabus
-## Complete personal data card
-## Sign up for show and tell slots
-## Setup Github accounts
-## Setup Laptops
+## Students work together to setup
 * Windows: mostly follow this [guide to installing node](http://blog.teamtreehouse.com/install-node-js-npm-windows)
     * [chrome](https://www.google.com/chrome/browser/desktop/)
-    * [cygwin](https://www.cygwin.com/)
-    * [github desktop](https://windows.github.com/)
-    * [atom editor](https://atom.io/) (optional, any editor will do)
-    * [node & npm](https://nodejs.org/en/)
-    * `npm install -g live-server`
+    * [Cygwin](https://www.cygwin.com/)
+    * [Github desktop](https://windows.github.com/)
+    * [brackets editor](http://brackets.io/)
+    * options for later
+      * [atom editor](https://atom.io/) (optional, any editor will do)
+      * [node & npm](https://nodejs.org/en/)
+      * `npm install -g live-server`
 * OSX:
     * [chrome](https://www.google.com/chrome/browser/desktop/)
-    * [github desktop](https://desktop.github.com/)
-    * [atom editor](https://atom.io/) (optional, any editor will do)
-    * [node & npm](https://nodejs.org/en/)
-    * `npm install -g live-server`
-## First Github commits
-## Setup `live-server` on student laptops
+    * [Github desktop](https://desktop.github.com/)
+    * [brackets editor](http://brackets.io/)
+    * options for later
+      * [atom editor](https://atom.io/) (optional, any editor will do)
+      * [node & npm](https://nodejs.org/en/)
+      * `npm install -g live-server`
