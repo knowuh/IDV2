@@ -18,6 +18,6 @@ Solutions will be critiqued in class. They may be sketches, but they should be '
 ## Tips:
 
 * Produce very rough thumbnail sketches of several ideas first on pencil and paper.
-* Move from pencil sketches Focus on the digital version first, print later.  Worst case scenario: cheat with a screen-shot or print to pdf. Enhance in image manipulation software.
+* Move from pencil sketches, focus on the digital version first, print later.  Worst case scenario: cheat with a screen-shot or print to pdf. Enhance in an image manipulation software or illustrator.
 * Landscape orientation for print solutions will match the aspect ratio of screen experience.
 * If forced to choose between decent print presentation and decent digital presentation, favor the digital presentation.
