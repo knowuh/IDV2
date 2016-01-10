@@ -11,17 +11,17 @@ We are here to get to know each other, review the syllabus, talk about
 our goals for this class, build a good culture, and get setup with the tools
 we need to participate in this class. I hope to learn your names.
 
-## Social Contract, guidelines
+## Social guidelines
 * Fear & imposter syndrome.
 * Grow your peers.
 * Your destinies are linked.
 * Tone matters. Be critical. Be empathetic.
 * Assume good intentions.
 * Honor questions.
-* We wont know all the answers.
+* We won't know all the answers.
 * Review key points in [Social rules for learning](https://www.recurse.com/manual#sub-sec-social-rules)
 
-## Question Time: 15 minutes
+## Question time: (15m)
 * Backgrounds; who is from fine art, design, computation, or other?
 * Student goals and expectations for studio 2, and and the Information Design and Visualization program.
 * Gauge interest level and existing experience with: Web development, Processing, D3, SVG, design, programming, critique, statistics, JSON, design process.
@@ -29,7 +29,7 @@ we need to participate in this class. I hope to learn your names.
 * Complete [online survey](https://docs.google.com/forms/d/1RvLaAHinst8UhbfZqr30kelJFN9M1W9uPuzJnMmhacg/viewform)
 * Look at [survey results](survey.html)
 
-## Your Coach 10 minutes
+## Your coach (10m)
 * Fine art Background, and computer interest from early age
   * Mom
   * Punch cards
@@ -45,7 +45,7 @@ we need to participate in this class. I hope to learn your names.
 * Printing
 * Memory Issues
 
-## Personal data index cards (15 minutes)
+## Personal data index cards (15m)
 * Help me learn your names, interests, talents.
 * I am visual learner, show me who you are.
 * This should be "functional".
@@ -56,17 +56,17 @@ we need to participate in this class. I hope to learn your names.
 
 ## Break (15m)
 
-## Work Expectations
+## Work expectations
 * We do the dishes.
-* We experimenting, and taking risks.
+* We are experimenting, and taking risks.
 * The cadence of failure.
 * The secret of photography.
 * Sketch everything.
-* Steal & Cheat.
-* Attribution and precedence.
+* Cheating when possible.
+* Stealing with respect.
 * Frame one thing.
-* Kaizen.
-* Free Gym Membership.
+* [Kaizen](https://en.wikipedia.org/wiki/Kaizen).
+* Free gym membership.
 * Super Hero.
 
 ## How problem sets work.
@@ -89,7 +89,7 @@ we need to participate in this class. I hope to learn your names.
     * commit
     * pull request
 
-## I do a simple first take on PS1
+## Coach does a simple first pass on PS1
 * brackets &etc
 * make folder
 * hello world example

@@ -1,6 +1,6 @@
 # Problem set guidelines:
 
-I will assign weekly problem sets (design challenges) in the first five weeks of class. These exercises are designed to expose you to tools and processes that will be critical to completing capstone projects. We will start the problem sets together in class. Online versions of the problems sets will be delivered by Github 'pull requests' (TBD). Print versions should be posted on the wall at the start of the next class.
+I will assign weekly problem sets (design challenges) in the first five weeks of class. These exercises are designed to expose you to tools and processes that will be critical to completing capstone projects. We will start the problem sets together in class. Online versions of the problems sets will be delivered by Github 'pull requests' on this repository (TBD). You will work in a git branch named `github-username`. Print versions should be posted on the wall at the start of the next class.
 
 Unless told otherwise, problem set solutions will delivered both digitally and as physical prints.
 
@@ -9,7 +9,7 @@ Online solutions will be reviewed in class on a 1024 x 768 Chrome browser. The U
 
 Solutions should include the following information somewhere:
 
-* Your Name
+* Your name
 * The date, in the form `YYYY-MM-DD`
 * The problem set number, in the form of `PSXX-x`, e.g.: `PS01-a`
 
