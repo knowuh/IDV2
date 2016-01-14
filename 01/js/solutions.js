@@ -1,5 +1,5 @@
 var addSolution = function(student, problemset) {
-  var url = "../../" + student + "/" + problemset + "/index.html";
+  var url = "../" + student + "/" + problemset + "/index.html";
   var tag = "<li><a href='" + url + "'>" + student + "</a></li>";
   $('#solutions').append($(tag));
 };
