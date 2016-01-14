@@ -1,0 +1,14 @@
+{
+  "name": "Exercises",
+  "version": "0.0.0",
+  "authors": [
+    "siqister <siqi.zhu@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test",
+    "tests"
+  ]
+}
