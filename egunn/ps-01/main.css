@@ -112,3 +112,7 @@ span.title::after {
     right: 10px;
     background: #fff;
 }
+
+.drawnCircle {
+    fill:rgb(85,85,85);
+}
