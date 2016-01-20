@@ -1,17 +1,17 @@
-var addSolution = function(student, problemset) {
+var addSolution = function (student, problemset) {
   var url = "../" + student + "/" + problemset + "/index.html";
   var tag = "<li><a href='" + url + "'>" + student + "</a></li>";
   $('#solutions').append($(tag));
 };
 
-var makeStudentLinks = function() {
-  var i        = 0;
-  var student  = null;
+var makeStudentLinks = function () {
+  var i = 0;
+  var student = null;
   var students =
-    ("frankenbits jessier08 odonnel-p severli93 tangdru "+
-    "xiaoyunver KiniLuo Luegreen").split(" ").sort();
+    ("frankenbits jessier08 odonnel-p severli93 tangdru " +
+      "xiaoyunver KiniLuo Luegreen egunn navarjun").split(" ").sort();
 
-  for(i = 0; i < students.length; i++) {
+  for (i = 0; i < students.length; i++) {
     student = students[i];
     addSolution(student, "ps-01");
   }
