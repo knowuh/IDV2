@@ -24,14 +24,39 @@ a {
   color: hsla(180, 60%, 30%, 1.0);
 }
 
-a:hover {
-  color: hsla(180, 40%, 15%, 1.0);
-  background-color: hsla(180, 40%, 90%, 1.0);
+.btn:hover {
+  opacity:.8;
 }
 
 .sub {
   font-weight: normal;
   margin-top: 0px;
+}
+
+.text{
+  font-size:50px;
+  padding:10px 0 0 20px;
+  margin-top:150px;
+}
+
+
+
+
+.container .canvas{
+  width:500px;
+  height: 647px;
+  position: relative;
+  float:left;
+  background-color: white;
+  margin: 20px 20px 0 0;
+  border-top:1px;
+}
+
+.information{
+  width:500px;
+  position:relative;
+  float:left;
+  margin:20px 0 0 0px;
 }
 
 .fixed {
@@ -48,6 +73,17 @@ ol {
 ul.quiet {
   list-style: none;
 }
+
+.btn{
+  padding:20px 20px 20px 20px;
+  border-top:5px solid rgb(240,243,243);
+  border-style:solid black;
+  background-color: rgb(150,150,150);
+  font-size:42pt;
+  color:hsla(180, 10%, 95%, 1.0);
+}
+
+
 
 p,
 li {
@@ -98,3 +134,6 @@ span.title::before {
 span.title::after {
   content: ":";
 }
+
+
+
