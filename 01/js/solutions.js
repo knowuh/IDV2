@@ -9,7 +9,7 @@ var makeStudentLinks = function () {
   var student = null;
   var students =
     ("frankenbits jessier08 odonnel-p severli93 tangdru " +
-      "xiaoyunver KiniLuo Luegreen egunn").split(" ").sort();
+      "xiaoyunver KiniLuo Luegreen egunn navarjun").split(" ").sort();
 
   for (i = 0; i < students.length; i++) {
     student = students[i];
