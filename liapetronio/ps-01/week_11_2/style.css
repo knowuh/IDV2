@@ -1,16 +1,21 @@
-html,body,h1,h2,h3,h4,p,div,ul,li,svg{
-	margin:0;
-	padding:0;
-	font-size:100%;
-}
 
 /*------------Structure-------------*/
 html,body{
 	height: 100%;
 	position: relative;
-	background: rgb(50,50,50);
-	color:#fff;
+
 }
+
+
+
+body {
+  font-family: 'Railway', sans-serif;
+  background-color: hsla(180, 10%, 95%, 1.0);
+  color: hsla(0, 10%, 10%, 1.0);
+  margin: 2em;
+  font-size: 12pt;
+}
+
 .container{
 	width:100%;
     height:100%;
@@ -19,65 +24,9 @@ html,body{
 .container .canvas{
 	width:100%;
 	height: 100%;
-	overflow:hidden;
-}
-.container .control{
-    position:relative;
-	height:40px;
-    width:600px;
-	margin:auto;
+/*	overflow:hidden;*/
 }
 
-/*------------font-------------*/
-body{
-	font-family: 'Open Sans Condensed', sans-serif;
-	font-size: 16px;
-}
-h1{
-	font-size: 1.8em;
-	margin: 30px 0 10px;
-	text-align:center;
-}
-h2{
-	font-size:1.3em;
-	margin: 0 0 20px;
-}
-
-/*------------tooltip-------------*/
-.tooltip{
-	width: 150px;
-	padding: 15px;
-	background: yellow;
-	position: absolute;
-	top:0;
-	opacity:0;
-}
-
-/*-----------control--------------*/
-.control .button{
-    color:#fff;
-    background: rgb(100,100,100);
-    text-align:center;
-
-    height:40px;
-    width:150px;
-    float:left;
-    line-height:40px;
-}
-.control .button:hover{
-    background: rgb(70,70,70);
-}
-
-/*------------svg-----------------*/
-.canvas .node{
-    fill:rgb(50,50,50);
-}
-
-.canvas .line{
-    fill:none;
-    stroke:rgb(100,100,100);
-}
-
-.canvas rect{
-    /*opacity:0;*/
+.background{
+  fill: hsla(180, 10%, 95%, 1.0);
 }

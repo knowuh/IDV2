@@ -1,6 +1,6 @@
 //This example shows how nodes and links can be represented differently
 
-var margin = {t:100,l:100,b:100,r:100},
+var margin = {t:0,l:0,b:0,r:0},
     width = $('.canvas').width()-margin.l-margin.r,
     height = $('.canvas').height()-margin.t-margin.b;
 
@@ -13,7 +13,8 @@ var svg = d3.select('.canvas')
 
 var background = svg.append('rect')
     .attr('width',width)
-    .attr('height',height);
+    .attr('height',height)
+    .attr('class', 'background');
 
 var force = d3.layout.force()
     .size([width,height])
@@ -61,36 +62,9 @@ queue()
 
         draw(data);
 
-        // $('.control #start').on('click',function(e){
-        //     e.preventDefault();
-        //     console.log('Start');
-        //     force.start();
-        // });
-        // $('.control #stop').on('click', function(e){
-        //     e.preventDefault();
-        //     console.log('Stop');
-        //     force.stop();
-        // });
-        // $('.control #multi').on('click', function(e){
-        //     e.preventDefault();
 
-        //     force
-        //         .stop()
-        //         .gravity(0)
-        //         .on('tick', onMultiFociTick)
-        //         .start();
-        // })
-        // $('.control #single').on('click', function(e){
-        //     e.preventDefault();
 
-        //     force
-        //         .stop()
-        //         .gravity(.1)
-        //         .on('tick',onTick)
-        //         .start();
-        // });
-
-        background
+        svg
             .on('click', onBackgroundClick);
     });
 
@@ -116,7 +90,7 @@ function draw(data){
             d3.select(this)
                 .append('circle')
                 .attr('r',22)
-                .style('fill','#fff');
+                .style('fill','none');
             d3.select(this)
                 .append('svg:image')
                 .attr('height',40)
@@ -129,15 +103,6 @@ function draw(data){
 
 }
 
-function onTick(){
-    oNodes
-        .attr('transform', function(d){
-            return 'translate('+ d.x + ',' + d.y + ')';
-        })
-
-    // .on('tick', onMultiFociTick)
-
-}
 
 function onMultiFociTick(e){
     var k = 0.2 * e.alpha;
