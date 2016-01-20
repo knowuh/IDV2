@@ -1,10 +1,10 @@
 //This example shows how nodes and links can be represented differently
 
 var margin = {t:0,l:0,b:0,r:0},
-    width = $('.canvas').width()-margin.l-margin.r,
-    height = $('.canvas').height()-margin.t-margin.b;
+    width = $('.fixed-width').width()-margin.l-margin.r,
+    height = $('.fixed-width').height()-margin.t-margin.b;
 
-var svg = d3.select('.canvas')
+var svg = d3.select('.fixed-width')
     .append('svg')
     .attr('width',width+margin.l+margin.r)
     .attr('height',height+margin.t+margin.b)
@@ -42,6 +42,10 @@ foci.b = {
     y: height/2
 };
 
+foci.c = {
+    x: width*1/2,
+    y: height*2/3
+};
 
 queue()
     .defer(d3.json, 'data/force.json')
@@ -84,8 +88,11 @@ function draw(data){
         .each(function(d){
             if(d.font == "h"){
                 imageUrl = 'assets/helvetica.svg';
-            }else{
+            }else if (d.font =="b"){
                 imageUrl = 'assets/bodoni.svg';
+            }
+            else{
+                imgUrl = 'assets/courier.svg';
             }
             d3.select(this)
                 .append('circle')
