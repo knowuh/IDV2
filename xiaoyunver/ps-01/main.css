@@ -107,15 +107,15 @@ span.title::after {
 }
 
 #circle1{
-  background: palevioletred;
+  background: #494949;
 }
 
 #circle2{
-  background: #db97b2;
+  background: #cccccc;
 }
 
 #circle3{
-  background: #dbb2c8;
+  background: #000000;
 }
 
 .image-circle{
