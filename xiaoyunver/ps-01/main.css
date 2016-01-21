@@ -98,3 +98,28 @@ span.title::before {
 span.title::after {
   content: ":";
 }
+
+.circle{
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+}
+
+#circle1{
+  background: #494949;
+}
+
+#circle2{
+  background: #cccccc;
+}
+
+#circle3{
+  background: #000000;
+}
+
+.image-circle{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
