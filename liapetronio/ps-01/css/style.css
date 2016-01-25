@@ -47,3 +47,29 @@ body {
 .background{
   fill: hsla(180, 10%, 95%, 1.0);
 }
+
+.button {
+    font-family: 'Merriweather', serif;  margin-bottom: 0px;
+    color:red;
+    border: none;
+    padding: 17px 30px; 
+    text-align: center;
+    text-decoration: underline;
+    display: inline-block;
+    font-size: 50px;
+    line-height:1;
+    border-radius: 17px;
+
+}
+
+
+.button:hover {
+  background-color: none;
+  background-opacity:0;
+  color:red;
+  opacity:.5;
+
+}
+
+
+

@@ -35,11 +35,11 @@ var oNodes;
 var foci = {};
 foci.h = {
     x: width/3,
-    y: height/2
+    y: 0
 };
 foci.b = {
     x: width*2/3,
-    y: height/2
+    y: 0
 };
 
 foci.c = {
@@ -67,8 +67,8 @@ queue()
         draw(data);
 
 
-
-        svg
+$('.svg #o')
+        // svg
             .on('click', onBackgroundClick);
     });
 
