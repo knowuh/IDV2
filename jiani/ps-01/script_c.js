@@ -19,6 +19,7 @@ var c1=svg
     .attr("cy", 200)
     .attr("r", 200)
     .style("fill","pink")
+    .style("opacity",.8)
 
 
 var c2=svg
@@ -27,6 +28,7 @@ var c2=svg
     .attr("cy", 360)
     .attr("r", 200)
     .style("fill","pink")
+    .style("opacity",.8)
 
 
 var c3=svg
@@ -35,3 +37,4 @@ var c3=svg
     .attr("cy", 360)
     .attr("r", 200)
     .style("fill","pink")
+    .style("opacity",.8)
