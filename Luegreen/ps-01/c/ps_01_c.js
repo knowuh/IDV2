@@ -1,8 +1,7 @@
-function setup() {  var canvas = createCanvas(windowWidth, 
+function setup() {var canvas = createCanvas(windowWidth, 
                             windowHeight);
     colorMode (HSB, 360, 100, 100, 100)
-    canvas.position(width/3, height/4
-                   );
+    canvas.position(width/3, height/4);
 
 }
 
