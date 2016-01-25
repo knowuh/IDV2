@@ -13,27 +13,21 @@ var plot = d3.select('#canvas')
 
 plot
 	.append('circle')
-	.attr('cx',500)
-	.attr('cy',650)
-	.attr('r',320)
-    .style('stroke','#545454')
-    .style('stroke-width','2px')
-    .style('fill','none');
-
-plot
-	.append('circle')
-	.attr('cx',500)
+	.attr('cx',100)
 	.attr('cy',650)
 	.attr('r',200)
-    .style('stroke','#545454')
-    .style('stroke-width','2px')
-    .style('fill','none');
+    .style('fill','#545454');
 
 plot
 	.append('circle')
 	.attr('cx',500)
-	.attr('cy',650)
-	.attr('r',80)
-    .style('stroke','#545454')
-    .style('stroke-width','2px')
-    .style('fill','none');
+	.attr('cy',300)
+	.attr('r',150)
+    .style('fill','#545454');
+
+plot
+	.append('circle')
+	.attr('cx',550)
+	.attr('cy',700)
+	.attr('r',100)
+    .style('fill','#545454');
