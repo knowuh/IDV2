@@ -12,3 +12,8 @@ img {
 body {
     background:#000000;
 }
+
+h3, a {
+    color: whitesmoke;
+    padding-bottom:20px
+}
