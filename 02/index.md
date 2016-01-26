@@ -16,6 +16,13 @@
 ### About Languages, frameworks & stacks.
 
 ## 6:20 – 6:30 Erica Gunn
+* [a day in the life](https://flowingdata.com/2015/12/15/a-day-in-the-life-of-americans/)
+
+Precedents:
+* http://www.datavis.ca/milestones/
+* http://www.nytimes.com/imagepages/2007/01/22/science/20070123_SCI_ILLO.html
+* http://www.wired.com/2013/11/wired-data-life-martin-krzywinski/
+* http://circos.ca/intro/published_images/
 
 ## 6:30 BREAK
 
@@ -44,8 +51,8 @@
 
 ##### 1 triangle, 3 triangles, 10 triangles.
 
-* docs - [ne](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes#Drawing_a_triangle)
-* Example: - [examples](./ps-02/index.html)
+* docs - [mozilla](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes#Drawing_a_triangle)
+* Example: -[examples](./ps-02/index.html)
 
 
 ## Problem Set 02 (ps-02) "1000 lovely line segments".
