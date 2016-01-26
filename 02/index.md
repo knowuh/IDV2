@@ -44,9 +44,8 @@
 
 ##### 1 triangle, 3 triangles, 10 triangles.
 
-* codepen - [zero](http://codepen.io/anon/pen/KVyQdO)
 * docs - [ne](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes#Drawing_a_triangle)
-* example - [two](http://codepen.io/anon/pen/wMmzEJ)
+* Example: - [examples](./ps-02/index.html)
 
 
 ## Problem Set 02 (ps-02) "1000 lovely line segments".
