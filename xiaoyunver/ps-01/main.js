@@ -1,6 +1,3 @@
-(function (){
-    alert('test');
-})()
 
 var c=document.getElementById("canvas");
 var circle=c.getContext('2d');
