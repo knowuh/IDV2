@@ -1,7 +1,9 @@
 canvas {
-  border: 1px solid black;
+  border: 2px solid hsla(140,10%,80%,1.0);
+  padding: 10px;
   margin: auto;
-  width: 100%;
+  display: inline-block;
+  margin-top: 1em;
 }
 
 body {
@@ -23,6 +25,7 @@ li {
 }
 
 .centered {
+  text-align: center;
   margin: auto;
   min-width: 200px;
   width: 80%;
