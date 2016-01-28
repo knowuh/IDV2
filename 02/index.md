@@ -38,7 +38,7 @@ Precedents:
 
 #### Why software has attracted artists.
 * Time based media. 
-* stochastic process in art. `art marks`. The [Fluxus](https://en.wikipedia.org/wiki/Fluxus), [Raku](https://en.wikipedia.org/wiki/Raku_ware)
+* Stochastic process in art. The [Fluxus](https://en.wikipedia.org/wiki/Fluxus), [Raku](https://en.wikipedia.org/wiki/Raku_ware)
 * Tools for tool makers. 
 * Everything is software.
 * Life long beginner.
