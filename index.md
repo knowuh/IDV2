@@ -42,8 +42,8 @@ Students will abide by Northeastern University’s [Academic Integrity Policy](h
 Students are expected to attend all classes. Absence for health or personal reasons should be communicated to the lecturer. Tardiness and unexcused absences will impact student grades.
 
 ### Schedule
-1. `Jan 11` __Orientation__: Introductions, overview, agreement, processes. Publishing workflow using a text editor, HTML, CSS, and git.
-2. `Jan 25` __Drawing with code:__ Introduction to key programming concepts using JavaScript and Processing. We learn to make digital marks and cover: variables, lists, conditionals, loops, and functions.
+1. `Jan 11` __[Orientation](./01/):__ Introductions, overview, agreement, processes. Publishing workflow using a text editor, HTML, CSS, and git.
+2. `Jan 25` __[Drawing with code](./02/):__ Introduction to key programming concepts using JavaScript and Processing. We learn to make digital marks and cover: variables, lists, conditionals, loops, and functions.
 3. `Feb  1` __Parametric design:__ We look at abstraction and how we can express variables in graphic dimensions using D3 and SVG. We review the interaction design mantra and gestalt principles along the way.
 4. `Feb  8` __Data:__ We cover data structures, and related topics such as list traversal. We talk about how we can describe and represent data in code and images. We learn to use HTTP requests to collect remote data.
 5. `Feb 22` __Precedents in social visualization:__ A review of significant works within our domain. We conduct a design lab and charette for project proposals.
