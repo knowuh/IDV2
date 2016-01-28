@@ -63,9 +63,9 @@ Precedents:
 ### Problems:
 Please create a new folder `<username>/ps-02/index.html` and have it point to each of your sollutions for these problems (a,b,c,d,e):
 
-* a.html: 10 n-gons    (shapes of your own) (javascript & canvas)
-* b.html: 100 quadralaterals.     (javascript & canvas)
-* c.htlm: 1000 line segments.     (javascript & canvas)
+* `a.html`: 10 n-gons  (shapes of your own) (javascript & canvas)
+* `b.html`: 100 quadralaterals.     (javascript & canvas)
+* `c.htlm`: 1000 line segments.     (javascript & canvas)
 * Choose any early computer art piece (pre 1980) to respond to: [Vera Molnar](http://www.veramolnar.com/diapo.php), [George Nees](https://en.wikipedia.org/wiki/Georg_Nees), [Michael Noll](http://dam.org/artists/phase-one/a-michael-noll/artworks), or [research your own.](http://dam.org)
-    * d.html: One page fact sheet. Include a reference image of the work you are responding to. Include background information about the artist and artwork. 
-    * e.html: Your reinterpretation in the browser. This can be done using any technology stack / framework you like. Please feel free to continue using canvas and javscript.
+    * `d.html`: One page fact sheet. Include a reference image of the work you are responding to. Include background information about the artist and artwork.
+    * `e.html`: Your reinterpretation in the browser. This can be done using any technology stack / framework you like. Please feel free to continue using canvas and javscript.
