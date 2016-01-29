@@ -7,9 +7,10 @@ var addSolution = function (student, problemset) {
 var makeStudentLinks = function () {
   var i = 0;
   var student = null;
-  var students =
-    ("frankenbits jessier08 odonnel-p severli93 tangdru " +
-      "xiaoyunver KiniLuo Luegreen egunn navarjun").split(" ").sort();
+  var students = (
+      "frankenbits jessier08 odonnel-p severli93 tangdru "
+    + "xiaoyunver KiniLuo Luegreen egunn navarjun "
+    + "liapetronio jiani rcmorrill").split(" ").sort();
 
   for (i = 0; i < students.length; i++) {
     student = students[i];
