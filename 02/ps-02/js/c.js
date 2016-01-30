@@ -14,8 +14,8 @@ var setColor = function (hue, sat, light, alpha) {
     + light + "%, "
     + alpha + ")";
   canvas.fillStyle = colorString;
-  canvas.strokeStyle = "hsla(1,0%,40%,0.0)";
-  canvas.lineWidth = 0.2
+  canvas.strokeStyle = colorString;
+  canvas.lineWidth = 0.5;
 };
 
 
@@ -31,16 +31,15 @@ var clear = function () {
 /***********************************************
  * Function draw a single Quad at x,y       *
  ***********************************************/
-var drawQuad = function (centerX, centerY, diameter, wiggliness) {
-  var radius = diameter / 2;
-  var top    = centerY - radius;
-  var bottom = centerY + radius;
+var drawQuad = function (centerX, centerY, width, height, wiggliness) {
+  var top    = centerY - height/2;
+  var bottom = centerY + height/2;
 
-  var left   = centerX - radius;
-  var right  = centerX + radius;
+  var left   = centerX - width/2;
+  var right  = centerX + width/2;
 
   var rjst = function() {
-    return Math.random() * (radius * wiggliness);
+    return Math.random() * (width/2 * wiggliness);
   };
 
   canvas.beginPath();
@@ -48,7 +47,7 @@ var drawQuad = function (centerX, centerY, diameter, wiggliness) {
   canvas.lineTo(right + rjst(), top    - rjst());
   canvas.lineTo(right + rjst(), bottom + rjst());
   canvas.lineTo(left  - rjst(), bottom + rjst());
-  canvas.fill();
+  canvas.closePath();
   canvas.stroke();
 };
 
@@ -56,40 +55,55 @@ var drawQuad = function (centerX, centerY, diameter, wiggliness) {
 /***********************************************
  * Function  draw a grid of quads              *
  ***********************************************/
-var drawGrid = function (rows, cols) {
+var drawGrid = function (rows, cols, spacing) {
   var horizontalSpacing  = canvasWidth  / cols;
   var verticalSpacing    = canvasHeight / rows;
-  var diameter = Math.min(verticalSpacing, horizontalSpacing) * 0.8;
-  var radius   = diameter / 2;
+
+  var width  = horizontalSpacing * spacing;
+  var height = verticalSpacing   * spacing;
+
+  var horizontalMargin = (canvasWidth  - (cols * horizontalSpacing))/2;
+  var verticalMargin   = (canvasHeight - (rows * verticalSpacing))/2;
+
   var col = 0;
   var row = 0;
-  var triangleX = 0;
-  var triangleY = 0;
+  var quadX = 0;
+  var quadY = 0;
   var hue = Math.random() * 360;
   var colorWidth = Math.random() * 20;
   var sat = 30;
   var light = 50;
   var randomness = 0;
-  for (col = 0; col <= cols; col++) {
-    triangleX = col * horizontalSpacing + radius;
+  for (col = 0; col < cols; col++) {
+    quadX = col * horizontalSpacing + horizontalSpacing/2 + horizontalMargin;
     hue = hue + col/cols * colorWidth;
-    for (row = 0; row <= rows; row++) {
+    for (row = 0; row < rows; row++) {
       randomness = row / rows;
       light = row/rows * 90;
-      triangleY = row * verticalSpacing + radius;
+      quadY = row * verticalSpacing + verticalSpacing/2 + verticalMargin;
       setColor(hue, sat, light, 1);
 
-      drawQuad(triangleX, triangleY, diameter, randomness);
+      drawQuad(quadX, quadY, width, height, randomness);
     }// row
 
   }// col
 };
 
-// Here we just do our work:
+/*********************************************************
+ * Function that generates draws grids w/ random spacing *
+ ********************************************************/
 var draw = function() {
   clear();
-  rows = Math.random() * 40 + 5;
-  drawGrid(rows, rows);
+  var rows = Math.round(Math.random() * 30 + 5);
+  var cols = Math.round(Math.random() * 30 + 5);
+  var spacing = Math.random();
+  drawGrid(rows, cols, spacing);
 }
+
+// draw it once
 draw();
-setInterval(draw,5000);
+
+// setup a timer to redraw
+var delay = 1000;
+setInterval(draw,delay);
+

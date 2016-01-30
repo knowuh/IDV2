@@ -53,10 +53,10 @@ var drawGrid = function (rows, cols) {
   var sat = 30;
   var light = 50;
   
-  for (col = 0; col <= cols; col++) {
+  for (col = 0; col < cols; col++) {
     triangleX = col * horizontalSpacing + radius;
-    
-    for (row = 0; row <= rows; row++) {
+
+    for (row = 0; row < rows; row++) {
       light = row/rows * 90;
       triangleY = row * verticalSpacing + radius;
       setColor(hue, sat, light, 1);
@@ -67,4 +67,4 @@ var drawGrid = function (rows, cols) {
 };
 
 // Here we just do our work:
-drawGrid(12,12);
+drawGrid(10,10);
