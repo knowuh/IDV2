@@ -18,17 +18,20 @@ var setColor = function (hue, sat, light, alpha) {
   canvas.lineWidth = 0.2
 };
 
+
 /***********************************************
- * Function draw a single Triangle at x,y       *
+ * Function clear the screen                   *
  ***********************************************/
 var clear = function () {
   setColor(1,0,100,1);
   canvas.fillRect(0,0,canvasWidth,canvasHeight);
 }
+
+
 /***********************************************
- * Function draw a single Triangle at x,y       *
+ * Function draw a single Quad at x,y       *
  ***********************************************/
-var drawQuad = function (centerX, centerY, diameter, randomness) {
+var drawQuad = function (centerX, centerY, diameter, wiggliness) {
   var radius = diameter / 2;
   var top    = centerY - radius;
   var bottom = centerY + radius;
@@ -37,7 +40,7 @@ var drawQuad = function (centerX, centerY, diameter, randomness) {
   var right  = centerX + radius;
 
   var rjst = function() {
-    return Math.random() * (radius * randomness);
+    return Math.random() * (radius * wiggliness);
   };
 
   canvas.beginPath();
@@ -51,7 +54,7 @@ var drawQuad = function (centerX, centerY, diameter, randomness) {
 
 
 /***********************************************
- * Function  draw a grid of triangles           *
+ * Function  draw a grid of quads              *
  ***********************************************/
 var drawGrid = function (rows, cols) {
   var horizontalSpacing  = canvasWidth  / cols;
