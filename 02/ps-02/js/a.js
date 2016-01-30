@@ -34,11 +34,11 @@ var centeredTriangles = function (numberOfTriangles) {
   var radius   = diameter / 2;
   var triangleCounter = 0;
   
-  while (triangleCounter <= numberOfTriangles) {
+  while (triangleCounter < numberOfTriangles) {
     drawTriangle(x, spacing * triangleCounter + radius, diameter);
     triangleCounter = triangleCounter + 1;
   }
 };
 
 // GO!
-centeredTriangles(20);
+centeredTriangles(10);
