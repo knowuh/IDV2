@@ -1,49 +1,59 @@
-//Declare an empty array to hold circles later
-var circleArray = [];
+var canvas = document.getElementById("canvas").getContext("2d");
 
-//declare variables to be stored in the Circle objects, and variables for passing values into the objects. (No types in Javascript; use var instead of int/color)
-var xPos, yPos, xRad, yRad, col;
-var xIn, yIn, xRIn,yRIn,colIn;
+//set canvas fill color to white
+canvas.fillStyle = "hsla(53, 99%, 99%, 0.94)";
+//draw a filled rectangle the size of the canvas
+canvas.fillRect(0,0,500,500);
+
+//draw a rectangle outline, using 4 input parameters
+//add random components to prevent regularity
+var rectOutline = function(topX, topY,length, height) {
+  //set up variables    
+  var topLeftX = topX+3*Math.random();
+  var topLeftY = topY+2*Math.random();    
+  var topRightX = topX+length+2*Math.random();
+  var bottomY = topY + height+4*Math.random();
+  var bottomLeftX = topX+4*Math.random();
+  var bottomRightX = topX + length+2*Math.random();
+  
+  //actually draw rectangles (note that canvas.lineWidth will change color if set to a value lower than 1, but will not get thinner!)    
+  canvas.beginPath();
+  canvas.strokeStyle = "gray";
+   // canvas.fillStyle="red";
+  canvas.lineWidth=1;
+  canvas.moveTo(topLeftX, topLeftY);
+  canvas.lineTo(topRightX, topY);
+  canvas.lineTo(bottomRightX, bottomY);
+  canvas.lineTo(bottomLeftX, bottomY);
+  canvas.closePath();
+  canvas.stroke();
+  //canvas.fill();
+};
+
+//create a group of rectangles centered around the same point
+var rectGroup = function(centerX,centerY, size, numOfRects){
+    var topXBounding = (centerX-size/2)+3*Math.random();
+    var topYBounding = (centerY-size/2)+3*Math.random();
+    var sizeIncr = size/(2*numOfRects);
     
-//create the function that will actually add values to the circles. Because circles are a subset of the ellipse drawing function, define an x and a y radius value; when the two values are the same, you get a circle.
-function Circle(xIn,yIn,xRIn,yRIn,colIn){
-    //set the parameters of the object
-    this.xPos = xIn;
-    this.yPos = yIn;
-    this.xRad = xRIn;
-    this.yRad = yRIn;
-    this.Col = colIn;
-    
-    //define a display function for the circle objects
-    this.display = function() {
-        //set the fill color using the parameter stored in the object
-        fill(this.Col);    
-        //draw an ellipse using the parameters stored in the object.
-ellipse(this.xPos,this.yPos,this.xRad,this.yRad);
+    //draw the outer rectangle
+    rectOutline(topXBounding,topYBounding,size,size);
+
+    //add the number of inner rectangles requested by the calling function
+    for (var i=0;i<numOfRects;i++){
+          rectOutline(topXBounding+i*sizeIncr+Math.random(),
+                      topYBounding+i*sizeIncr+Math.random(),
+                      size-2*i*sizeIncr+2*Math.random(),
+                      size-2*i*sizeIncr+2*Math.random());
     }
 }
 
-//Create three circle objects using a for loop.
-for (var i=0;i<3;i++){
-    //create a new circle object and store it in the temp variable
-    var temp = new Circle(100+i*50,470,25+i*10,25+i*10,105);
-    //add that object to the end of the circleArray
-    circleArray.push(temp);
-}
-    
-//set up the canvas - this section runs only once
-function setup() {
-    createCanvas(1024,768);
-    stroke('none');
-    fill(155);
-}
-
-//the draw function runs many times per second (30?) - anything in here executes continuously
-function draw() {
-    //set the canvas to white
-    background(255);
-    //go through the circleArray one element at a time and draw a circle for each object, using the display function saved above
-    for (var i=0; i<circleArray.length;i++){
-        circleArray[i].display();
-    };
+//make an 8x8 grid of rectangle groups, with a random number of rectangles
+for (var j=0;j<8;j++){
+    for (var k=0;k<8;k++){
+        //use a and b to set a threshold min/max, from http://stackoverflow.com/questions/6028649/javascript-math-random-parameter
+        var a = 3;
+        var b = 5;
+        rectGroup(35+60*j,38+60*k,50,7*Math.random()*(b-a)+a);
+    }
 }

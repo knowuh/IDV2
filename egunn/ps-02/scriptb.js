@@ -36,7 +36,7 @@ for(var row = 0; row < 10; row++){
     for(var col = 0; col <10; col++){
    
         var hue = 10*row;
-        var sat = 50;
+        var sat = 70;
         var light = col*8;
         var trans = 1;
         canvas.fillStyle = "hsla(" + hue 
