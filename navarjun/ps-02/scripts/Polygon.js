@@ -28,7 +28,9 @@ var Polygon = function() {
             ctx.lineTo(pointsArray[i].x, pointsArray[i].y);
         }
         ctx.closePath()
-        ctx.stroke();
+        if (strokeWidth != 0) {
+            ctx.stroke()
+        }
         ctx.fillStyle = fillColor
         ctx.fill()
     }
