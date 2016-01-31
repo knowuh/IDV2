@@ -98,16 +98,3 @@ span.title::before {
 span.title::after {
   content: ":";
 }
-
-ul#solutions {
-  margin: 0px;
-  padding: 0px;
-}
-
-ul#solutions > li {
-  font-size: 14pt;
-  list-style: none;
-  display: inline-block;
-  padding: 0.5em 1em;
-  margin: 0px 0px 0px 0px;
-}
