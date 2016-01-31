@@ -25,5 +25,4 @@ for (var i=0; i<1000; i++){
     randomLine();
 };
     
-setInterval(function() { window.location.reload();}, 1500); 
 

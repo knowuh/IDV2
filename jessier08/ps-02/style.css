@@ -16,10 +16,17 @@ canvas{
     margin:auto;
     margin-top:5em;
 }
+.container{
+    margin-top:6em;
+}
 .links{
     text-align:center;
     font-size: 2.5em;
-    margin-top:4em;
+}
+.name{
+    color:rgba(130,60,120,.7);
+    text-align: center;
+    top:200px;
 }
 .back{
     text-align:center;
@@ -43,8 +50,7 @@ canvas{
     padding-left:5em;
 }
 .left p{
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: .8em;
+    font-size: .9em;
     width:400px;
 }
 .right img {

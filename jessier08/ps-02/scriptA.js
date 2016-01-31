@@ -1,7 +1,5 @@
 var canvas = document.getElementById("canvas").getContext("2d");
 
-//drawing 
-
 //blueprint
 var triangle = function(centerX, centerY, dW, dH) {
     var top = centerY - dH;
@@ -11,9 +9,8 @@ var triangle = function(centerX, centerY, dW, dH) {
     canvas.moveTo(centerX,top);
     canvas.lineTo(right, bottom);
     canvas.lineTo(left, bottom);
-    canvas.fill();
-    canvas.globalAlpha = .2;
     canvas.fillStyle = "rgb(130,60,120)";
+    canvas.fill();
     canvas.rotate(Math.PI/4);
 };
 
@@ -28,6 +25,9 @@ for (var i=0; i<10; i++){
     var varyW = (Math.random()*100)+100;
     var varyH = (Math.random()*100)+100;
 
+    var op = (Math.random()*.6);
+    if (op<.05){op = .1};
+    
     var x = nudgeX, 
         y = nudgeY,
         w = varyW, 
@@ -37,8 +37,9 @@ for (var i=0; i<10; i++){
     
     triangle(x,y,w,h);
     
+    canvas.globalAlpha = op;
+    
     console.log(canvas.globalAlpha);
 
 };
 
-setInterval(function() { window.location.reload();}, 1000); 

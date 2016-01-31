@@ -22,4 +22,4 @@ for (var i=0; i<100; i++){
     randomSquare();
 };
     
-setInterval(function() { window.location.reload();}, 1000); 
+
