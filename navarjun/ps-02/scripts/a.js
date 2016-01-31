@@ -1,9 +1,3 @@
-var canvas = document.getElementById("drawingCanvas")
-var heading = document.getElementById("heading")
-
-canvas.height = window.innerHeight-heading.clientHeight
-canvas.width = window.innerWidth
-
 var numberOfPolygons = 10
 redraw()
 
@@ -24,6 +18,7 @@ function redraw() {
         var polygon = Polygon().numberOfSides(input)
                                 .radius(Math.random() * 50 + 10)
                                 .x(x).y(y)
+                                .rotation(Math.random() * 360)
                                 .strokeWidth(0)
                                 .fillColor(fillColor)
 

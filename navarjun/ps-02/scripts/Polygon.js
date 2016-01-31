@@ -4,18 +4,37 @@ var Polygon = function() {
         radius = 5, x = 0, y = 0,
         strokeWidth = 15,
         strokeColor = 'rgb(10, 10, 10)',
-        fillColor = 'rgb(20, 20, 20)'
+        fillColor = 'rgb(20, 20, 20)',
+        rotation = 0 // in degrees
+    
+    var cos = Math.cos, sin = Math.sin
+    var degToRad = function(angleInDegrees) {
+         // Degrees to radian conversion
+        return angleInDegrees * (Math.PI/180)
+    }
     
     var draw = function(canvasElement) {
         var angleIncrements = 360.0/numberOfSides
-        angleIncrements = angleIncrements * (Math.PI/180) //Degrees to radian conversion
+        angleIncrements = degToRad(angleIncrements)
         var pointsArray = []
         
         // calculating points for a polygon
         for (var i = 0; i < numberOfSides; i++) {
-            var xPos = x + radius*Math.cos(angleIncrements*i)
-            var yPos = y + radius*Math.sin(angleIncrements*i)
+            var xPos = x + radius * cos(angleIncrements*i)
+            var yPos = y + radius * sin(angleIncrements*i)
             pointsArray.push({x: xPos, y: yPos})
+        }
+        
+        // applying rotation to the points with respect to center
+        for (var i = 0; i < numberOfSides; i++) {
+            var xPos = pointsArray[i].x,
+                yPos = pointsArray[i].y,
+                radians = degToRad(rotation)
+            xPos -= x; yPos -= y    // changing the anchorpoint to origin
+            var newXPos = cos(radians) * xPos - sin(radians) * yPos
+            var newYPos = sin(radians) * xPos + cos(radians) * yPos
+            newXPos += x; newYPos += y  // changing anchorpoint back to center point
+            pointsArray[i] = {x: newXPos, y: newYPos}
         }
         
         var ctx = canvasElement.getContext('2d')
@@ -89,6 +108,14 @@ var Polygon = function() {
             return fillColor
         }
         fillColor = color
+        return this
+    }
+    
+    draw.rotation = function(r) {
+        if (typeof r === 'undefined') {
+            return rotation
+        }
+        rotation = r
         return this
     }
     

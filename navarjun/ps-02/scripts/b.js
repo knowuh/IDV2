@@ -1,9 +1,3 @@
-var canvas = document.getElementById("drawingCanvas")
-var heading = document.getElementById("heading")
-
-canvas.height = window.innerHeight-heading.clientHeight
-canvas.width = window.innerWidth
-
 var numberOfPolygons = 100
 
 var ctx = canvas.getContext('2d')
@@ -17,6 +11,7 @@ for (var i = 0; i < numberOfPolygons; i++) {
     var polygon = Polygon().numberOfSides(4)
                             .radius(Math.random() * 50 + 10)
                             .x(x).y(y)
+                            .rotation(Math.random() * 360)
                             .strokeWidth(0)
                             .fillColor(fillColor)
 

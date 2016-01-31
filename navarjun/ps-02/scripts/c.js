@@ -1,9 +1,3 @@
-var canvas = document.getElementById("drawingCanvas")
-var heading = document.getElementById("heading")
-
-canvas.height = window.innerHeight-heading.clientHeight
-canvas.width = window.innerWidth
-
 var numberOfPolygons = 100
 
 var ctx = canvas.getContext('2d')
@@ -15,9 +9,10 @@ for (var i = 0; i < numberOfPolygons; i++) {
     var fillColor = 'rgba('+Math.floor(Math.random() * 255)+','+Math.floor(Math.random() * 255)+','+Math.floor(Math.random() * 255)+','+Math.random()+')'
 
     var polygon = Polygon().numberOfSides(2) // drawing a line just needs 2 points
-                            .radius(Math.random() * 1000)
+                            .radius(1000)
                             .x(x).y(y)
-                            .strokeWidth(3)
+                            .rotation(Math.random() < 0.5 ? 0 : 90)
+                            .strokeWidth(Math.random() * 10)
                             .strokeColor(fillColor)
 
     polygon(canvas)
