@@ -2,47 +2,31 @@
 var canvas = document.getElementById("canvas").getContext("2d");
 
 
+var circlePoints = function(centerX,centerY,radiusInner,angleInner, radiusOuter, angleOuter) {
+    var xInner = radiusInner*Math.cos(angleInner);
+    var yInner = radiusInner*Math.sin(angleInner);
+    var xOuter = radiusOuter*Math.cos(angleOuter);
+    var yOuter = radiusOuter*Math.sin(angleOuter);
+    
+    //from http://www.w3schools.com/tags/canvas_strokestyle.asp
+    var gradient=canvas.createRadialGradient(centerX,centerY,radiusInner,centerX,centerY, radiusOuter);
+    gradient.addColorStop("0","purple");
+    gradient.addColorStop("0.5","blue");
+    gradient.addColorStop("1.0","teal");
 
-//create triangle constructor function
-var fillTriangle = function() {
-//move cursor without drawing a line
-    canvas.moveTo(50,50);
-//draw a line to 
-    canvas.lineTo(75, 75);
-    canvas.lineTo(25, 75);
-    canvas.fill();
-};
-canvas.fillStyle = "#000000";
-fillTriangle(66,66,66,66);
+    // Fill with gradient
+    canvas.strokeStyle=gradient;
 
-
-
-
-/////////////////////////////////////////////////////////////////////////////////
-var canvas = document.getElementById("canvas").getContext("2d");
-
-var fillTriangle = function(xCenter, yCenter,diameter) {
-  //var diameter = 24;
-  var radius = diameter/2;
-  var topOfTriangle = yCenter + radius;
-  var bottomOfTriangle = topOfTriangle - radius;
-  var left = xCenter - radius;
-  var right = xCenter + radius;
-  canvas.moveTo(xCenter, topOfTriangle);
-  canvas.lineTo(right, bottomOfTriangle);
-  canvas.lineTo(left, bottomOfTriangle);
-  canvas.fill();
-};
-
-canvas.fillStyle = "#000000";
-
-var triangleCenters = [50,100,150];
-
-for(var index = 0; index < 3; index++){
-//for (var triangle in triangleCenters) {
-  var triangleY = triangleCenters[index];
-  fillTriangle(100, triangleY, 40);
+    
+   // canvas.strokeStyle="#FF0000";
+    canvas.lineWidth=0.25;
+    canvas.beginPath();
+    canvas.moveTo(xInner+centerX, yInner+centerY);
+    canvas.lineTo(xOuter+centerX, yOuter+centerY);
+    canvas.stroke();
+    
 }
 
-//var x = 40;
-//var y = 80;
+for (i=0;i<1000;i++){
+    circlePoints(250,250,50,2*Math.PI*(i+200)/1000,200, 2*Math.PI*i/40);
+}

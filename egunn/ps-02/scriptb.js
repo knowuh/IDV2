@@ -1,49 +1,48 @@
-//Declare an empty array to hold circles later
-var circleArray = [];
+var canvas = document.getElementById("canvas").getContext("2d");
 
-//declare variables to be stored in the Circle objects, and variables for passing values into the objects. (No types in Javascript; use var instead of int/color)
-var xPos, yPos, xRad, yRad, col;
-var xIn, yIn, xRIn,yRIn,colIn;
-    
-//create the function that will actually add values to the circles. Because circles are a subset of the ellipse drawing function, define an x and a y radius value; when the two values are the same, you get a circle.
-function Circle(xIn,yIn,xRIn,yRIn,colIn){
-    //set the parameters of the object
-    this.xPos = xIn;
-    this.yPos = yIn;
-    this.xRad = xRIn;
-    this.yRad = yRIn;
-    this.Col = colIn;
-    
-    //define a display function for the circle objects
-    this.display = function() {
-        //set the fill color using the parameter stored in the object
-        fill(this.Col);    
-        //draw an ellipse using the parameters stored in the object.
-ellipse(this.xPos,this.yPos,this.xRad,this.yRad);
+/*//from sample code
+var setColor = function (hue, sat, light, alpha) {
+  var colorString = "hsla("
+    + hue   + ", "
+    + sat   + "%, "
+    + light + "%, "
+    + alpha + ")";
+  canvas.fillStyle = colorString;
+};*/
+
+var fillQuad = function(topX, topY,length, height, slope) {
+  var topRightX = topX+length;
+  var bottomY = topY + height;
+  var angle = 180-slope;
+  var bottomLeftX = topX-height*Math.tan(angle);
+  var bottomRightX = bottomLeftX + length;
+  
+  canvas.beginPath();
+  canvas.moveTo(topX, topY);
+  canvas.lineTo(topRightX, topY);
+  canvas.lineTo(bottomRightX, bottomY);
+  canvas.lineTo(bottomLeftX, bottomY);
+  canvas.fill();
+};
+
+
+/*var quadOrigins = [];
+
+for(var i = 0; i<10; i++){
+    quadOrigins.push(20+i*25);
+}*/
+
+for(var row = 0; row < 10; row++){
+    for(var col = 0; col <10; col++){
+   
+        var hue = 10*row;
+        var sat = 50;
+        var light = col*8;
+        var trans = 1;
+        canvas.fillStyle = "hsla(" + hue 
+          +","+sat+"%,"+light+"%,"+trans+")";
+                     
+        fillQuad(40+45*col,35+row*45,22+5*Math.random(),22+10*Math.random(),60+.5*Math.random());
+
     }
-}
-
-//Create three circle objects using a for loop.
-for (var i=0;i<3;i++){
-    //create a new circle object and store it in the temp variable
-    var temp = new Circle(100+i*50,470,25+i*10,25+i*10,105);
-    //add that object to the end of the circleArray
-    circleArray.push(temp);
-}
-    
-//set up the canvas - this section runs only once
-function setup() {
-    createCanvas(1024,768);
-    stroke('none');
-    fill(155);
-}
-
-//the draw function runs many times per second (30?) - anything in here executes continuously
-function draw() {
-    //set the canvas to white
-    background(255);
-    //go through the circleArray one element at a time and draw a circle for each object, using the display function saved above
-    for (var i=0; i<circleArray.length;i++){
-        circleArray[i].display();
-    };
 }

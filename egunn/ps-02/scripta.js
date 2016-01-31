@@ -1,21 +1,3 @@
-
-var canvas = document.getElementById("canvas").getContext("2d");
-
-/*
-//create triangle constructor function
-var fillTriangle = function() {
-//move cursor without drawing a line
-    canvas.moveTo(50,50);
-//draw a line to 
-    canvas.lineTo(75, 75);
-    canvas.lineTo(25, 75);
-    canvas.fill();
-}; */
-//canvas.fillStyle = "#000000";
-//fillTriangle(66,66,66,66);
-
-
-/////////////////////////////////////////////////////////////////////////////////
 var canvas = document.getElementById("canvas").getContext("2d");
 
 //from sample code
@@ -51,7 +33,7 @@ for(var i = 0; i<10; i++){
 for(var index = 0; index < 10; index++){
 //for (var triangle in triangleCenters) {
   var triangleY = triangleCenters[index];
-  fillTriangle(triangleY,175+index*4, 150-index*40);
+  fillTriangle(50+triangleY*.54+index*10,275-index*15, 150-index*40);
    
       var hue = 150;
       var sat = 40;
