@@ -2,22 +2,22 @@ var ctx = document.getElementById("canvas").getContext("2d");
 
 
 
-var input1 = 40;
-var input2 = 10;
+var input1 = 40,
+    input2 = 10,
+    
+    random1 = Math.random(),
 
-
-var random1 = Math.random();
-
-var point1 = 1.5;
-var point2 = 2.5;
-var point3 = 3;
-var point4 = 2;
-
-
+    point1 = 1.5,
+    point2 = 2.5,
+    point3 = 3,
+    point4 = 2;
 
 
 
-ctx.beginPath();              
+
+
+ctx.beginPath();  
+ctx.translate(200,30);
 ctx.moveTo(point1*input1, input1);
 ctx.lineTo(point2*input1, input1);
 ctx.lineTo(point3*input1, point4*input1);    
@@ -26,10 +26,10 @@ ctx.lineTo(input1, point4*input1);
 ctx.lineTo(point1*input1, input1);    
 ctx.closePath();
 ctx.fillStyle = "rgba(200, 10, 200, 1)";
-ctx.fill();
+
 ctx.save();
 
-ctx.translate(20,30);
+ctx.translate(20,40);
 ctx.rotate(.3);
 ctx.scale(1.2, 1.2);
 ctx.beginPath();              
@@ -42,7 +42,7 @@ ctx.lineTo(point1*input1, input1);
 ctx.closePath();
 ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
 ctx.fill();
-ctx.restore();
+
 
 ctx.translate(50,50);
 ctx.rotate(-.3);
@@ -57,9 +57,9 @@ ctx.lineTo(point1*input1, input1);
 ctx.closePath();
 ctx.fillStyle = "rgba(106, 175, 90, .5)";
 ctx.fill();
-ctx.restore();
 
-ctx.translate(100,50);
+
+ctx.translate(100,100);
 ctx.rotate(-.1);
 ctx.scale(.8, .8);
 ctx.beginPath();              
@@ -72,9 +72,9 @@ ctx.lineTo(point1*input1, input1);
 ctx.closePath();
 ctx.fillStyle = "rgba(100, 100, 100, .5)";
 ctx.fill();
-ctx.restore();
 
-ctx.translate(1,.5);
+
+ctx.translate(50,50);
 ctx.rotate(.3);
 ctx.scale(1.2, 1.3);
 ctx.beginPath();              
@@ -87,9 +87,9 @@ ctx.lineTo(point1*input1, input1);
 ctx.closePath();
 ctx.fillStyle = "rgba(200, 10, 200, .70)";
 ctx.fill();
-ctx.restore();
 
-ctx.translate(100,50);
+
+ctx.translate(100,80);
 ctx.rotate(-.1);
 ctx.scale(1.2, .8);
 ctx.beginPath();              
@@ -102,7 +102,7 @@ ctx.lineTo(point1*input1, input1);
 ctx.closePath();
 ctx.fillStyle = "rgba(100, 100, 100, .5)";
 ctx.fill();
-ctx.restore();
+
 
 ctx.translate(2,10);
 ctx.rotate(.5);
@@ -117,9 +117,9 @@ ctx.lineTo(point1*input1, input1);
 ctx.closePath();
 ctx.fillStyle = "rgba(0, 100, 200, 0.5)";
 ctx.fill();
-ctx.restore();
 
-ctx.translate(10,0);
+
+ctx.translate(100,40);
 ctx.rotate(-.8);
 ctx.scale(1.4, 1.8);
 ctx.beginPath();              
@@ -132,7 +132,7 @@ ctx.lineTo(point1*input1, input1);
 ctx.closePath();
 ctx.fillStyle = "rgba(000, 250, 250, 0.5)";
 ctx.fill();
-ctx.restore();
+
 
 ctx.translate(100,50);
 ctx.rotate(1.4);
@@ -147,7 +147,7 @@ ctx.lineTo(point1*input1, input1);
 ctx.closePath();
 ctx.fillStyle = "rgba(200, 10, 200, .5)";
 ctx.fill();
-ctx.restore();
+
 
 ctx.translate(20,50);
 ctx.rotate(-.1);
@@ -162,7 +162,7 @@ ctx.lineTo(point1*input1, input1);
 ctx.closePath();
 ctx.fillStyle = "rgba(100, 100, 100, .5)";
 ctx.fill();
-ctx.restore();
+
 
 
 
@@ -191,26 +191,3 @@ ctx.restore();
 //    // are not transformed
 //    ctx.restore();
 
-//
-//var fillTriangle = function(xCenterOfTriangle, yCenterOfTriangle, diameter) {
-//    var radius = diameter/2;
-//    var topOfTriangle = yCenterOfTriangle - (radius);
-//    var bottomOfTriangle = topOfTriangle  +  (radius);
-//    var left = xCenterOfTriangle - (radius);
-//    var right = xCenterOfTriangle + (radius);
-//    canvas.moveTo(xCenterOfTriangle,topOfTriangle);
-//    canvas.lineTo(right, bottomOfTriangle);
-//    canvas.lineTo(left, bottomOfTriangle);
-//    canvas.fill();
-//};
-//canvas.fillStyle = "#000000";
-//
-//
-//var triangles = [50, 100, 150];
-//
-//for (var index = 0; index < 3;  index++) {
-//  var triangleY = triangles[index];
-//  fillTriangle(100, triangleY, 30);  
-//  console.log(index);
-//  console.log(triangleY);
-//}

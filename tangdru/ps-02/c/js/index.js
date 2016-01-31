@@ -1,24 +1,86 @@
-var canvas = document.getElementById("canvas").getContext("2d");
+var ctx = document.getElementById("canvas").getContext("2d");
+   
+var drawLine = function(){
+ 
+var x1 = (Math.random()*800);
+var y1 = (Math.random()*800);
+var x2 = (Math.random()*800);
+var y2 = (Math.random()*800);
 
-var fillTriangle = function(xCenterOfTriangle, yCenterOfTriangle, diameter) {
-    var radius = diameter/2;
-    var topOfTriangle = yCenterOfTriangle - (radius);
-    var bottomOfTriangle = topOfTriangle  +  (radius);
-    var left = xCenterOfTriangle - (radius);
-    var right = xCenterOfTriangle + (radius);
-    canvas.moveTo(xCenterOfTriangle,topOfTriangle);
-    canvas.lineTo(right, bottomOfTriangle);
-    canvas.lineTo(left, bottomOfTriangle);
-    canvas.fill();
+   
+ctx.beginPath();
+ctx.moveTo(x1,y1);
+ctx.lineTo(x2,y2);
+    
+ctx.strokeStyle = "rgba(000, 250, 250, 0.5)";
+ctx.stroke();
 };
-canvas.fillStyle = "#000000";
 
 
-var triangles = [50, 100, 150, 200, 250];
+for (var i=0; i<250; i++){
+    drawLine();
+};
 
-for (var index = 0; index <5;  index++) {
-  var triangleY = triangles[index];
-  fillTriangle(100, triangleY, 30);  
-  console.log(index);
-  console.log(triangleY);
-}
+
+var drawLine2 = function(){
+ 
+var x1 = (Math.random()*800);
+var y1 = (Math.random()*800);
+var x2 = (Math.random()*800);
+var y2 = (Math.random()*800);
+
+   
+ctx.beginPath();
+ctx.moveTo(x1,y1);
+ctx.lineTo(x2,y2);
+    
+ctx.strokeStyle = "rgba(200, 10, 200, 0.5)";
+ctx.stroke();
+};
+
+
+for (var i=0; i<250; i++){
+    drawLine2();
+};
+
+var drawLine3 = function(){
+ 
+var x1 = (Math.random()*800);
+var y1 = (Math.random()*800);
+var x2 = (Math.random()*800);
+var y2 = (Math.random()*800);
+
+   
+ctx.beginPath();
+ctx.moveTo(x1,y1);
+ctx.lineTo(x2,y2);
+    
+ctx.strokeStyle = "rgba(0, 0, 200, 0.5)";
+ctx.stroke();
+};
+
+
+for (var i=0; i<250; i++){
+    drawLine3();
+};
+
+var drawLine4 = function(){
+ 
+var x1 = (Math.random()*800);
+var y1 = (Math.random()*800);
+var x2 = (Math.random()*800);
+var y2 = (Math.random()*800);
+
+   
+ctx.beginPath();
+ctx.moveTo(x1,y1);
+ctx.lineTo(x2,y2);
+    
+ctx.strokeStyle = "rgba(0, 250, 100, 0.5)";
+ctx.stroke();
+};
+
+
+for (var i=0; i<250; i++){
+    drawLine4();
+};
