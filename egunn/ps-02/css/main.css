@@ -76,6 +76,19 @@ li {
     text-align: left;
 }
 
+.body-text {
+    width:550px;
+    margin-left: 0;
+    margin-right: auto;
+    text-align: left;
+    float:left;
+}
+
+.source-list {
+    position:relative;
+    text-align:left;
+    clear:left;
+}
 span.date {
   font-family: monospace;
 }
