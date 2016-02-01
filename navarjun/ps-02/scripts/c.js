@@ -14,6 +14,6 @@ for (var i = 0; i < numberOfPolygons; i++) {
                             .rotation(Math.random() < 0.5 ? 0 : 90)
                             .strokeWidth(Math.random() * 10)
                             .strokeColor(fillColor)
-
+    
     polygon(canvas)
 }
