@@ -12,7 +12,7 @@ h3,
 h4,
 h5,
 strong {
-  color: hsla(0, 15%, 40%, 1.0);
+  color: hsl(167, 100%, 12%);
   text-transform: uppercase;
   font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   margin-top: 1.5em;
@@ -21,11 +21,11 @@ strong {
 
 a {
   text-decoration: none;
-  color: hsla(180, 60%, 30%, 1.0);
+  color: hsl(168, 100%, 24%);
 }
 
 a:hover {
-  color: hsla(180, 40%, 15%, 1.0);
+  color: hsl(23, 40%, 44%);
   background-color: hsla(180, 40%, 90%, 1.0);
 }
 
@@ -99,22 +99,16 @@ span.title::after {
   content: ":";
 }
 
-ul#solutions {
-  margin: 0px;
-  padding: 0px;
+.contents {
+  text-align:center;
+  font-size: 4em;
+  margin-top: 10%;
+  position: relative;
 }
 
-ul#solutions > li {
-  font-size: 14pt;
-  list-style: none;
-  display: inline-block;
-  padding: 0.5em 1em;
-  margin: 0px 0px 0px 0px;
-}
-img.illustration {
-  display: block;
-  width: 100%;
-  max-width: 600px;
-  margin-top: 1em;
-  margin-bottom: 1.5em;
+.centered {
+  text-align: center;
+  margin: auto;
+  min-width: 200px;
+  width: 80%;
 }
