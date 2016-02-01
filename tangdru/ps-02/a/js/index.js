@@ -17,7 +17,7 @@ var input1 = 40,
 
 
 ctx.beginPath();  
-ctx.translate(200,30);
+ctx.translate(200, 5);
 ctx.moveTo(point1*input1, input1);
 ctx.lineTo(point2*input1, input1);
 ctx.lineTo(point3*input1, point4*input1);    
@@ -55,7 +55,7 @@ ctx.lineTo(point4*input1, point3*input1);
 ctx.lineTo(input1, point4*input1);   
 ctx.lineTo(point1*input1, input1);    
 ctx.closePath();
-ctx.fillStyle = "rgba(106, 175, 90, .5)";
+ctx.fillStyle = "rgba(106, 175, 90, 1)";
 ctx.fill();
 
 
@@ -133,6 +133,20 @@ ctx.closePath();
 ctx.fillStyle = "rgba(000, 250, 250, 0.5)";
 ctx.fill();
 
+ctx.translate(20,40);
+ctx.rotate(.1);
+ctx.scale(1.4, 1.8);
+ctx.beginPath();              
+ctx.moveTo(point1*input1, input1);
+ctx.lineTo(point2*input1, input1);
+ctx.lineTo(point3*input1, point4*input1);    
+ctx.lineTo(point4*input1, point3*input1);   
+ctx.lineTo(input1, point4*input1);   
+ctx.lineTo(point1*input1, input1);    
+ctx.closePath();
+ctx.fillStyle = "rgba(000, 250, 0, 0.5)";
+ctx.fill();
+
 
 ctx.translate(100,50);
 ctx.rotate(1.4);
@@ -149,7 +163,7 @@ ctx.fillStyle = "rgba(200, 10, 200, .5)";
 ctx.fill();
 
 
-ctx.translate(20,50);
+ctx.translate(20,10);
 ctx.rotate(-.1);
 ctx.scale(1.5, 3);
 ctx.beginPath();              
@@ -162,6 +176,7 @@ ctx.lineTo(point1*input1, input1);
 ctx.closePath();
 ctx.fillStyle = "rgba(100, 100, 100, .5)";
 ctx.fill();
+
 
 
 
