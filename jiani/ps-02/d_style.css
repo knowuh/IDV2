@@ -1,0 +1,26 @@
+
+html,body{
+    height: 100%;
+    font-family:Avenir;
+    padding-left:40px;
+    padding-right:30px;
+    text-align: left;
+    font-size: 12px;
+    float:left;
+    position:relative;
+}
+h1
+{
+
+    font-size: 50px;
+
+    color:black;
+    top:200px;
+
+}
+h2{
+    top:200px;
+    color:gray;
+    padding-top:2px;
+
+}
