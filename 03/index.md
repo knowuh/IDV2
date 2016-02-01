@@ -32,9 +32,9 @@ Could this be used for visualization? Examples of projects it might be suited fo
 ## 7:10 - 7:20 BREAK
 
 ## 7:30 – 8:00 D3, and our survey data:
-* From arrays
-* From objects
-* From web JSON and web services
+* Access data in arrays, the notation `array[i]`
+* Accessing data in objects, the notation `object.distance` or `object[distance]`
+* From web JSON and web services, as per [survey.js](js/survey.js)
 
 ## 8:00 – 8:45:
 
@@ -49,7 +49,7 @@ Concepts, Notations, Software, Art](http://www.netzliteratur.net/cramer/concepts
 * Anthropology: [code at auction](https://www.artsy.net/auction/the-algorithm-auction)
 
 ### Problems:
-On the first day of class, we created data using google spreadsheet survey's. I demonstrated a very simple and [uninspired D3 plot](../02/survey.html) of our data. This week, I you will revise my work and create two new compositions.
+On the first day of class, we created data using google spreadsheet survey's. I demonstrated a very simple and [uninspired D3 plot](../survey.html) of our data. This week, I you will revise my work and create two new compositions.
 
 Please choose two radically different approaches in your two solutions.
 
