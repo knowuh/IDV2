@@ -25,8 +25,8 @@ for (var i=0; i<10; i++){
     var varyW = (Math.random()*100)+100;
     var varyH = (Math.random()*100)+100;
 
-    var op = (Math.random()*.6);
-    if (op<.05){op = .1};
+//    var op = (Math.random()*.6);
+//    if (op<.05){op = .1};
     
     var x = nudgeX, 
         y = nudgeY,
@@ -37,7 +37,7 @@ for (var i=0; i<10; i++){
     
     triangle(x,y,w,h);
     
-    canvas.globalAlpha = op;
+    canvas.globalAlpha = .2;
     
     console.log(canvas.globalAlpha);
 

@@ -21,7 +21,7 @@ for (var i=0; i<25; i++){
         
         circle();
     }
-
+    
     op = op - (Math.random()*.08);
     if (op<.05){op=.1};
     
