@@ -11,7 +11,7 @@ Solutions should include the following information somewhere:
 
 * Your name
 * The date, in the form `YYYY-MM-DD`
-* The problem set number, in the form of `PSXX-x`, e.g.: `PS01-a`
+* The problem set number, in the form of `ps-xx-x`, e.g.: `ps-01-a`
 
 Solutions will be critiqued in class. They may be sketches, but they should be 'buttoned up' for presentation. Together we will discuss the solution's approach, process, and form.
 

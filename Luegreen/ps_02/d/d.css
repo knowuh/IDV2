@@ -1,0 +1,48 @@
+/* Print overrides
+-------------------------------------------------------------- */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+background:transparent!important; border:0!important; color:#222; float:none; position:static!important; overflow:visible!important; }
+
+html, body, #page, #content, #wrapper { margin:0!important; padding:0!important; width:auto; }
+body { background:white; font-size:12pt; font-family:"Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif; }
+h1 { border-bottom:1px solid #930!important; color:#666; }
+h5 { min-height:16pt; }
+a:link, a:visited { background:transparent; color:#520; font-weight:bold; text-decoration:none; }
+#content p a:after, #content a.more.right:after { content: " (" attr(href) ") "; }
+#content p a[href^="/"]:after { content: " (http://www.vam.ac.uk" attr(href) ") "; }
+a.more.right { background:none!important; display:block; float:left!important; position:static!important; margin:0; padding:0.25em 0 0.25em 0!important; }
+
+#top-links, #login-links, #header form, #header img,  .nav, .footer, .header, #recently-viewed { display:none!important; }
+#header.landing #landing { height:auto; width:auto; }
+#header .slide .html { margin:0; }
+
+.row { border:none; page-break-after:auto; page-break-inside:avoid; }
+.col { float:left; margin-bottom:0; overflow:auto; padding-bottom:0; }
+.col.two-thrds-w { width:auto; }
+.col.thrd-w { display:none; }
+#visit-us-layout .col.two-thrds-w { display:none; }
+#visit-us-layout .col.thrd-w { display:block; width:auto; }
+
+.figure.half-w { padding-bottom:1em; }
+.aligned.figure { min-height:inherit; }
+.figure.right { float:right!important; }
+.figure.left { float:left!important; }
+
+/* Social Media Abominations */
+.social-buttons, #___plusone_0, #fb_root, .fb_iframe_widget, .fb_ltr { display:none!important; }
+
+#area3 { clear:both!important; }
+
+.jcarousel-next, .jcarousel-prev { display:none!important; }
+
+.folder a, .folder img { float:left!important; text-align:left!important; }
+.folder a { margin:0!important; padding:0!important; }
