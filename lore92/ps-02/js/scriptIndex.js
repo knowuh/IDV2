@@ -4,7 +4,7 @@ var drawTriangle = function (centerX, centerY, diameter) {
   var bottomLeft =
 };
 
-var drawCanvas = function () {
+var drawCanvas = function (d) {
   var canvas = $("#canvas").getContext(); // TOOD: lookup call.
 
 };
