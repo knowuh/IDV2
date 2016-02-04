@@ -101,4 +101,4 @@ def save_to_db(data):
 connection = connect()
 table = connect_db()
 print table
-stream(connection, table, search_terms=["#ocw","#blm","gunviolence","#gunviolence","bernie sanders","hillary clinton"])
+stream(connection, table, search_terms=["#zika","gunviolence","#gunviolence","bernie sanders","hillary clinton", "#ocw", "#blm", "#Flint"])
