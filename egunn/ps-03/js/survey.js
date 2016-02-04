@@ -1,3 +1,6 @@
+//Update this file for homework assignment 3
+
+//Main function wrapped in parentheses with a () after it - is this itself a function call?
 (function() {
   var data = [];
   var dimensions = [
@@ -121,6 +124,7 @@
     $(selector).on("change", selectFun);
   };
 
+    //evaluate on load
   $(document).ready(function() {
     yLabel(d3.select("#survey"), "y axis label");
     var doLoad = function() {
@@ -133,4 +137,5 @@
     populateDropdown("#selectY", function(e) { setAxis(xAxis, this.value);  });
   });
 
+//anonymous function calls itself and generates callback at the end by calling .ready
 })();
