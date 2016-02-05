@@ -77,7 +77,7 @@ var drawGraph = function (data) {
    var radius     = 100 / data.length;
    var width      = 600 - radius;
    var height     = 400 - radius;
-   var leftMargin = 40;
+   var leftMargin = 130;
     //scales
    var xScale = d3.scale.ordinal()
      .domain(d3.range(data.length))
@@ -140,7 +140,7 @@ for (i=0;i<columnVariables.length;i++){
     circles
       .enter()
       .append("circle")
-      .attr('r', 2)
+      .attr('r', 1)
             //function(d,i){        return areaScale(parseInt(d[columnVariables[4].key]));                              })
       .attr('fill', 'hsla(' + hue + ', 20%, 50%, 1.0)')
       .attr("title", function (d) {
@@ -164,8 +164,15 @@ for (i=0;i<columnVariables.length;i++){
   var area = svg.append('path')
         .attr('class',"area")
         .datum(data)
-        .style('fill','hsla(' + hue + ', 60%, 80%, 0.1)')
+        .style('fill','hsla(' + hue + ', 80%, 50%, 0.1)')
         .attr('d',function(array){return areaGenerator(array)});
+   
+    var textIndex = svg.append('text')
+        .attr('x',5)
+        .attr('y',100+i*20)
+        .style('fill','hsla(' + hue + ', 80%, 50%, 1)')
+        .text(columnVariables[i].title)
+    
 }
    
 
