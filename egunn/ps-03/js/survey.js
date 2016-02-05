@@ -1,5 +1,14 @@
 //My modified code 
 
+//*********************************************************************** Overall summary
+//*********************************************************************
+/*document ready function loads data from Google every 5 s, and calls the setData callback, which calls the drawGraph function and passes it the data as an array of objects. Each object corresponds to one student in the class, and each one has a set of several keys, which are listed in the columnVariables array below. 
+
+Individual data points can be accessed by using:
+console.log(data[0][columnVariables[2].key]);
+Where 0 is the object # (student), and [2] corresponds to the third key value stored in the object (the example above returns 4). When the data is bound, d[columnVariables[2].key] can be used to access the data, as in line 107 below
+*/
+
 //function that pulls in the survey data and stores it in arrays for future access.
 var setupSurvey =function() {
   var spreadsheetData = [];
@@ -22,7 +31,8 @@ var setupSurvey =function() {
   ];
 
   //Store all of the keys in an array called columnToGraph (to be used in the dropdown menu)    
-  var columnToGraph = columnVariables[1];
+    var columnToGraph = columnVariables[1];
+
 
   //console.log(columnVariables[4]);
     
@@ -58,6 +68,9 @@ var setupSurvey =function() {
 var drawGraph = function (data) {
     //Because the data is updated constantly by the populateDropdown function, and because we have to wait until it is fully loaded and the callback function completes, any variable that needs to use the data for any reason has to exist inside this function.
     
+    
+    //console.log(data);
+    
     //set up some variables
     
    var svg = d3.select("#survey");
@@ -84,12 +97,11 @@ var drawGraph = function (data) {
       .enter()
       .append("circle")
       .append("title")
-      .style("stroke","black")
       .text(function (d) {
         return "name:" + d.name
       });
 
-    circles
+  /*  circles
       .attr('r', 5)
             //function(d,i){        return areaScale(parseInt(d[columnVariables[4].key]));                              })
       .attr('fill', "gray")
@@ -104,37 +116,64 @@ var drawGraph = function (data) {
         return xScale(i);
       })
       .attr("cy", function (d) {
-        return yScale(parseInt(d[columnToGraph.key]));
-      });
+        return yScale(parseInt(d[columnVariables[1].key]));
+        //(originally columnToGraph.key)
+      });*/
 
-
+    
+for (i=0;i<columnVariables.length;i++){   
+    
+     var hue = i*50;
+    
+    
   lineGenerator = d3.svg.line()
     .x(function(d,i){return xScale(i)}) 
-    .y(function(d){return yScale(d[columnToGraph.key])});
+    .y(function(d){return yScale(d[columnVariables[i].key])});
     
   areaGenerator = d3.svg.area()       
      .x(function(d,i){return xScale(i)})
      .y0(height)
-     .y1(function(d){return yScale(d[columnToGraph.key])})
+     .y1(function(d){return yScale(d[columnVariables[i].key])})
      .interpolate('linear');  
+        
+    //draw a second set of circles with a different subset of the data. Currently, these are not showing up as bound to the data, and are eliminated when the exit function is left on.
+    circles
+      .enter()
+      .append("circle")
+      .attr('r', 2)
+            //function(d,i){        return areaScale(parseInt(d[columnVariables[4].key]));                              })
+      .attr('fill', 'hsla(' + hue + ', 20%, 50%, 1.0)')
+      .attr("title", function (d) {
+        return d.name;
+      })
+      .attr("cx", function (d, i) {
+        return xScale(i);
+      })
+      .attr("cy", function (d) {
+        return yScale(parseInt(d[columnVariables[i].key]));
+      });
     
- //line = svg.selectAll('line');
-                          
- line = svg
+     line = svg
       .append('path')
       .attr('class',"line")
       .datum(data)    
-      .style('stroke',"CadetBlue")
+      .style('stroke','hsla(' + hue + ', 60%, 80%, .8)')
       .style('fill',"none")
       .attr('d',function(array){return lineGenerator(array)});
     
   var area = svg.append('path')
         .attr('class',"area")
         .datum(data)
-        .style('fill',"rgba(150,150,150,.1)")
+        .style('fill','hsla(' + hue + ', 60%, 80%, 0.1)')
         .attr('d',function(array){return areaGenerator(array)});
+}
+   
 
-  circles.exit().remove();
+ //line = svg.selectAll('line');
+                          
+
+
+  //circles.exit().remove();
     
 };
     
@@ -142,11 +181,11 @@ var drawGraph = function (data) {
 
 
   /*****************************************************************************
-   * function is called with d when the spreadsheet has loaded.                *
-   *****************************************************************************/
+   * function is called with d when the spreadsheet has loaded.                *   *****************************************************************************/
     
   var setData = function (sheet) {
     spreadsheetData = sheet;
+    //console.log(spreadsheetData);
     temp = d3.selectAll(".line");
     temp.remove();
     temp2 = d3.selectAll(".area")
@@ -168,7 +207,7 @@ var drawGraph = function (data) {
    * function that sets the Y axis on our graph to a given columnKey           *
    *****************************************************************************/
   //name the y axis using the data from the spreadsheet - find the data, then write a text element to the y-label DOM element, and call the drawGraph function, handing it the spreadsheet data    
-  var setYAxis = function (columnKey) {
+  /*var setYAxis = function (columnKey) {
     columnToGraph = findDataForKey(columnKey) || columnToGraph;
     d3.select("#y-label").text(columnToGraph.title);
     temp = d3.selectAll(".line");
@@ -177,25 +216,27 @@ var drawGraph = function (data) {
     temp2.remove();
     drawGraph(spreadsheetData);
 
-  };
+  };*/
 
-  /*****************************************************************************
+ /* /*****************************************************************************
    * function that puts our column names in the dropdown menu using jQuery ($) *
-   *****************************************************************************/
+   *****************************************************************************
     
   var populateDropdown = function () {
-    var selectionChangedFunction = function() {
-      setYAxis(this.value);
-    };
+      var selectionChangedFunction = function() {
+         setYAxis(this.value);
+      };
+    
     var selector = "#selectY";
     $(selector).empty();
     $(selector).off("change");
     _.map(columnVariables, function (option) {
-      var optionItem = '<option value="' + option.key + '">' + option.title + '</option>';
+      var optionItem = '<option value="' + option.key + '">'
+      + option.title + '</option>';
       $("#selectY").append(optionItem);
     });
     $(selector).on("change", selectionChangedFunction);
-  };
+  };*/
 
   // This jQuery function tells the browser to run the function
   // `continuouslyLoadData` when the webpage is done loading.
@@ -204,14 +245,17 @@ var drawGraph = function (data) {
   // See spreadsheet.js for the definition of `continuouslyLoadData`.
   $(document).ready(function () {
       //call Y axis label function to update label
-    drawYAxisLabel(d3.select("#survey"), "y axis label");
+    //drawYAxisLabel(d3.select("#survey"), "y axis label");
       //Save the right data in the columnToGraph variable for graphing
-    setYAxis(columnToGraph);
+    //setYAxis(columnToGraph);
       //make an updated list for the dropdown menu and fill it with values
-    populateDropdown();
+    //populateDropdown();
       //load the data from the spreadsheet (calling the spreadsheet function saved in the parent directory)
     continuouslyLoadData("1tL7m0JNa0CZwEyU9WmB3u8j5T829jqtbnu-26ibPp5E", setData);
   });
+  
+  
 };
+
 
 setupSurvey();
