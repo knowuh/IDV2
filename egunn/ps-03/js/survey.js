@@ -16,15 +16,15 @@ var setupSurvey =function() {
   //make an array called column variables full of objects, each of which has a key and a title.     
   var columnVariables = [
     {key: "criticalcommunication", title: 'Communication'},
-    {key: "criticalcommunication_2", title: "Communication 2"},
-    {key: "graphicdesign", title: "Graphic Design"},
-    {key: "graphicdesign_2", title: "Graphic Design 2"},
-    {key: "howlongdidittakeyoutogethere", title: "Travel Time"},
-    {key: "howmanyhoursperweekcanyoudevotetothisclass", title: "Hours devoted"},
+    {key: "criticalcommunication_2", title: "Communication_2"},
+    {key: "graphicdesign", title: "Graphic_Design"},
+    {key: "graphicdesign_2", title: "Graphic_Design_2"},
+    {key: "howlongdidittakeyoutogethere", title: "Travel_Time"},
+    {key: "howmanyhoursperweekcanyoudevotetothisclass", title: "Hours_devoted"},
     {key: "howmuchsleepdidyougetlastnight", title: "Sleep"},
     {key: "howtallareyou", title: "Height"},
     {key: "javascriptwebdevelopment", title: "Software"},
-    {key: "javascriptwebdevelopment_2", title: "Software 2"},
+    {key: "javascriptwebdevelopment_2", title: "Software_2"},
     {key: "whenwasthelasttimeyoudrewapicture", title: "Drew"},
     {key: "whenwasthelasttimeyouwenttothebeach", title: "Beach"},
     {key: "whenwasthelasttimeyouwenttothemfa", title: "MFA"}
@@ -164,17 +164,19 @@ for (i=0;i<columnVariables.length;i++){
       .attr('d',function(array){return lineGenerator(array)});
     
   var area = svg.append('path')
-        .attr('class',"area")
+        .attr('class',"area "+ columnVariables[i].title)
         .datum(data)
         .style('fill','hsla(' + hue + ', 80%, 50%, 0.1)')
         .attr('d',function(array){return areaGenerator(array)});
    
     var textIndex = svg.append('text')
-        .attr('class','textLabel')
+        .attr('class','textLabel '+columnVariables[i].title)
         .attr('x',5)
-        .attr('y',100+i*20)
+        .attr('y',20+i*30)
         .style('fill','hsla(' + hue + ', 80%, 50%, .8)')
         .text(columnVariables[i].title)
+        .on("mouseover",mouseHighlight)
+        .on("mouseout",noMouseHighlight);
 }
    
 
@@ -186,8 +188,31 @@ for (i=0;i<columnVariables.length;i++){
     
 };
     
+var colorCut = [];
     
+//this functionality based in part on http://bl.ocks.org/WilliamQLiu/76ae20060e19bf42d774    
+function mouseHighlight(d){
+    categoryName = d3.select(this);
+    //console.log(categoryName[0][0].innerHTML);
+    originalColor = categoryName[0][0].attributes[3].nodeValue;
+    colorCut = originalColor.substring(5,originalColor.length-1);
+    //console.log(colorCut);
+    colorCut2 = colorCut.substring(0,colorCut.length-4);
+    //console.log(colorCut2);
+    
+    selectionName = d3.select('.'+[categoryName[0][0].innerHTML]);
+    selectionName
+    .style('fill',colorCut2+'0.9)');
 
+}
+     
+function noMouseHighlight(d) {
+    categoryName = d3.select(this);
+    //console.log(categoryName[0][0].innerHTML);
+    
+    selectionName = d3.select('.'+[categoryName[0][0].innerHTML])
+    .style('fill',colorCut);
+}
 
   /*****************************************************************************
    * function is called with d when the spreadsheet has loaded.                *   *****************************************************************************/
