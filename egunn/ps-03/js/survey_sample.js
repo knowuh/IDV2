@@ -1,5 +1,3 @@
-//My modified code 
-
 //function that pulls in the survey data and stores it in arrays for future access.
 var setupSurvey =function() {
   var spreadsheetData = [];
@@ -25,10 +23,11 @@ var setupSurvey =function() {
   var columnToGraph = columnVariables[1];
 
   //console.log(columnVariables[4]);
-    
+
   /***************************************************
    * instructions for drawing the Y axis label in D3 *
    ***************************************************/
+  
   var drawYAxisLabel = function (svg, text) {
       //set the desired height of the axis
     var height = 400;
@@ -56,90 +55,77 @@ var setupSurvey =function() {
    **************************************************/
 //make a function to draw the graph on the webpage  
 var drawGraph = function (data) {
-    //Because the data is updated constantly by the populateDropdown function, and because we have to wait until it is fully loaded and the callback function completes, any variable that needs to use the data for any reason has to exist inside this function.
-    
     //set up some variables
-    
-   var svg = d3.select("#survey");
-   var radius     = 100 / data.length;
-   var width      = 600 - radius;
-   var height     = 400 - radius;
-   var leftMargin = 40;
-    //scales
-   var xScale = d3.scale.ordinal()
-     .domain(d3.range(data.length))
-     .rangeRoundPoints([leftMargin, width]);
-   var yScale = d3.scale.linear()
-     .domain([0, 10])
-     .range([height, radius+25]);
-   var colorScale = d3.scale.linear()
-     .domain([0, data.length])
-     .range([0, 360]);
-   var areaScale = d3.scale.sqrt().domain([0,300]).range([0,50]);
-    
-   var circles = svg.selectAll("circle")
+    var svg        = d3.select("#survey");
+    var radius     = 100 / data.length;
+    var width      = 600 - radius;
+    var height     = 400 - radius;
+    var leftMargin = 40;
+
+    //scale the data x values to fit on the axis. Use an ordinal scale, going from 0 to the datalength (number of items in the array)
+    var xScale = d3.scale.ordinal()
+      .domain(d3.range(data.length))
+      .rangeRoundPoints([leftMargin, width]);
+
+    //scale the y values to fit on the axis. Use a linear scale, so that the data values between 0 and 10 are mapped onto an axis that is the height of the screen. Use radius to limit dimensions so that circles don't get cut off at the bottom of the scale  
+    var yScale = d3.scale.linear()
+      .domain([0, 10])
+      .range([height, radius+25]);
+ 
+    //create a color scale to vary from 0 to 360 across the length of the data. 
+    var colorScale = d3.scale.linear()
+      .domain([0, data.length])
+      .range([0, 360]);
+
+    //add a scale to adjust circle size. For values between 0,300, scale to a radius size of 0,50. Use sqrt scale to scale by area rather than linearly by radius
+    var areaScale = d3.scale.sqrt().domain([0,300]).range([0,50]);
+      
+    //save all circle objects in the DOM in a variable for future use  
+    var circles = svg.selectAll("circle")
+      //bind the circle objects to the data to represent
       .data(data);
 
+    //take the circle selection  
     circles 
+      //create new DOM element for each piece of bound data (if array is 10 elements long, makes 10 new items in the DOM) 
       .enter()
+      //draw a circle for each piece of bound data
       .append("circle")
+      //add a title to each one (added to DOM element - see in the elements inspector);
       .append("title")
       .style("stroke","black")
+      //should add a text label - doesn't seem to be working? Showing up in DOM, but no text is printing to screen
       .text(function (d) {
         return "name:" + d.name
       });
 
+    //set the display parameters for each circle above  
     circles
-      .attr('r', 5)
-            //function(d,i){        return areaScale(parseInt(d[columnVariables[4].key]));                              })
-      .attr('fill', "gray")
-        //function (d, i) {
-        //var hue = colorScale(i);
-        //return 'hsla(' + hue + ', 20%, 40%, 1.0)';
-      //})
+      //give it a radius, based on the value of the TravelTime column (I added this to make sure that I could access the data) 
+      .attr('r', function(d,i){
+        return areaScale(parseInt(d[columnVariables[4].key]));
+                              })
+      //give it a fill color based on the colorScale saved above
+      .attr('fill', function (d, i) {
+        var hue = colorScale(i);
+        return 'hsla(' + hue + ', 20%, 40%, 1.0)';
+      })
+      //give it a title (still not showing up)
       .attr("title", function (d) {
         return d.name;
       })
+      //give it an x location
       .attr("cx", function (d, i) {
         return xScale(i);
       })
+      //and a y position
       .attr("cy", function (d) {
         return yScale(parseInt(d[columnToGraph.key]));
       });
 
-
-  lineGenerator = d3.svg.line()
-    .x(function(d,i){return xScale(i)}) 
-    .y(function(d){return yScale(d[columnToGraph.key])});
-    
-  areaGenerator = d3.svg.area()       
-     .x(function(d,i){return xScale(i)})
-     .y0(height)
-     .y1(function(d){return yScale(d[columnToGraph.key])})
-     .interpolate('linear');  
-    
- //line = svg.selectAll('line');
-                          
- line = svg
-      .append('path')
-      .attr('class',"line")
-      .datum(data)    
-      .style('stroke',"CadetBlue")
-      .style('fill',"none")
-      .attr('d',function(array){return lineGenerator(array)});
-    
-  var area = svg.append('path')
-        .attr('class',"area")
-        .datum(data)
-        .style('fill',"rgba(150,150,150,.1)")
-        .attr('d',function(array){return areaGenerator(array)});
-
-  circles.exit().remove();
-    
-};
-    
-    
-
+    //remove anything that isn't connected to the current dataset (used when the screen updates between user interactions - cleans up anything "extra" from one dataset to the next)  
+    circles.exit().remove();
+  };
 
   /*****************************************************************************
    * function is called with d when the spreadsheet has loaded.                *
@@ -147,10 +133,6 @@ var drawGraph = function (data) {
     
   var setData = function (sheet) {
     spreadsheetData = sheet;
-    temp = d3.selectAll(".line");
-    temp.remove();
-    temp2 = d3.selectAll(".area")
-    temp2.remove();
     drawGraph(spreadsheetData);
   };
 
@@ -171,12 +153,7 @@ var drawGraph = function (data) {
   var setYAxis = function (columnKey) {
     columnToGraph = findDataForKey(columnKey) || columnToGraph;
     d3.select("#y-label").text(columnToGraph.title);
-    temp = d3.selectAll(".line");
-    temp.remove();
-    temp2 = d3.selectAll(".area")
-    temp2.remove();
     drawGraph(spreadsheetData);
-
   };
 
   /*****************************************************************************
