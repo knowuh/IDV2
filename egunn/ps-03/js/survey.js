@@ -68,6 +68,8 @@ var setupSurvey =function() {
 var drawGraph = function (data) {
     //Because the data is updated constantly by the populateDropdown function, and because we have to wait until it is fully loaded and the callback function completes, any variable that needs to use the data for any reason has to exist inside this function.
     
+    temp3 = d3.selectAll(".textLabel")
+    temp3.remove();
     
     //console.log(data);
     
@@ -168,11 +170,11 @@ for (i=0;i<columnVariables.length;i++){
         .attr('d',function(array){return areaGenerator(array)});
    
     var textIndex = svg.append('text')
+        .attr('class','textLabel')
         .attr('x',5)
         .attr('y',100+i*20)
-        .style('fill','hsla(' + hue + ', 80%, 50%, 1)')
+        .style('fill','hsla(' + hue + ', 80%, 50%, .8)')
         .text(columnVariables[i].title)
-    
 }
    
 
@@ -198,6 +200,9 @@ for (i=0;i<columnVariables.length;i++){
     temp2 = d3.selectAll(".area")
     temp2.remove();
     drawGraph(spreadsheetData);
+    //temp3 = d3.selectAll(".textLabel")
+    //temp3.remove();
+      
   };
 
   /*****************************************************************************
