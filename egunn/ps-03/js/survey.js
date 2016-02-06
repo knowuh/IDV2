@@ -79,7 +79,7 @@ var drawGraph = function (data) {
    var radius     = 100 / data.length;
    var width      = 600 - radius;
    var height     = 400 - radius;
-   var leftMargin = 130;
+   var leftMargin = 140;
     //scales
    var xScale = d3.scale.ordinal()
      .domain(d3.range(data.length))
