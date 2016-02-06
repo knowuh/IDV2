@@ -9,8 +9,8 @@ var triangle = function(centerX, centerY, dW, dH) {
     canvas.moveTo(centerX,top);
     canvas.lineTo(right, bottom);
     canvas.lineTo(left, bottom);
-    canvas.fillStyle = "rgb(130,60,120)";
     canvas.fill();
+    canvas.fillStyle = "rgba(130,60,120,.3)";
     canvas.rotate(Math.PI/4);
 };
 
@@ -25,8 +25,8 @@ for (var i=0; i<10; i++){
     var varyW = (Math.random()*100)+100;
     var varyH = (Math.random()*100)+100;
 
-    var op = (Math.random()*.6);
-    if (op<.05){op = .1};
+//    var op = (Math.random()*.6);
+//    if (op<.05){op = .1};
     
     var x = nudgeX, 
         y = nudgeY,
@@ -37,9 +37,9 @@ for (var i=0; i<10; i++){
     
     triangle(x,y,w,h);
     
-    canvas.globalAlpha = op;
+//    canvas.globalAlpha = op;
     
-    console.log(canvas.globalAlpha);
+//    console.log(canvas.globalAlpha);
 
 };
 
