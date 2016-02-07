@@ -21,7 +21,7 @@ var columnVariables = [
  **************************************************/
 var drawGraph = function (data) {
   var svg        = d3.select("#survey");
-  var radius     = 100 / data.length;
+  var radius     = 175 / data.length;
   var width      = 600 - radius;
   var height     = 400 - radius;
   var leftMargin = 40;
@@ -40,7 +40,18 @@ var drawGraph = function (data) {
     .domain([0, data.length])
     .range([0, 360]);
 
-  var circles = svg.selectAll("circle").data(data);
+  var circles = svg.selectAll("circle").data(data),
+      circles2 = svg.selectAll("circle2").data(data),
+      circles3 = svg.selectAll("circle3").data(data),
+      circles4 = svg.selectAll("circle4").data(data),
+      circles5 = svg.selectAll("circle5").data(data),
+      circles6 = svg.selectAll("circle6").data(data),
+      circles7 = svg.selectAll("circle7").data(data),
+      circles8 = svg.selectAll("circle8").data(data),
+      circles9 = svg.selectAll("circle9").data(data),
+      circles10 = svg.selectAll("circle10").data(data);   
+    
+   console.log(data);
 
   circles
     .enter()
@@ -51,8 +62,224 @@ var drawGraph = function (data) {
     });
 
   circles
+    .attr('r', (radius*.25))
+    .attr('fill', "none")
+    .attr("stroke-width", 1)                        
+    .attr("stroke", function (d, i) {
+      var hue = colorScale(i);
+      return 'hsla(' + hue + ', 20%, 40%, 1.0)';
+    })
+    .attr("title", function (d) {
+      return d.name;
+    })
+    .attr("cx", function (d, i) {
+      return xScale(i);
+    })
+    .attr("cy", function (d) {
+      // Use the array above e.g. d[columnVariables[0]] or d['keyname'];
+      var columnData = parseInt(d["criticalcommunication"]);
+      return yScale(columnData);
+    });
+
+  circles.exit().remove();
+    
+    
+  circles2
+    .enter()
+    .append("circle")
+    .append("title")
+    .text(function (d) {
+      return "name:" + d.name
+    });
+
+  circles2
+    .attr('r', radius*.5)
+    .attr('fill', "none")
+    .attr("stroke-width", 1)                        
+    .attr("stroke", function (d, i) {
+      var hue = colorScale(i);
+      return 'hsla(' + hue + ', 20%, 40%, 1.0)';
+    })
+    .attr("title", function (d) {
+      return d.name;
+    })
+    .attr("cx", function (d, i) {
+      return xScale(i);
+    })
+    .attr("cy", function (d) {
+      // Use the array above e.g. d[columnVariables[0]] or d['keyname'];
+      var columnData = parseInt(d["graphicdesign"]);
+      return yScale(columnData);
+    });
+
+  circles2.exit().remove();
+    
+ circles3
+    .enter()
+    .append("circle")
+    .append("title")
+    .text(function (d) {
+      return "name:" + d.name
+    });
+
+  circles3
+    .attr('r', radius*.75)
+    .attr('fill', "none")
+    .attr("stroke-width", 1)                        
+    .attr("stroke", function (d, i) {
+      var hue = colorScale(i);
+      return 'hsla(' + hue + ', 20%, 40%, 1.0)';
+    })
+    .attr("title", function (d) {
+      return d.name;
+    })
+    .attr("cx", function (d, i) {
+      return xScale(i);
+    })
+    .attr("cy", function (d) {
+      // Use the array above e.g. d[columnVariables[0]] or d['keyname'];
+      var columnData = parseInt(d["howlongdidittakeyoutogethere"]);
+      return yScale(columnData);
+    });
+
+  circles3.exit().remove();
+    
+    circles4
+    .enter()
+    .append("circle")
+    .append("title")
+    .text(function (d) {
+      return "name:" + d.name
+    });
+
+  circles4
     .attr('r', radius)
-    .attr('fill', function (d, i) {
+    .attr('fill', "none")
+    .attr("stroke-width", 1)                        
+    .attr("stroke", function (d, i) {
+      var hue = colorScale(i);
+      return 'hsla(' + hue + ', 20%, 40%, 1.0)';
+    })
+    .attr("title", function (d) {
+      return d.name;
+    })
+    .attr("cx", function (d, i) {
+      return xScale(i);
+    })
+    .attr("cy", function (d) {
+      // Use the array above e.g. d[columnVariables[0]] or d['keyname'];
+      var columnData = parseInt(d["howmanyhoursperweekcanyoudevotetothisclass"]);
+      return yScale(columnData);
+    });
+
+  circles4.exit().remove();
+    
+    
+  circles5
+    .enter()
+    .append("circle")
+    .append("title")
+    .text(function (d) {
+      return "name:" + d.name
+    });
+
+  circles5
+    .attr('r', radius*1.25)
+    .attr('fill', "none")
+    .attr("stroke-width", 1)                        
+    .attr("stroke", function (d, i) {
+      var hue = colorScale(i);
+      return 'hsla(' + hue + ', 20%, 40%, 1.0)';
+    })
+    .attr("title", function (d) {
+      return d.name;
+    })
+    .attr("cx", function (d, i) {
+      return xScale(i);
+    })
+    .attr("cy", function (d) {
+      // Use the array above e.g. d[columnVariables[0]] or d['keyname'];
+      var columnData = parseInt(d["howmuchsleepdidyougetlastnight"]);
+      return yScale(columnData);
+    });
+
+  circles5.exit().remove();
+    
+    
+  circles6
+    .enter()
+    .append("circle")
+    .append("title")
+    .text(function (d) {
+      return "name:" + d.name
+    });
+
+  circles6
+    .attr('r', radius*1.5)
+    .attr('fill', "none")
+    .attr("stroke-width", 1)                        
+    .attr("stroke", function (d, i) {
+      var hue = colorScale(i);
+      return 'hsla(' + hue + ', 20%, 40%, 1.0)';
+    })
+    .attr("title", function (d) {
+      return d.name;
+    })
+    .attr("cx", function (d, i) {
+      return xScale(i);
+    })
+    .attr("cy", function (d) {
+      // Use the array above e.g. d[columnVariables[0]] or d['keyname'];
+      var columnData = parseInt(d["howtallareyou"]);
+      return yScale(columnData);
+    });
+
+  circles6.exit().remove();
+    
+  circles7
+    .enter()
+    .append("circle")
+    .append("title")
+    .text(function (d) {
+      return "name:" + d.name
+    });
+
+  circles7
+    .attr('r', radius*1.75)
+    .attr('fill', "none")
+    .attr("stroke-width", 1)                        
+    .attr("stroke", function (d, i) {
+      var hue = colorScale(i);
+      return 'hsla(' + hue + ', 20%, 40%, 1.0)';
+    })
+    .attr("title", function (d) {
+      return d.name;
+    })
+    .attr("cx", function (d, i) {
+      return xScale(i);
+    })
+    .attr("cy", function (d) {
+      // Use the array above e.g. d[columnVariables[0]] or d['keyname'];
+      var columnData = parseInt(d["javascriptwebdevelopment"]);
+      return yScale(columnData);
+    });
+
+  circles7.exit().remove();    
+    
+    
+  circles8
+    .enter()
+    .append("circle")
+    .append("title")
+    .text(function (d) {
+      return "name:" + d.name
+    });
+
+  circles8
+    .attr('r', radius*2)
+    .attr('fill', "none")
+    .attr("stroke-width", 1)                        
+    .attr("stroke", function (d, i) {
       var hue = colorScale(i);
       return 'hsla(' + hue + ', 20%, 40%, 1.0)';
     })
@@ -68,7 +295,70 @@ var drawGraph = function (data) {
       return yScale(columnData);
     });
 
-  circles.exit().remove();
+  circles8.exit().remove();    
+    
+  circles9
+    .enter()
+    .append("circle")
+    .append("title")
+    .text(function (d) {
+      return "name:" + d.name
+    });
+
+  circles9
+    .attr('r', radius*2.25)
+    .attr('fill', "none")
+    .attr("stroke-width", 1)                        
+    .attr("stroke", function (d, i) {
+      var hue = colorScale(i);
+      return 'hsla(' + hue + ', 20%, 40%, 1.0)';
+    })
+    .attr("title", function (d) {
+      return d.name;
+    })
+    .attr("cx", function (d, i) {
+      return xScale(i);
+    })
+    .attr("cy", function (d) {
+      // Use the array above e.g. d[columnVariables[0]] or d['keyname'];
+      var columnData = parseInt(d["whenwasthelasttimeyouwenttothebeach"]);
+      return yScale(columnData);
+    });
+
+  circles9.exit().remove();    
+    
+    
+  circles10
+    .enter()
+    .append("circle")
+    .append("title")
+    .text(function (d) {
+      return "name:" + d.name
+    });
+
+  circles10
+    .attr('r', radius*2.5)
+    .attr('fill', "none")
+    .attr("stroke-width", 1)                        
+    .attr("stroke", function (d, i) {
+      var hue = colorScale(i);
+      return 'hsla(' + hue + ', 20%, 40%, 1.0)';
+    })
+    .attr("title", function (d) {
+      return d.name;
+    })
+    .attr("cx", function (d, i) {
+      return xScale(i);
+    })
+    .attr("cy", function (d) {
+      // Use the array above e.g. d[columnVariables[0]] or d['keyname'];
+      var columnData = parseInt(d["whenwasthelasttimeyouwenttothemfa"]);
+      return yScale(columnData);
+    });
+
+  circles10.exit().remove();    
+
+
 };
 
 // This jQuery function tells the browser to run the function
