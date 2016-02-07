@@ -288,11 +288,11 @@ function noMouseHighlight(d) {
       //make an updated list for the dropdown menu and fill it with values
     //populateDropdown();
       //load the data from the spreadsheet (calling the spreadsheet function saved in the parent directory)
+      
     continuouslyLoadData("1tL7m0JNa0CZwEyU9WmB3u8j5T829jqtbnu-26ibPp5E", setData);
   });
   
   
 };
-
 
 setupSurvey();

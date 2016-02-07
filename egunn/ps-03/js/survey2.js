@@ -1,4 +1,5 @@
 var setupSurvey =function() {
+    /*
 
   var spreadsheetData = [];
   var columnVariables = [
@@ -19,7 +20,7 @@ var setupSurvey =function() {
 
     
   var columnToGraph = columnVariables[1];
-
+*/
     /*
     console.log(columnToGraph);
   //had to move this outside of the draw function, because draw appends a new svg every cycle!  
@@ -33,7 +34,7 @@ var setupSurvey =function() {
   /***************************************************
    * instructions for drawing the Y axis label in D3 *
    ***************************************************/
-  var drawYAxisLabel = function (svg, text) {
+  /*var drawYAxisLabel = function (svg, text) {
     var height = 400;
     svg.append("text")
       .attr("transform", "translate(0," + height / 2 + ") rotate(-90)")
@@ -44,7 +45,7 @@ var setupSurvey =function() {
       .attr("class", 'axis-label')
       .style("text-anchor", "middle")
       .text(text);
-  };
+  };*/
     
     
   /**************************************************
@@ -53,9 +54,14 @@ var setupSurvey =function() {
    **************************************************/
   var drawGraph = function (data) {  
       
-    temp3 = d3.selectAll("multiplesBox")
-    temp3.remove();
+  checkIfPopulated = d3.selectAll('.bar-chart'); 
+  console.log(checkIfPopulated[0].length);
       
+  //check if the chart has been drawn before. If so, do nothing.   
+  if (checkIfPopulated[0].length!=0){
+      /*there should be an update function here, to repopulate the charts if the data has changed. Was unable to get update() to work - kept getting an error that it wasn't a function.*/
+  }
+  else{
       //console.log(data[0]);
       
       /*nestedData = d3.nest()
@@ -183,6 +189,7 @@ var setupSurvey =function() {
         .data(function(d,i){return forBars(i);})
         .enter()
         .append("rect")
+        .attr("class","bars")
         .attr("x",function(d,i){return (i*(barWidth+4))})
         .attr("y",function(d,i){return 150-yScale(d)})
         .attr("width",barWidth)
@@ -273,6 +280,7 @@ var setupSurvey =function() {
       });
 
     bars.exit().remove();*/
+  }
   };
 
   /*****************************************************************************
