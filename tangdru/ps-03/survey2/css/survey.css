@@ -16,7 +16,6 @@ circle:hover {
   stroke-width: 4px;
 }
 .axis-label {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
-  fill: hsla(0, 5%, 60%, 1.0);
 }
