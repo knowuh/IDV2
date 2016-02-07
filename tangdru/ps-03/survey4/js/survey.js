@@ -61,9 +61,6 @@ var setupSurvey =function() {
 
     var circles = svg.selectAll("circle")
       .data(data);
-      
-    var lineGenerator = ;
-    
 
     circles
       .enter()
@@ -92,25 +89,6 @@ var setupSurvey =function() {
     circles.exit().remove();
   };
 
-    
-    lines
-        .enter()
-        .append("line");
-        
-    lines
-        .attr()
-        .attr('x', )
-        .attr('y', )
-        .attr('line',);
-        
-    
-    lines.exit().remove();
-    
-    
-    
-    
-    
-    
   /*****************************************************************************
    * function is called with d when the spreadsheet has loaded.                *
    *****************************************************************************/
