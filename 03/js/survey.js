@@ -124,7 +124,10 @@
   $(document).ready(function() {
     yLabel(d3.select("#survey"), "y axis label");
     var doLoad = function() {
+<<<<<<< HEAD
         //call spreadcheet data
+=======
+>>>>>>> master
       loadSpreadsheet("1tL7m0JNa0CZwEyU9WmB3u8j5T829jqtbnu-26ibPp5E", setData);
     };
     setAxis(xAxis,yAxis);

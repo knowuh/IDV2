@@ -13,11 +13,13 @@
     <link rel="stylesheet" href="../css/normalize.min.css">
     <link rel="stylesheet" href="../css/boilerplate.css">
     <link rel="stylesheet" href="../css/main.css">
+    <script src="../js/vendor/jquery.min.js"></script>
+    <script src="../js/solutions.js"></script>
 </head>
 
 <body>
-<div class="fixed-width">
-    <h2 id="problem-set-01-hello-circles">Problem Set 01:  Hello circles</h2>
+    <div class="fixed-width">
+        <h2 id="problem-set-01-hello-circles">Problem Set 01:  Hello circles</h2>
 <p><strong>Due Jan 25th (14 days)</strong></p>
 <p>This challenge will get you familiar with tools and process we will be using throughout the course. Even though these are technical lessons, <strong>design, presentation, and defense</strong> are critical. Please do not use colors for this problem set. Work in greyscale for now.</p>
 <h4 id="reading-">Reading:</h4>
@@ -41,8 +43,13 @@
 <li>Create a web page <code>&lt;username&gt;/ps-01/c.html</code>. This page should display three circles. (5pts)</li>
 <li>Create a web page <code>&lt;username&gt;/ps-01/d.html</code>. This page should display three circles. (5pts)</li>
 </ul>
-
-</div>
+<script>
+$(document).ready(function () {
+   solutions("ps-01");
+});
+</script>
+        <div id="dynamic-content"></div>
+    </div>
 </body>
 
 </html>

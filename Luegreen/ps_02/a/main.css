@@ -12,7 +12,7 @@ h3,
 h4,
 h5,
 strong {
-  color: hsla(0, 15%, 40%, 1.0);
+  color: rgb(150,150,32);
   text-transform: uppercase;
   font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   margin-top: 1.5em;
@@ -27,6 +27,16 @@ a {
 a:hover {
   color: hsla(180, 40%, 15%, 1.0);
   background-color: hsla(180, 40%, 90%, 1.0);
+}
+
+.btn{
+  padding:20px 20px 20px 20px;
+  border-top:5px solid rgb(240,243,243);
+  border-style:solid black;
+  background-color: rgb(150,150,32);
+  font-size:25
+      pt;
+  color:hsla(240, 20%, 95%, 1.0);
 }
 
 .sub {
@@ -69,6 +79,15 @@ li {
   margin-right: auto;
 }
 
+.canvasC{
+    background:hsla(180, 10%, 95%, 1.0);
+    height:700px;
+    width:600px;
+    display: block;
+    margin-left: auto;
+    margin-right:auto;
+}
+
 span.date {
   font-family: monospace;
 }
@@ -97,24 +116,4 @@ span.title::before {
 
 span.title::after {
   content: ":";
-}
-
-ul#solutions {
-  margin: 0px;
-  padding: 0px;
-}
-
-ul#solutions > li {
-  font-size: 14pt;
-  list-style: none;
-  display: inline-block;
-  padding: 0.5em 1em;
-  margin: 0px 0px 0px 0px;
-}
-img.illustration {
-  display: block;
-  width: 100%;
-  max-width: 600px;
-  margin-top: 1em;
-  margin-bottom: 1.5em;
 }
