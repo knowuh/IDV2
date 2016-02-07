@@ -1,19 +1,4 @@
-Skip to content
-This repository  
-Search
-Pull requests
-Issues
-Gist
- @Luegreen
- Unwatch 12
-  Star 1
-  Fork 3 knowuh/IDV2
- Code  Issues 0  Pull requests 3  Wiki  Pulse  Graphs
-Branch: master Find file Copy pathIDV2/03/js/survey.js
-2c4acf8  3 days ago
-@knowuh knowuh Easier to read survey examples for google spreadsheet.
-1 contributor
-RawBlameHistory     149 lines (130 sloc)  5.16 KB
+
 var setupSurvey =function() {
   var spreadsheetData = [];
   var columnVariables = [
