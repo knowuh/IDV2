@@ -176,7 +176,8 @@ var colorCut = [];
 //This is definitely not the cleanest way to write this section, but I was having difficulty getting 
 //the color data out of each element in order to update with mouseevents. I tried passing the 
 //hue value in with the function, among other things, but that caused problems with the focus.
-//Finding a more efficient way to do this is critical - the graphic is far too slow with this method.    
+//Currently, this is painfully slow, because the color doesn't actually update until the next time
+//that the data is loaded and the screen refreshes.
 function mouseHighlight(d){
     //grab the current selection from the function input
     categoryName = d3.select(this);
