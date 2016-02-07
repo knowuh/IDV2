@@ -21,7 +21,7 @@ var columnVariables = [
  **************************************************/
 var drawGraph = function (data) {
   var svg        = d3.select("#survey");
-  var radius     = 175 / data.length;
+  var radius     = 180 / data.length;
   var width      = 600 - radius;
   var height     = 400 - radius;
   var leftMargin = 40;
@@ -39,6 +39,9 @@ var drawGraph = function (data) {
   var colorScale = d3.scale.linear()
     .domain([0, data.length])
     .range([0, 360]);
+    
+  var labelHeight =394,
+      lableIterations =35;
 
   var circles = svg.selectAll("circle").data(data),
       circles2 = svg.selectAll("circle2").data(data),
@@ -52,6 +55,7 @@ var drawGraph = function (data) {
       circles10 = svg.selectAll("circle10").data(data);   
     
    console.log(data);
+    
 
   circles
     .enter()
@@ -141,7 +145,7 @@ var drawGraph = function (data) {
       var columnData = parseInt(d["howlongdidittakeyoutogethere"]);
       return yScale(columnData);
     });
-
+      
   circles3.exit().remove();
     
     circles4
@@ -263,7 +267,7 @@ var drawGraph = function (data) {
       var columnData = parseInt(d["javascriptwebdevelopment"]);
       return yScale(columnData);
     });
-
+    
   circles7.exit().remove();    
     
     
@@ -323,9 +327,9 @@ var drawGraph = function (data) {
       // Use the array above e.g. d[columnVariables[0]] or d['keyname'];
       var columnData = parseInt(d["whenwasthelasttimeyouwenttothebeach"]);
       return yScale(columnData);
-    });
-
-  circles9.exit().remove();    
+    }); 
+      
+    circles9.exit().remove();   
     
     
   circles10
@@ -357,6 +361,149 @@ var drawGraph = function (data) {
     });
 
   circles10.exit().remove();    
+    
+   svg.append("text")
+      .attr("transform", "translate(25,394) rotate(-90)")
+      .attr("dy", "1em")
+      .attr("class", 'axis-label')
+      .attr('fill', function (d, i) {
+      var hue = colorScale(0);
+      return 'hsla(' + hue + ', 20%, 40%, 1.0)';
+      })
+      .text("cara");  
+    
+   svg.append("text")
+      .attr("transform", "translate(70,394) rotate(-90)")
+      .attr("dy", "1em")
+      .attr("class", 'axis-label')
+      .attr('fill', function (d, i) {
+      var hue = colorScale(1);
+      return 'hsla(' + hue + ', 20%, 40%, 1.0)';
+      })
+      .text("kini"); 
+    
+  svg.append("text")
+      .attr("transform", "translate(115,394) rotate(-90)")
+      .attr("dy", "1em")
+      .attr("class", 'axis-label')
+      .text("erica")
+      .attr('fill', function (d, i) {
+      var hue = colorScale(2);
+      return 'hsla(' + hue + ', 20%, 40%, 1.0)';
+      });
+    
+  svg.append("text")
+      .attr("transform", "translate(155,394) rotate(-90)")
+      .attr("dy", "1em")
+      .attr("class", 'axis-label')
+      .text("lia")
+      .attr('fill', function (d, i) {
+      var hue = colorScale(3);
+      return 'hsla(' + hue + ', 20%, 40%, 1.0)';
+      });
+    
+   svg.append("text")
+      .attr("transform", "translate(195,394) rotate(-90)")
+      .attr("dy", "1em")
+      .attr("class", 'axis-label')
+      .text("jessie")
+      .attr('fill', function (d, i) {
+      var hue = colorScale(4);
+      return 'hsla(' + hue + ', 20%, 40%, 1.0)';
+      });
+    
+   svg.append("text")
+      .attr("transform", "translate(238,394) rotate(-90)")
+      .attr("dy", "1em")
+      .attr("class", 'axis-label')
+      .text("andrew")
+      .attr('fill', function (d, i) {
+      var hue = colorScale(5);
+      return 'hsla(' + hue + ', 20%, 40%, 1.0)';
+      });
+ 
+  svg.append("text")
+      .attr("transform", "translate(280,394) rotate(-90)")
+      .attr("dy", "1em")
+      .attr("class", 'axis-label')
+      .text("janny")
+      .attr('fill', function (d, i) {
+      var hue = colorScale(6);
+      return 'hsla(' + hue + ', 20%, 40%, 1.0)';
+      });
+
+    
+   svg.append("text")
+      .attr("transform", "translate(320,394) rotate(-90)")
+      .attr("dy", "1em")
+      .attr("class", 'axis-label')
+      .text("lorenzo")
+      .attr('fill', function (d, i) {
+      var hue = colorScale(7);
+      return 'hsla(' + hue + ', 20%, 40%, 1.0)';
+      });
+ 
+  svg.append("text")
+      .attr("transform", "translate(362,394) rotate(-90)")
+      .attr("dy", "1em")
+      .attr("class", 'axis-label')
+      .text("lucy")
+      .attr('fill', function (d, i) {
+      var hue = colorScale(8);
+      return 'hsla(' + hue + ', 20%, 40%, 1.0)';
+      });
+    
+   svg.append("text")
+      .attr("transform", "translate(405,394) rotate(-90)")
+      .attr("dy", "1em")
+      .attr("class", 'axis-label')
+      .text("navi")
+      .attr('fill', function (d, i) {
+      var hue = colorScale(9);
+      return 'hsla(' + hue + ', 20%, 40%, 1.0)';
+      });
+    
+   svg.append("text")
+      .attr("transform", "translate(448,394) rotate(-90)")
+      .attr("dy", "1em")
+      .attr("class", 'axis-label')
+      .text("xinhe")
+      .attr('fill', function (d, i) {
+      var hue = colorScale(10);
+      return 'hsla(' + hue + ', 20%, 40%, 1.0)';
+      });
+    
+   svg.append("text")
+      .attr("transform", "translate(490,394) rotate(-90)")
+      .attr("dy", "1em")
+      .attr("class", 'axis-label')
+      .text("sever")
+      .attr('fill', function (d, i) {
+      var hue = colorScale(11);
+      return 'hsla(' + hue + ', 20%, 40%, 1.0)';
+      });
+
+   svg.append("text")
+      .attr("transform", "translate(532,394) rotate(-90)")
+      .attr("dy", "1em")
+      .attr("class", 'axis-label')
+      .text("patrick")
+      .attr('fill', function (d, i) {
+      var hue = colorScale(12);
+      return 'hsla(' + hue + ', 20%, 40%, 1.0)';
+      });
+    
+   svg.append("text")
+      .attr("transform", "translate(575,394) rotate(-90)")
+      .attr("dy", "1em")
+      .attr("class", 'axis-label')
+      .text("ryan")
+      .attr('fill', function (d, i) {
+      var hue = colorScale(13);
+      return 'hsla(' + hue + ', 20%, 40%, 1.0)';
+      });
+
+
 
 
 };
