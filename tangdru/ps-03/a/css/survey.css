@@ -19,3 +19,8 @@ circle:hover {
   font-size: 18px;
   font-weight: bold;
 }
+
+center {
+    margin-left: auto;
+    width: 800px;
+}
