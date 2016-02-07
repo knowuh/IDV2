@@ -31,12 +31,19 @@ circle:hover {
 .multiples {
   position:relative;
   float: left;
-  padding-right: 10px;
+  margin-left:auto;
+  margin-right:auto;
+  padding-right: 5px;
   padding-bottom: 5px;
   padding-top:0;
   padding-left:10px;
 }
 
+.multiplesBox {
+  width: 90%;    
+  margin-left:auto;
+  margin-right:auto;
+}
 .axis {
     stroke:rgb(200,200,200);
     stroke-width:1px;
@@ -58,7 +65,7 @@ circle:hover {
 
 .namelabel {
     font-family:"Roboto",Arial,sans-serif;
-    text-align: center;
+    text-align: left;
     fill:rgb(150,150,150);
     font-size:12px;
 }

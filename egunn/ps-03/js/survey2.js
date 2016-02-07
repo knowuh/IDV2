@@ -53,6 +53,9 @@ var setupSurvey =function() {
    **************************************************/
   var drawGraph = function (data) {  
       
+    temp3 = d3.selectAll("multiplesBox")
+    temp3.remove();
+      
       //console.log(data[0]);
       
       /*nestedData = d3.nest()
@@ -92,10 +95,13 @@ var setupSurvey =function() {
       .domain([0, data.length])
       .range([0, 360]);
       
-    var multiples = plot.selectAll('multiples')
-      .data(data);
-      
     var multipleWidth = (width/3)-15;
+      
+    multiplesBox = plot.append('div')
+        .attr('class','multiplesBox');
+      
+    var multiples = multiplesBox.selectAll('multiples')
+      .data(data);
       
     multiples
         .enter()
@@ -105,6 +111,8 @@ var setupSurvey =function() {
         .append("svg")
         .style('width',multipleWidth +'px')
         .append('g');
+      
+ 
       
     chartGroup = multiples.select('g')
         .append("rect")
@@ -122,9 +130,16 @@ var setupSurvey =function() {
         .attr('class','bar-chart')
         .attr('transform','translate(25,-50)');
       
-      var forBars = [data[0].criticalcommunication, data[0].criticalcommunication_2,data[0].graphicdesign, data[0].graphicdesign_2,data[0].howlongdidittakeyoutogethere,data[0].howmanyhoursperweekcanyoudevotetothisclass,data[0].howmuchsleepdidyougetlastnight,data[0].howmuchsleepdidyougetlastnight,data[0].howtallareyou,data[0].javascriptwebdevelopment,data[0].javascriptwebdevelopment_2,data[0].whenwasthelasttimeyoudrewapicture,data[0].whenwasthelasttimeyouwenttothebeach,data[0].whenwasthelasttimeyouwenttothemfa];
+
+      var multipleIndex = 13;
       
-       console.log(data[0].name);
+      var forBars = function(multipleIndex) { return [data[multipleIndex].criticalcommunication, data[multipleIndex].criticalcommunication_2,data[multipleIndex].graphicdesign, data[multipleIndex].graphicdesign_2,data[multipleIndex].howlongdidittakeyoutogethere,data[multipleIndex].howmanyhoursperweekcanyoudevotetothisclass,data[multipleIndex].howmuchsleepdidyougetlastnight,data[multipleIndex].howmuchsleepdidyougetlastnight,data[multipleIndex].howtallareyou,data[multipleIndex].javascriptwebdevelopment,data[multipleIndex].javascriptwebdevelopment_2,data[multipleIndex].whenwasthelasttimeyoudrewapicture,data[multipleIndex].whenwasthelasttimeyouwenttothebeach,data[multipleIndex].whenwasthelasttimeyouwenttothemfa];
+        }
+      
+      //console.log(forBars(3));
+      //var multipleIndex = [0,1,2,3,4,5,6,7,8,9,10,11,12,13];
+            
+       //console.log(data[0].name);
       
         //axis generator
         var axisX = d3.svg.axis()
@@ -135,7 +150,7 @@ var setupSurvey =function() {
             .tickFormat(d3.time.format('%Y-%m-%d'));*/
         var axisY = d3.svg.axis()
             .orient('left')
-            .tickSize(3)
+            .tickSize(2)
             .scale(yScale);
             //.tickSize(-width)
             //.ticks(forBars.length);
@@ -152,26 +167,30 @@ var setupSurvey =function() {
           .call(axisY);
       multiples.select('g')
           .append('text')
-          .text(data[0].name)
+          .text(function(d,i){return (data[i].name)})
           .attr('class','namelabel')
-          .attr('transform','translate('+multipleWidth/2+',-5)');
+          .attr('transform','translate(20,-8)');
       
       //axisX.scale(xScale);
       //axisY.scale(yScale);
+      
+      forBarsDummy = forBars(1);
+      //console.log(forBarsDummy.length);
 
-      var barWidth = ((multipleWidth-45)/forBars.length+1)-4;
+      var barWidth = ((multipleWidth-45)/forBarsDummy.length+1)-4;
       
       bars.selectAll('g')
-        .data(forBars)
+        .data(function(d,i){return forBars(i);})
         .enter()
         .append("rect")
         .attr("x",function(d,i){return (i*(barWidth+4))})
-        .attr("y",function(d,i){return 150-yScale(forBars[i])})
+        .attr("y",function(d,i){return 150-yScale(d)})
         .attr("width",barWidth)
         .attr("height",function(d,i){
-            return yScale(forBars[i])})
+
+            return yScale(d)})
         .style('fill', function (d, i) {
-            var hue = colorScale(i);
+            hue = colorScale(i);
             return 'hsla(' + hue + ', 20%, 40%, 1.0)';
         })
         .append("title")
@@ -180,7 +199,7 @@ var setupSurvey =function() {
         return "name:" + d.name
       });
        
-
+      
 
       //console.log(forBars);
    /* {key: "criticalcommunication", title: 'Communication'},
