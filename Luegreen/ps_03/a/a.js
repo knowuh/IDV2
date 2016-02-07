@@ -1,4 +1,3 @@
-
 var setupSurvey =function() {
   var spreadsheetData = [];
   var columnVariables = [
@@ -147,5 +146,3 @@ var setupSurvey =function() {
 };
 
 setupSurvey();
-Status API Training Shop Blog About Pricing
-© 2016 GitHub, Inc. Terms Privacy Security Contact Help
