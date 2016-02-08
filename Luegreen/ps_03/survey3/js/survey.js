@@ -61,16 +61,6 @@ var setupSurvey =function() {
 
     var circles = svg.selectAll("circle")
       .data(data);
-      
-    var labels = svg.selectAll("text")
-      .data(data)
-      .enter()
-      .append("text")
-//    .attr("x", function(d,i) { return i * (w / data.length) + (w / data.length // ) })
-      .text(function(d)  {
-          return d;
-      })
-      
 
     circles
       .enter()
@@ -79,17 +69,13 @@ var setupSurvey =function() {
       .text(function (d) {
         return "name:" + d.name
       });
-      
 
     circles
       .attr('r', radius)
       .attr('fill', function (d, i) {
         var hue = colorScale(i);
-        return 'hsla(' + hue + ', 30%, 80%, .8)';
+        return 'hsla(' + hue + ', 20%, 40%, 1.0)';
       })
-      .attr("stroke", "orange")
-      .attr("stroke-width", function (d){return d/2;
-                                       })
       .attr("title", function (d) {
         return d.name;
       })
