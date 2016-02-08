@@ -1,10 +1,10 @@
-# Class 02 – January 25 2016:
+# Class 03 –  Feb 1  2016:
 
 ## House Keeping:
 * Any announcements?
 * Starting at 5:15, leaving at 8:45.
 
-## 5:30 - 6:10 Review PS-01
+## 5:30 - 6:10 Review PS-03
 * Review print
 * Review digital
 
