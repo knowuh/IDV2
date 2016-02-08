@@ -1,0 +1,65 @@
+<html>
+<head>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+</head>
+<body>
+<canvas id="Canvas" width="1280" height="725"></canvas>
+<script>
+    var canvas1 = document.getElementById('Canvas');
+    var context1 = canvas1.getContext('2d');
+    var centerX = canvas1.width / 2;
+    var centerY = canvas1.height / 2;
+    var radius = 300;
+
+    context1.beginPath();
+    context1.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+    context1.fillStyle = 'darkslategray';
+    context1.fill();
+    context1.lineWidth = 5;
+
+    var canvas2 = document.getElementById('Canvas');
+    var context2 = canvas2.getContext('2d');
+    var centerX2 = canvas2.width / 2;
+    var centerY2 = canvas2.height / 2;
+    var radius2 = 200;
+
+    context2.beginPath();
+    context2.arc(centerX2, centerY2, radius2, 0, 2 * Math.PI, false);
+    context2.fillStyle = 'white';
+    context2.fill();
+    context2.lineWidth = 5;
+
+
+    var canvas3 = document.getElementById('Canvas');
+    var context3 = canvas3.getContext('2d');
+    var centerX3 = canvas3.width / 2;
+    var centerY3 = canvas3.height / 2;
+    var radius3 = 100;
+
+    context3.beginPath();
+    context3.arc(centerX3, centerY3, radius3, 0, 2 * Math.PI, false);
+    context3.fillStyle = 'darkslategray';
+    context3.fill();
+    context3.lineWidth = 5;
+</script>
+<!--<canvas id="Canvas2" width="1280" height="725"></canvas>-->
+<!--<script>-->
+    <!--var canvas = document.getElementById('Canvas2');-->
+    <!--var context = canvas.getContext('2d');-->
+    <!--var centerX = canvas.width / 2;-->
+    <!--var centerY = canvas.height / 2;-->
+    <!--var radius = 200;-->
+
+    <!--context.beginPath();-->
+    <!--context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);-->
+    <!--context.fillStyle = 'gray';-->
+    <!--context.fill();-->
+    <!--context.lineWidth = 5;-->
+<!--</script>-->
+</body>
+</html>
