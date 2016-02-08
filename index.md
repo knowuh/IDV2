@@ -44,7 +44,7 @@ Students are expected to attend all classes. Absence for health or personal reas
 ### Schedule
 1. `Jan 11` __[Orientation](./01/):__ Introductions, overview, agreement, processes. Publishing workflow using a text editor, HTML, CSS, and git.
 2. `Jan 25` __[Drawing with code](./02/):__ Introduction to key programming concepts using JavaScript and Processing. We learn to make digital marks and cover: variables, lists, conditionals, loops, and functions. _Presentation by Erica_.
-3. `Feb  1` __Parametric design:__ We look at abstraction and how we can express variables in graphic dimensions using D3 and SVG. We review the interaction design mantra and gestalt principles along the way. _Presentations by Lucy and Cara_.
+3. `Feb  1` __[Parametric design](./03/):__ We look at abstraction and how we can express variables in graphic dimensions using D3 and SVG. We review the interaction design mantra and gestalt principles along the way. _Presentations by Lucy and Cara_.
 4. `Feb  8` __Data:__ We cover data structures, and related topics such as list traversal. We talk about how we can describe and represent data in code and images. We learn to use HTTP requests to collect remote data. _Presentations by Lorzenzo and Sever_.
 5. `Feb 22` __Precedents in social visualization:__ A review of significant works within our domain. We conduct a design lab and charette for project proposals. _Presentations from June and Andrew_.
 6. `Feb 29` __Project proposals:__ Students present their proposals and mockups for initial review. We refine them in class. _Presentations from Kimi and Jiani_.
