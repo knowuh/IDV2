@@ -66,7 +66,7 @@ var drawGraph = function (data) {
    console.log(data);
   
     
-    //nesting by name, not sure how to map by this. 
+//nesting by name, not sure how to map by this. 
   var nestedData1 = d3.nest()
         .key(function (d) {
             return d.name
@@ -91,6 +91,7 @@ var drawGraph = function (data) {
      
 
   circles
+//    .data(nestedData1)
     .enter()
     .append("circle")
     .append("title")
@@ -114,6 +115,9 @@ var drawGraph = function (data) {
       var columnData = parseInt(d["criticalcommunication"]);
       return yScale(columnData);
     });
+    
+//    .attr("cy", function(d){return yScale(d[columnVariables[i].key])})
+//    });
 
    circles.exit().remove();
     
