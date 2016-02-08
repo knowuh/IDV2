@@ -25,13 +25,13 @@ var setupSurvey =function() {
   var drawYAxisLabel = function (svg, text) {
     var height = 400;
     svg.append("text")
-        .attr("transform", "translate(0," + height / 2 + ") rotate(-90)")
+//        .attr("transform", "translate(0," + height/2 + ") rotate(-90)")
         .attr("x", 0)
         .attr("y", 0)
         .attr("id", "y-label")
-        .attr("dy", "1em")
+        .attr("dy", "2em")
         .attr("class", 'axis-label')
-        .style("text-anchor", "middle")
+        .style("text-anchor", "right")
         .text(text);
   };
 
@@ -40,12 +40,12 @@ var setupSurvey =function() {
    * @param data – the google spreadsheet data      *
    **************************************************/
   var drawGraph = function (data) {
-    var svg        = d3.select("#survey");
+    var svg        = d3.select("#survey").append('g');
     var radius     = 100 / data.length;
     var width      = 600 - radius;
     var height     = 400 - radius;
     var leftMargin = 40;
-      
+     
 //Scales are functions that map from an input domain to an output range. 
 //Ordinal scales have a discrete domain, such as a set of names or categories. 
     var xScale = d3.scale.ordinal()
@@ -55,39 +55,58 @@ var setupSurvey =function() {
     var yScale = d3.scale.linear()
         .domain([0, 10])
         .range([height, radius]);
-
+      
+    var rScale = d3.scale.linear()
+        .domain([0, 10])
+        .range([0, 25]);
+      
     var colorScale = d3.scale.linear()
         .domain([0, data.length])
         .range([0, 360]);
-
-    var circles = svg.selectAll("circle")
-        .data(data);
-
-    circles
-        .enter()
-        .append("circle")
-        .append("title")
-        .text(function (d) {
-          return "name:" + d.name;
-        });
-    circles.exit().remove()
-    circles
-        .attr('r', radius)
-        .attr('fill', function (d, i) {
-          var hue = colorScale(i);
-          return 'hsla(' + hue + ', 20%, 40%, 1.0)';
-        })
-        .attr("title", function (d) {
-          return d.name;
-        })
-        .attr("cx", function (d, i) {
-          return xScale(i);
-        })
-        .attr("cy", function (d) {
-          return yScale(parseInt(d[columnToGraph.key]));
-        });
-
-;
+      
+       console.log(data)
+       
+     var circles = svg.selectAll(".Circle")
+        .data(data) 
+     
+     var circlesEnter=circles.enter().append('g')
+        .attr('class','Circle')
+        .attr('transform',function(d,i){return "translate("+i*width/data.length+20+","+height/2+")"})
+        .style('opacity',0)
+     circlesEnter
+        .append('circle')
+        .attr('r',function(d){ return rScale(parseInt(d[columnToGraph.key]))})
+        .style('fill',function(d,i){
+            var hue= colorScale(i);
+            return 'hsla('+hue+',80%,40%,0.8)';})
+     
+     circlesEnter
+        .append('text')
+        .attr('class','Text')
+        .text(function (d) {  return d.name; })
+        .attr('text-anchor','middle')
+        .attr('font-size',3 )
+//        .on('click',function(d){
+//              d3.select(this).select('Text')
+//            .style('fill','rgb(200,200,200)')})
+       
+    
+    var circlesExit=circles.exit()
+        .transition()
+        .attr('transform',function(d,i){return "translate("+i*width/data.length+20+","+height/2+")"})
+        .style('opacity',0)
+    
+     circlesExit.remove()//doesn't work,,,
+    
+    var circlesUpdate=circles.transition().duration(300)
+    circlesUpdate
+        .attr('transform',function(d,i){return "translate("+i*width/data.length+20+","+height/2+")"})
+        .style('opacity',1)
+    circlesUpdate.select("Circle")
+        .attr('r',function(d){ return rScale(parseInt(d[columnToGraph.key]))})
+    circlesUpdate.select('Text')
+         .attr('font-size',10)
+        .style('fill','rgb(100,80,80)')
   };
 
   /*****************************************************************************
