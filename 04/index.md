@@ -27,6 +27,7 @@ You should starting planning your final projects topics. On the 22nd we will be 
 * Advanced: We can post-process social message data for example to [extract sentiment](http://text-processing.com/demo/sentiment/).
 * To get situated in social media topics, read this recent paper by danah boyd. [What World Are We Building?](http://www.danah.org/papers/talks/2015/ParkerLecture.html) - danah has been researching online behavior and critiquing social media for more than 10 years. Her primary concern is about online youth, but her work is generally applicable.
 * Lev Mannovich has been doing interesting experiments with large volumes of instagram images. See for example [The Exceptional and the Everyday: 144 hours in Kyiv](http://manovich.net/index.php/projects/hours-in-kiev-copy)
+* Big list of recommended journal articles on Big Data. A few papers and sections may be of interest, though I have not vetted any of them yet: http://www.cs.nyu.edu/faculty/davise/papers/BigDataBib.html
 * Do some independent research when trying to identify a topic. It would be great to share in-process thoughts, or interesting papers / visualizations with the group in slack along the way. Here are some (half-baked) idea launch pads if you need some inspiration.
     * [Twitter Bots](http://qz.com/279139/the-17-best-bots-on-twitter/), especially bots that make images. ★
     * SEO / Brand management, engagement, spam.
