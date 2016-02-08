@@ -108,7 +108,8 @@ var setupSurvey =function() {
         //x and y axis generator functions
         var axisX = d3.svg.axis()
             .orient('bottom')
-            .tickSize(2)
+            .tickSize(0)
+            .tickFormat(" ")
             .scale(xScale);
         var axisY = d3.svg.axis()
             .orient('left')
