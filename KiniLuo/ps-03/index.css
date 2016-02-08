@@ -1,0 +1,20 @@
+body{
+    height:100%;
+    margin:50px;
+    background-color: cornsilk;
+    text-align: center;
+    font-size: 20px;
+}
+h1{
+    font-family: sans-serif;
+    /*font-size: 20px;*/
+}
+
+div#des{
+    margin:50px;
+}
+h3{
+    font-family: serif;
+    font-size: 15px;
+}
+
