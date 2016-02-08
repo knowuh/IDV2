@@ -1,6 +1,7 @@
 var canvas = document.getElementById("canvas").getContext("2d");
 var width = document.getElementById('canvas').clientWidth,
-    height = document.getElementById('canvas').clientHeight
+    //height = document.getElementById('canvas').clientHeight
+    height=700;
 //var height = window.innerHeight;
 //var width = window.innerWidth;
 
