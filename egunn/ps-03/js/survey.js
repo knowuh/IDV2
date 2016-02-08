@@ -66,35 +66,38 @@ var setupSurvey =function() {
    **************************************************/
 //make a function to draw the graph on the webpage  
 var drawGraph = function (data) {
-    //Because the data is updated constantly by the populateDropdown function, and because we have to wait until it is fully loaded and the callback function completes, any variable that needs to use the data for any reason has to exist inside this function.
+    /*Because the data is updated constantly by the populateDropdown function, and because we have to wait  
+    until it is fully loaded and the callback function completes, any variable that needs to use the data 
+    for any reason has to exist inside this function.*/
     
+    //clear the screen before drawing anything (necessary b/c of auto-updating function)
     temp3 = d3.selectAll(".textLabel")
     temp3.remove();
-    
-    //console.log(data);
-    
-    //set up some variables
-    
-   var svg = d3.select("#survey");
-   var radius     = 100 / data.length;
-   var width      = 600 - radius;
-   var height     = 400 - radius;
-   var leftMargin = 140;
-    //scales
-   var xScale = d3.scale.ordinal()
-     .domain(d3.range(data.length))
-     .rangeRoundPoints([leftMargin, width]);
-   var yScale = d3.scale.linear()
-     .domain([0, 10])
-     .range([height, radius+25]);
-   var colorScale = d3.scale.linear()
-     .domain([0, data.length])
-     .range([0, 360]);
-   var areaScale = d3.scale.sqrt().domain([0,300]).range([0,50]);
-    
-   var circles = svg.selectAll("circle")
-      .data(data);
 
+    //set up some variables needed later, including selection containing the svg canvas
+    var svg = d3.select("#survey");
+    var radius     = 100 / data.length;
+    var width      = 600 - radius;
+    var height     = 400 - radius;
+    var leftMargin = 140;
+   
+    //set up data scales for plotting data
+    var xScale = d3.scale.ordinal()
+        .domain(d3.range(data.length))
+        .rangeRoundPoints([leftMargin, width]);
+    var yScale = d3.scale.linear()
+        .domain([0, 10])
+        .range([height, radius+25]);
+    var colorScale = d3.scale.linear()
+        .domain([0, data.length])
+        .range([0, 360]);
+    var areaScale = d3.scale.sqrt().domain([0,300]).range([0,50]);
+    
+    //create an empty selection and bind the data to it
+    var circles = svg.selectAll("circle")
+        .data(data);
+
+    //draw the circles
     circles 
       .enter()
       .append("circle")
@@ -102,116 +105,103 @@ var drawGraph = function (data) {
       .text(function (d) {
         return "name:" + d.name
       });
-
-  /*  circles
-      .attr('r', 5)
-            //function(d,i){        return areaScale(parseInt(d[columnVariables[4].key]));                              })
-      .attr('fill', "gray")
-        //function (d, i) {
-        //var hue = colorScale(i);
-        //return 'hsla(' + hue + ', 20%, 40%, 1.0)';
-      //})
-      .attr("title", function (d) {
-        return d.name;
-      })
-      .attr("cx", function (d, i) {
-        return xScale(i);
-      })
-      .attr("cy", function (d) {
-        return yScale(parseInt(d[columnVariables[1].key]));
-        //(originally columnToGraph.key)
-      });*/
-
     
-for (i=0;i<columnVariables.length;i++){   
-    
-     var hue = i*50;
-    
-    
-  lineGenerator = d3.svg.line()
-    .x(function(d,i){return xScale(i)}) 
-    .y(function(d){return yScale(d[columnVariables[i].key])});
-    
-  areaGenerator = d3.svg.area()       
-     .x(function(d,i){return xScale(i)})
-     .y0(height)
-     .y1(function(d){return yScale(d[columnVariables[i].key])})
-     .interpolate('linear');  
+    //go through and plot each of the datasets in the series
+    for (i=0;i<columnVariables.length;i++){   
         
-    //draw a second set of circles with a different subset of the data. Currently, these are not showing up as bound to the data, and are eliminated when the exit function is left on.
-    circles
-      .enter()
-      .append("circle")
-      .attr('r', 1)
-            //function(d,i){        return areaScale(parseInt(d[columnVariables[4].key]));                              })
-      .attr('fill', 'hsla(' + hue + ', 20%, 50%, 1.0)')
-      .attr("title", function (d) {
-        return d.name;
-      })
-      .attr("cx", function (d, i) {
-        return xScale(i);
-      })
-      .attr("cy", function (d) {
-        return yScale(parseInt(d[columnVariables[i].key]));
-      });
+        //set the color based on where we are in the series
+        var hue = i*50;
     
-     line = svg
-      .append('path')
-      .attr('class',"line")
-      .datum(data)    
-      .style('stroke','hsla(' + hue + ', 60%, 80%, .8)')
-      .style('fill',"none")
-      .attr('d',function(array){return lineGenerator(array)});
-    
-  var area = svg.append('path')
-        .attr('class',"area "+ columnVariables[i].title)
-        .datum(data)
-        .style('fill','hsla(' + hue + ', 80%, 50%, 0.1)')
-        .attr('d',function(array){return areaGenerator(array)});
+        //set up a line and area generator to draw line plots and area fills using the scaled data
+        lineGenerator = d3.svg.line() 
+            .x(function(d,i){return xScale(i)}) 
+            .y(function(d){return yScale(d[columnVariables[i].key])});
+        
+        areaGenerator = d3.svg.area()       
+            .x(function(d,i){return xScale(i)})
+            .y0(height)
+            .y1(function(d){return yScale(d[columnVariables[i].key])})
+            .interpolate('linear');  
+
+        //draw a set of circles to represent the data points. 
+        //Currently, these are not showing up as bound to the data, and are eliminated 
+        //when the exit function is left on.
+        circles
+          .enter()
+          .append("circle")
+          .attr('r', 1)
+          .attr('fill', 'hsla(' + hue + ', 20%, 50%, 1.0)')
+          .attr("title", function (d) {
+            return d.name;
+          })
+          .attr("cx", function (d, i) {
+            return xScale(i);
+          })
+          .attr("cy", function (d) {
+            return yScale(parseInt(d[columnVariables[i].key]));
+          });
+
+        //draw the line connecting the points by calling the lineGenerator function
+        line = svg
+          .append('path')
+          .attr('class',"line")
+          .datum(data)    
+          .style('stroke','hsla(' + hue + ', 60%, 80%, .8)')
+          .style('fill',"none")
+          .attr('d',function(array){return lineGenerator(array)});
+
+        //plot the fill area as well  
+        var area = svg.append('path')
+            .attr('class',"area "+ columnVariables[i].title)
+            .datum(data)
+            .style('fill','hsla(' + hue + ', 80%, 50%, 0.1)')
+            .attr('d',function(array){return areaGenerator(array)});
+
+        //add labels for each data series, colored to match. Record mouse events for these labels.
+        var textIndex = svg.append('text')
+            .attr('class','textLabel '+columnVariables[i].title)
+            .attr('x',5)
+            .attr('y',20+i*30)
+            .style('fill','hsla(' + hue + ', 80%, 50%, .8)')
+            .text(columnVariables[i].title)
+            .on("mouseover",mouseHighlight)
+            .on("mouseout",noMouseHighlight);
+    }
    
-    var textIndex = svg.append('text')
-        .attr('class','textLabel '+columnVariables[i].title)
-        .attr('x',5)
-        .attr('y',20+i*30)
-        .style('fill','hsla(' + hue + ', 80%, 50%, .8)')
-        .text(columnVariables[i].title)
-        .on("mouseover",mouseHighlight)
-        .on("mouseout",noMouseHighlight);
-}
-   
-
- //line = svg.selectAll('line');
-                          
-
-
-  //circles.exit().remove();
-    
 };
     
 var colorCut = [];
     
-//this functionality based in part on http://bl.ocks.org/WilliamQLiu/76ae20060e19bf42d774    
+//this functionality based in part on http://bl.ocks.org/WilliamQLiu/76ae20060e19bf42d774  
+//This is definitely not the cleanest way to write this section, but I was having difficulty getting 
+//the color data out of each element in order to update with mouseevents. I tried passing the 
+//hue value in with the function, among other things, but that caused problems with the focus.
+//Currently, this is painfully slow, because the color doesn't actually update until the next time
+//that the data is loaded and the screen refreshes.
 function mouseHighlight(d){
+    //grab the current selection from the function input
     categoryName = d3.select(this);
-    //console.log(categoryName[0][0].innerHTML);
+    
+    //dig the color value out of its object tree and save it
     originalColor = categoryName[0][0].attributes[3].nodeValue;
     colorCut = originalColor.substring(5,originalColor.length-1);
-    //console.log(colorCut);
     colorCut2 = colorCut.substring(0,colorCut.length-4);
-    //console.log(colorCut2);
-    
-    selectionName = d3.select('.'+[categoryName[0][0].innerHTML]);
-    selectionName
-    .style('fill',colorCut2+'0.9)');
 
+    //find the appropriate name for the object that was passed in (apparently can't get the bound data
+    //directly, because outside of the function where the bind happened)
+    selectionName = d3.select('.'+[categoryName[0][0].innerHTML]);
+    
+    //and set its alpha value
+    selectionName
+        .style('fill',colorCut2+'0.9)');
 }
      
 function noMouseHighlight(d) {
     categoryName = d3.select(this);
-    //console.log(categoryName[0][0].innerHTML);
     
+    //reset alpha value and fill color to the original values stored above
     selectionName = d3.select('.'+[categoryName[0][0].innerHTML])
-    .style('fill',colorCut);
+        .style('fill',colorCut);
 }
 
   /*****************************************************************************
@@ -240,59 +230,17 @@ function noMouseHighlight(d) {
     });
   };
 
-  /*****************************************************************************
-   * function that sets the Y axis on our graph to a given columnKey           *
-   *****************************************************************************/
-  //name the y axis using the data from the spreadsheet - find the data, then write a text element to the y-label DOM element, and call the drawGraph function, handing it the spreadsheet data    
-  /*var setYAxis = function (columnKey) {
-    columnToGraph = findDataForKey(columnKey) || columnToGraph;
-    d3.select("#y-label").text(columnToGraph.title);
-    temp = d3.selectAll(".line");
-    temp.remove();
-    temp2 = d3.selectAll(".area")
-    temp2.remove();
-    drawGraph(spreadsheetData);
-
-  };*/
-
- /* /*****************************************************************************
-   * function that puts our column names in the dropdown menu using jQuery ($) *
-   *****************************************************************************
-    
-  var populateDropdown = function () {
-      var selectionChangedFunction = function() {
-         setYAxis(this.value);
-      };
-    
-    var selector = "#selectY";
-    $(selector).empty();
-    $(selector).off("change");
-    _.map(columnVariables, function (option) {
-      var optionItem = '<option value="' + option.key + '">'
-      + option.title + '</option>';
-      $("#selectY").append(optionItem);
-    });
-    $(selector).on("change", selectionChangedFunction);
-  };*/
-
   // This jQuery function tells the browser to run the function
   // `continuouslyLoadData` when the webpage is done loading.
   // `continuouslyLoadData` is defined in spreadheet.js.
   //  It will call our `drawGraph` function with new data every 5 seconds.
   // See spreadsheet.js for the definition of `continuouslyLoadData`.
   $(document).ready(function () {
-      //call Y axis label function to update label
-    //drawYAxisLabel(d3.select("#survey"), "y axis label");
-      //Save the right data in the columnToGraph variable for graphing
-    //setYAxis(columnToGraph);
-      //make an updated list for the dropdown menu and fill it with values
-    //populateDropdown();
       //load the data from the spreadsheet (calling the spreadsheet function saved in the parent directory)
-    continuouslyLoadData("1tL7m0JNa0CZwEyU9WmB3u8j5T829jqtbnu-26ibPp5E", setData);
+      continuouslyLoadData("1tL7m0JNa0CZwEyU9WmB3u8j5T829jqtbnu-26ibPp5E", setData);
   });
   
   
 };
-
 
 setupSurvey();
