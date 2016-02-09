@@ -70,12 +70,9 @@ var drawGraph = function (data) {
     until it is fully loaded and the callback function completes, any variable that needs to use the data 
     for any reason has to exist inside this function.*/
     
-    //clear the screen before drawing anything (necessary b/c of auto-updating function)
-    temp3 = d3.selectAll(".textLabel")
-    temp3.remove();
 
     //set up some variables needed later, including selection containing the svg canvas
-    var svg = d3.select("#survey");
+    var svg        = d3.select("#survey");
     var radius     = 100 / data.length;
     var width      = 600 - radius;
     var height     = 400 - radius;
@@ -156,19 +153,31 @@ var drawGraph = function (data) {
             .datum(data)
             .style('fill','hsla(' + hue + ', 80%, 50%, 0.1)')
             .attr('d',function(array){return areaGenerator(array)});
-
-        //add labels for each data series, colored to match. Record mouse events for these labels.
-        var textIndex = svg.append('text')
-            .attr('class','textLabel '+columnVariables[i].title)
-            .attr('x',5)
-            .attr('y',20+i*30)
-            .style('fill','hsla(' + hue + ', 80%, 50%, .8)')
-            .text(columnVariables[i].title)
-            .on("mouseover",mouseHighlight)
-            .on("mouseout",noMouseHighlight);
     }
-   
-};
+    // Add labels for each data series, colored to match.
+    var textlabel = svg.selectAll("text")
+      .data(columnVariables); // just the names
+    textlabel.enter()
+      .append('text')
+      .attr('class', function(d) { return 'textLabel ' + d.title})
+      .attr('x',5)
+      .attr('y',function(d,i) { return 20 +i *30 })
+      .style('fill', function(d,i) {
+        var hue = i * 30;
+        return 'hsla(' + hue + ', 80%, 50%, .8)'
+      })
+      .text( function(d) { return d.title} )
+      .on("mouseover",mouseHighlight)
+      .on("mouseout",noMouseHighlight);
+
+    // Update any existing labels that are already in the SVG.
+    // for example if the category name changes.
+    textlabel
+      .text( function(d) { return d.title} )
+
+    // if data goes away we need to remove it.
+    textlabel.exit().remove();
+  };
     
 var colorCut = [];
     
