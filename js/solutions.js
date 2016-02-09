@@ -1,7 +1,7 @@
 var studentsS =
   "frankenbits jessier08 odonnel-p severli93 tangdru "
   + "xiaoyunver KiniLuo Luegreen egunn navarjun "
-  + "liapetronio jiani rcmorrill"
+  + "liapetronio jiani rcmorrill lore92"
 
 var students = studentsS.split(" ").sort();
 
