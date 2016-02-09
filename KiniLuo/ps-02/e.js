@@ -18,7 +18,7 @@ var drawCurve1=function(x,y){
     canvas.moveTo(x,y);
     canvas.bezierCurveTo(x1,y1,x2,y2,x3,y3);
     canvas.stroke();
-    canvas.lineWidth=.1;
+    canvas.lineWidth=.5;
 
 }
 for(var i= 0;i<99;i++){
@@ -38,7 +38,7 @@ drawCurve2=function(x,y){
     canvas.moveTo(x,y);
     canvas.bezierCurveTo(x1,y1,x2,y2,x3,y3);
     canvas.stroke();
-    canvas.lineWidth=.1;
+    canvas.lineWidth=.5;
 }
 for(var i= 0;i<99;i++){
 
@@ -57,7 +57,7 @@ drawCurve3=function(x,y){
     canvas.moveTo(x,y);
     canvas.bezierCurveTo(x1,y1,x2,y2,x3,y3);
     canvas.stroke();
-    canvas.lineWidth=.1;
+    canvas.lineWidth=.5;
 }
 for(var i= 0;i<99;i++){
 
@@ -75,7 +75,7 @@ drawCurve4=function(x,y){
     canvas.moveTo(x,y);
     canvas.bezierCurveTo(x1,y1,x2,y2,x3,y3);
     canvas.stroke();
-    canvas.lineWidth=.1;
+    canvas.lineWidth=.5;
 }
 for(var i= 0;i<99;i++){
 
@@ -93,7 +93,7 @@ drawCurve5=function(x,y){
     canvas.moveTo(x,y);
     canvas.bezierCurveTo(x1,y1,x2,y2,x3,y3);
     canvas.stroke();
-    canvas.lineWidth=.1;
+    canvas.lineWidth=.5;
 }
 for(var i= 0;i<99;i++){
     var yPos=50+5*i;
@@ -110,7 +110,7 @@ drawCurve6=function(x,y){
     canvas.moveTo(x,y);
     canvas.bezierCurveTo(x1,y1,x2,y2,x3,y3);
     canvas.stroke();
-    canvas.lineWidth=.1;
+    canvas.lineWidth=.5;
 }
 for(var i= 0;i<99;i++){
 
@@ -128,12 +128,13 @@ drawCurve7=function(x,y){
     canvas.moveTo(x,y);
     canvas.bezierCurveTo(x1,y1,x2,y2,x3,y3);
     canvas.stroke();
-    canvas.lineWidth=.1;
+    canvas.lineWidth=.5;
 }
 for(var i= 0;i<99;i++){
 
     var yPos=50+5*i;
     drawCurve7(890,yPos);
+    //canvas.strokeStyle='blue'
 }
 
 drawCurve8=function(x,y){
@@ -146,12 +147,12 @@ drawCurve8=function(x,y){
     canvas.moveTo(x,y);
     canvas.bezierCurveTo(x1,y1,x2,y2,x3,y3);
     canvas.stroke();
-    canvas.lineWidth=.1;
+    canvas.lineWidth=.5;
 }
 for(var i= 0;i<99;i++){
 
     var yPos=50+5*i;
     drawCurve8(1170,yPos);
-    canvas.strokeStyle='blue';
+    canvas.strokeStyle='white';
 }
 

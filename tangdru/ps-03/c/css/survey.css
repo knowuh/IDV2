@@ -1,0 +1,22 @@
+svg {
+  width: 600px;
+  height: 400px;
+  margin: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 1px solid hsla(0, 5%, 60%, 1.0);
+  border-left:   1px solid hsla(0, 5%, 60%, 1.0);
+}
+
+circle {
+  transition: 0.2s;
+}
+circle:hover {
+  fill: hsla(0, 5%, 60%, 1.0);
+  stroke-width: 4px;
+}
+.axis-label {
+  font-size: 20px;
+  font-weight: bold;
+  fill: hsla(0, 5%, 60%, 1.0);
+}

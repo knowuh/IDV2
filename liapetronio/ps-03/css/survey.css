@@ -1,0 +1,135 @@
+body {
+  background-color: hsla(180, 10%, 95%, 1.0);
+  color: hsla(0, 10%, 10%, 1.0);
+  margin: 2em;
+  font-size: 12pt;
+}
+
+h1{
+  color: black;
+  font-family: 'Baskerville';
+  text-transform: uppercase;
+}
+
+h2,
+h3,
+h4,
+h5,
+strong {
+  color: #333333;
+  text-align: right;
+  font-family: 'Lato', 'Helvetica Neue';
+  margin-bottom: 0em;
+
+}
+p,
+li {
+  margin-top: 0.2em;
+  font-family: 'Baskerville', serif;
+  font-size: 24px;
+  line-height: 1.3em;
+  color: black;
+}
+
+#fixed{
+  position:fixed;
+  
+}
+
+#caption{
+  margin-top: 5em;
+  font-family: 'Baskerville';
+  font-size: 14px;
+  font-style: italic;
+}
+.col-md-6, .col-lg-6, .col-sm-12 { padding: 20px; padding-right: 10%; overflow-y: scroll;}
+
+.h-scroll {
+    height: 90vh; /* %-height of the viewport */
+    position: fixed;
+    overflow-y: scroll;
+}
+
+.node rect {
+  cursor: move;
+  fill-opacity: .9;
+  shape-rendering: crispEdges;
+}
+ 
+.node text {
+  color: #000;
+  font-size:10px;
+  opacity: .3;
+}
+.node text:hover {
+  font-size: 11px;
+  opacity: 1;
+}
+ 
+.link {
+
+  fill: none;
+  stroke-opacity: .2;
+}
+ 
+.link:hover {
+  stroke-opacity: .5;
+}
+
+
+
+
+
+.Communication { stroke: #92a2ce; }
+.GraphicDesign { stroke: #b68600; }
+.TravelTime { stroke: #fdca44; }
+.Hours { stroke: #a77b91; }
+.Sleep { stroke: #cdd400; }
+.Height { stroke: #e7634d; }
+.Software { stroke: #d29f96;}
+.Drew { stroke: #00b3d0;}
+.Beach { stroke: #ec8c3d;}
+.MFA { stroke: #afb2a9;}
+
+
+#survey1{
+  width:100%;
+  height:200px;
+}
+#survey2{
+  width:100%;
+  height:200px;
+}
+#survey3{
+  width:100%;
+  height:200px;
+}
+#survey4{
+  width:100%;
+  height:200px;
+}
+#survey5{
+  width:100%; 
+  height:200px;
+
+}
+#survey6{
+  width:100%;
+  height:200px;
+}
+#survey7{
+  width:100%;
+  height:200px;
+}
+#survey8{
+  width:100%;
+  height:200px;
+}
+#survey9{
+  width:100%;
+  height:200px;
+}
+#survey10{
+  width:100%;
+  height:200px;
+}

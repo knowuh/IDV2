@@ -1,6 +1,5 @@
 var canvas = document.getElementById("canvas").getContext("2d");
 
-    
 var randomLine = function(){
     
     var xM = (Math.random()*550);
@@ -8,7 +7,7 @@ var randomLine = function(){
     var xL = (Math.random()*550);
     var yL = (Math.random()*550);
     
-    var op = ((Math.random()*.7));
+    var op = ((Math.random()*.3));
 
     
     canvas.beginPath();
