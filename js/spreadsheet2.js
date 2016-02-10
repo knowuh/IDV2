@@ -32,7 +32,6 @@ window.loadSpreadsheet = function(spreadsheetID, parentCallback) {
       return value.$t;
     };
     result = _.pick(row, findGoogleKeys);
-    result = _.pick(result,findGoogleKeys);
     result = _.mapKeys(result,renameGoogleKeys);
     result = _.mapValues(result,tvalues);
     return result;
@@ -40,7 +39,6 @@ window.loadSpreadsheet = function(spreadsheetID, parentCallback) {
 
   var processResponse = function(list){
     returnv = _.map(list, mapValues);
-    debugger
     return returnv;
   };
 
