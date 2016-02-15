@@ -11,11 +11,6 @@ window.loadSpreadsheet = function(spreadsheetID, parentCallback) {
   var version = "/1/public/values";
   var url =  baseUrl + spreadsheetID + version + callbackUrl;
 
-  // Google returns an array[] of ugly row objects
-  // Rows values are stored in row.content.$t, as {"columnName1: value1, columnName2: value2}
-  // mapValues turns one row value into an object that is easier to work with.
-  // The return row just looks like {column1: 'value1', column2: 'value2'}
-  // see the [lowdash documentation](https://lodash.com/docs)
   var mapValues = function(value) {
     var stringValues = _.trim(value.content.$t).split(',');
     var arrayValue = _.map(stringValues, function(s) {
