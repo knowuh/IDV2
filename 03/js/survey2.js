@@ -67,7 +67,7 @@ var drawGraph = function (data) {
       var columnData = parseInt(d["whenwasthelasttimeyoudrewapicture"]);
       return yScale(columnData);
     });
-
+console.log([columnVariables[10]]);
   circles.exit().remove();
 };
 
