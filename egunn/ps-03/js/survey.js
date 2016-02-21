@@ -69,7 +69,8 @@ var drawGraph = function (data) {
     /*Because the data is updated constantly by the populateDropdown function, and because we have to wait  
     until it is fully loaded and the callback function completes, any variable that needs to use the data 
     for any reason has to exist inside this function.*/
-    
+    //console.log("data")
+    //console.log(data)
     //clear the screen before drawing anything (necessary b/c of auto-updating function)
     temp3 = d3.selectAll(".textLabel")
     temp3.remove();
@@ -98,13 +99,13 @@ var drawGraph = function (data) {
         .data(data);
 
     //draw the circles
-    circles 
-      .enter()
-      .append("circle")
-      .append("title")
-      .text(function (d) {
-        return "name:" + d.name
-      });
+//    circles 
+//      .enter()
+//      .append("circle")
+//      .append("title")
+//      .text(function (d) {
+//        return "name:" + d.name
+//      });
     
     //go through and plot each of the datasets in the series
     for (i=0;i<columnVariables.length;i++){   
@@ -162,6 +163,8 @@ var drawGraph = function (data) {
             .attr('class','textLabel '+columnVariables[i].title)
             .attr('x',5)
             .attr('y',20+i*30)
+            .attr('hue-data', hue)
+            .attr('variable-name',columnVariables[i].title)
             .style('fill','hsla(' + hue + ', 80%, 50%, .8)')
             .text(columnVariables[i].title)
             .on("mouseover",mouseHighlight)
@@ -181,27 +184,34 @@ var colorCut = [];
 function mouseHighlight(d){
     //grab the current selection from the function input
     categoryName = d3.select(this);
-    
-    //dig the color value out of its object tree and save it
-    originalColor = categoryName[0][0].attributes[3].nodeValue;
-    colorCut = originalColor.substring(5,originalColor.length-1);
-    colorCut2 = colorCut.substring(0,colorCut.length-4);
 
-    //find the appropriate name for the object that was passed in (apparently can't get the bound data
-    //directly, because outside of the function where the bind happened)
-    selectionName = d3.select('.'+[categoryName[0][0].innerHTML]);
+    //read its hue value and the name of the variable it relates to
+    var hue = categoryName.attr('hue-data')
+    var varName = categoryName.attr('variable-name')
     
-    //and set its alpha value
+    //change the color of the selected text
+    categoryName.style('fill','hsla(' + hue + ', 80%, 50%, .1)');
+   
+    //grab other items attached to the same variable
+    selectionName = d3.select('.'+[varName]);
+    
+    //and update their colors as well
     selectionName
-        .style('fill',colorCut2+'0.9)');
+        .style('fill','hsla(' + hue + ', 80%, 50%, .9)');
+    
 }
      
 function noMouseHighlight(d) {
-    categoryName = d3.select(this);
     
-    //reset alpha value and fill color to the original values stored above
-    selectionName = d3.select('.'+[categoryName[0][0].innerHTML])
-        .style('fill',colorCut);
+    categoryName = d3.select(this);
+    var hue = categoryName.attr('hue-data')
+    var varName = categoryName.attr('variable-name')
+    
+    //return alpha values and fill colors to their non-selected values
+    categoryName.style('fill','hsla(' + hue + ', 80%, 50%, .9)');
+    selectionName = d3.select('.'+[varName]);
+    selectionName
+        .style('fill','hsla(' + hue + ', 80%, 50%, .1)');
 }
 
   /*****************************************************************************
