@@ -161,11 +161,14 @@
     <option name="CHANGED_PATHS">
       <list>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/index.html" />
 <<<<<<< Updated upstream:KiniLuo/ps-02/.idea/workspace.xml
         <option value="$PROJECT_DIR$/index.css" />
         <option value="$PROJECT_DIR$/b.html" />
 =======
+=======
+>>>>>>> origin/master
 <<<<<<< HEAD:.idea/workspace.xml
         <option value="$PROJECT_DIR$/xiaoyunver/ps-01/pic1.html" />
         <option value="$PROJECT_DIR$/pic1.html" />
@@ -182,6 +185,9 @@
         <option value="$PROJECT_DIR$/xiaoyunver/ps-02/d.html" />
         <option value="$PROJECT_DIR$/xiaoyunver/ps-02/e.html" />
         <option value="$PROJECT_DIR$/xiaoyunver/ps-02/c.html" />
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
         <option value="$PROJECT_DIR$/b.js" />
@@ -200,17 +206,23 @@
         <option value="$PROJECT_DIR$/b.html" />
         <option value="$PROJECT_DIR$/a.html" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         <option value="$PROJECT_DIR$/KiniLuo/ps-01/main.js" />
         <option value="$PROJECT_DIR$/KiniLuo/ps-01/index.html" />
         <option value="$PROJECT_DIR$/knowuh/ps-01/main.js" />
 >>>>>>> Stashed changes:.idea/workspace.xml
 =======
+=======
+>>>>>>> origin/master
         <option value="$PROJECT_DIR$/a.css" />
         <option value="$PROJECT_DIR$/c.html" />
         <option value="$PROJECT_DIR$/e.html" />
         <option value="$PROJECT_DIR$/e.css" />
 >>>>>>> master:KiniLuo/ps-02/.idea/workspace.xml
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
       </list>
     </option>
@@ -311,7 +323,45 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+<<<<<<< HEAD
+=======
               <option name="myItemId" value="ps-02" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IDV2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IDV2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xiaoyunver" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ps-01" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IDV2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IDV2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+=======
+>>>>>>> origin/master
+              <option name="myItemId" value="ps-02" />
+>>>>>>> master:KiniLuo/ps-02/.idea/workspace.xml
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -428,6 +478,7 @@
   </component>
   <component name="ToolWindowManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream:KiniLuo/ps-02/.idea/workspace.xml
     <frame x="0" y="23" width="1280" height="709" extended-state="6" />
     <editor active="true" />
@@ -435,6 +486,15 @@
     <frame x="0" y="23" width="1280" height="707" extended-state="0" />
     <editor active="false" />
 >>>>>>> Stashed changes:.idea/workspace.xml
+=======
+<<<<<<< HEAD:.idea/workspace.xml
+    <frame x="0" y="23" width="1366" height="677" extended-state="0" />
+    <editor active="false" />
+=======
+    <frame x="0" y="23" width="1280" height="703" extended-state="6" />
+    <editor active="true" />
+>>>>>>> master:KiniLuo/ps-02/.idea/workspace.xml
+>>>>>>> origin/master
 =======
 <<<<<<< HEAD:.idea/workspace.xml
     <frame x="0" y="23" width="1366" height="677" extended-state="0" />
@@ -503,6 +563,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/xiaoyunver/ps-01/main.js">
+<<<<<<< HEAD
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -522,6 +583,27 @@
 >>>>>>> master:KiniLuo/ps-02/.idea/workspace.xml
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+=======
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xiaoyunver/ps-01/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xiaoyunver/ps-01/index.html">
+=======
+    <entry file="file://$PROJECT_DIR$/d.html">
+>>>>>>> master:KiniLuo/ps-02/.idea/workspace.xml
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+>>>>>>> origin/master
           <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
           <folding />
         </state>
@@ -872,6 +954,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="31" />
+<<<<<<< HEAD
+=======
           <folding />
         </state>
       </provider>
@@ -895,10 +979,37 @@
 =======
           <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
 >>>>>>> master:KiniLuo/ps-02/.idea/workspace.xml
+>>>>>>> origin/master
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/xiaoyunver/ps-01/b.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
+=======
+          <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+>>>>>>> master:KiniLuo/ps-02/.idea/workspace.xml
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/d.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+<<<<<<< HEAD:.idea/workspace.xml
+          <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
+=======
+          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+>>>>>>> master:KiniLuo/ps-02/.idea/workspace.xml
+          <folding />
+        </state>
+      </provider>
+    </entry>
+=======
+>>>>>>> origin/master
     <entry file="file://$PROJECT_DIR$/c.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
