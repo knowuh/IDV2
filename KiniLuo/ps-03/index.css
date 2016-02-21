@@ -1,3 +1,4 @@
+
 body {
     font-family: 'futura';
     background-color: hsla(180, 10%, 95%, 1.0);
@@ -12,7 +13,7 @@ div.head{
     margin-left: 10%;
     margin-right: 10%;
     margin-top: 50px;
-    /*text-align:center;*/
+    text-align:left;
 }
 
 svg {
@@ -21,6 +22,7 @@ svg {
     margin-left: 10%;
     margin-right: 10%;
     top: 100px;
+
     /*border-bottom: 1px solid hsla(0, 5%, 60%, 1.0);*/
     /*border-left:   1px solid hsla(0, 5%, 60%, 1.0);*/
 }
@@ -45,4 +47,26 @@ div.tooltip{
     margin-right: 10%;
     top: 200px;
     border-left: 600px;
+    text-align: left;
 }
+
+body{
+    height:100%;
+    margin:50px;
+    background-color: cornsilk;
+    text-align: center;
+    font-size: 20px;
+}
+h1{
+    font-family: sans-serif;
+    /*font-size: 20px;*/
+}
+
+div#des{
+    margin:50px;
+}
+h3{
+    font-family: serif;
+    font-size: 15px;
+}
+
