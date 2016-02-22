@@ -44,5 +44,6 @@ window.continuouslyLoadData = function(spreadheetID, parentCallback, interval) {
     loadSpreadsheet(spreadheetID, parentCallback);
   };
   getData();
-  setInterval(getData, intervalms);
+    // uncomment to continously load data
+  //setInterval(getData, intervalms);
 };
