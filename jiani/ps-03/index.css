@@ -1,0 +1,37 @@
+
+h1
+{
+    font-family: Avenir;
+    font-size: 60px;
+    text-align: center;
+    color:pink;
+}
+
+h2{
+    font-family: Avenir;
+    text-align: center;
+}
+
+h3
+{
+    font-family:Avenir;
+    font-size: 25px;
+    text-align: center;
+    color:pink;
+}
+svg{
+    width:80%;
+    height:500px;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top:100px;
+}
+
+/*div.tooltip{*/
+    /*width: 80%;*/
+    /*margin-left: 10%;*/
+    /*margin-right: 10%;*/
+    /*top: 200px;*/
+    /*border-left: 600px;*/
+    /*text-align: left;*/
+/*}*/
