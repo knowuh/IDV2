@@ -133,7 +133,7 @@ h2 {
 }
 
 .canvas{
-  height: 1000px;
+  height: 800px;
 }
 
 
@@ -154,4 +154,31 @@ h2 {
   fill:rgba(255,255,255,0);
   stroke:black;
   stroke-width:2;
+}
+.rect{
+  fill: #cccccc;
+  opacity:0.5;
+}
+.c12{
+  fill: #EFEE69;
+  pointer-events: none;
+}
+.c34{
+  fill: #75EDA9;
+  pointer-events: none;
+}
+.c56{
+  fill: #5AD5E8;
+  pointer-events: none;
+}
+.c78{
+  fill: #C1A9E0;
+  pointer-events: none;
+}
+.c910{
+  fill: #ED8195;
+  pointer-events: none;
+}
+.rectText{
+  text-anchor:middle;
 }
