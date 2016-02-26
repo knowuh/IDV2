@@ -23,4 +23,4 @@ var displayData = function() {
     domTweets.exit().remove();
 }
 
-$(document).ready(displayData());
+$(document).ready(displayData);
