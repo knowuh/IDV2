@@ -40,3 +40,4 @@ for photo in flickr.photos.search(
     info = flickr.photos.getInfo(photo_id=photo['id'], format='parsed-json')
     # pretty(info)
     print url(info['photo'])
+    pretty(info)
