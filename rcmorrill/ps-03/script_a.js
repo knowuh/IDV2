@@ -96,6 +96,7 @@ plot.append('text')
 
 var drawGraph = function (data) {
 
+    console.log(data);
 
 plot.select('.first_label').transition().delay(0).attr('opacity','1')//plot.select('.first_label').transition().delay(100).attr('opacity','1')
 

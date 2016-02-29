@@ -16,31 +16,16 @@ window.loadSpreadsheet = function(spreadsheetID, parentCallback) {
   // mapValues turns one row value into an object that is easier to work with.
   // The return row just looks like {column1: 'value1', column2: 'value2'}
   // see the [lowdash documentation](https://lodash.com/docs)
-  var mapValues = function(row) {
-    var googleIdentifier = "gsx$";
-    var result;
-    var findGoogleKeys = function(value, key) {
-      return _.startsWith(key, "gsx$");
-    };
-
-    var renameGoogleKeys  = function(value, key) {
-      var result = key.replace(googleIdentifier, '');
-      return result.replace(".","");
-    };
-
-    var tvalues = function(value, key) {
-      return value.$t;
-    };
-    result = _.pick(row, findGoogleKeys);
-    result = _.pick(result,findGoogleKeys);
-    result = _.mapKeys(result,renameGoogleKeys);
-    result = _.mapValues(result,tvalues);
-    return result;
-  }
+  var mapValues = function(value) {
+    var stringValues = _.trim(value.content.$t).split(',');
+    var arrayValue = _.map(stringValues, function(s) {
+      return _.trim(s).split(": ");
+    });
+    return _.zipObject(arrayValue);
+  };
 
   var processResponse = function(list){
     returnv = _.map(list, mapValues);
-    debugger
     return returnv;
   };
 

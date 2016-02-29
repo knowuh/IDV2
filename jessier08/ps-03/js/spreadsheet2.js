@@ -32,7 +32,6 @@ window.loadSpreadsheet = function(spreadsheetID, parentCallback) {
       return value.$t;
     };
     result = _.pick(row, findGoogleKeys);
-    result = _.pick(result,findGoogleKeys);
     result = _.mapKeys(result,renameGoogleKeys);
     result = _.mapValues(result,tvalues);
     return result;
@@ -40,7 +39,6 @@ window.loadSpreadsheet = function(spreadsheetID, parentCallback) {
 
   var processResponse = function(list){
     returnv = _.map(list, mapValues);
-    debugger
     return returnv;
   };
 
@@ -57,12 +55,12 @@ window.loadSpreadsheet = function(spreadsheetID, parentCallback) {
 
 // Use this function to call your parentCallback function every interval seconds
 // your function will receive the spreadsheet data as the first arugument.
-window.continuouslyLoadData = function(spreadheetID, parentCallback, interval) {
+window.continuouslyLoadData = function(spreadsheetID, parentCallback, interval) {
   interval= interval || 5;
   var intervalms = interval * 1000; // convert seconds to miliseconds
   var getData = function() {
-    loadSpreadsheet(spreadheetID, parentCallback);
+    loadSpreadsheet(spreadsheetID, parentCallback);
   };
   getData();
-  setInterval(getData, intervalms);
+  //setInterval(getData, intervalms);
 };
