@@ -1,6 +1,5 @@
 //figure out why the plot div height has to be set to a hard (rather than percentage) value //in the CSS
 
-
 //set some margins and record width and height of window
 var margin = {t:25,r:40,b:25,l:40};
 
@@ -34,10 +33,9 @@ var canvas = d3.select(".plot");
 //create force layout, give charge and gravity
 var force = d3.layout.force()
     .size([width,height])
-    .charge(-30)
-    .gravity(3) //in absence of all forces, nodes should be fixed where they are. Can get rid of all forces, and implement own custom gravity
-    .on('tick',tick)
-    .start();
+    .charge(-5)
+    .gravity(0.01) //in absence of all forces, nodes should be fixed where they are. Can get rid of all forces, and implement own custom gravity
+
 
 plot = canvas.append('svg')
     .attr('width',width+margin.r+margin.l)
@@ -58,7 +56,7 @@ d3.json("./twitter/sample_data.json", function(error, data) {
 function tick(e){
       //implement custom tick function.
         
-       // console.log('here');
+        //console.log('here');
         circles = plot.selectAll('.circ');
         
         //use this line if circles are starting out at 0,0 to put them in place. Since only updating
@@ -66,69 +64,66 @@ function tick(e){
 //**********************************
 //this line is translating by the entire value of the original position. Should translate by delta, //instead - not overwriting 
         //circles.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-        circles.each(collide)
-                .attr("cx",function(d) { return d.x})
+       
+        circles.each(collide(.5));
+        
+        circles.attr("cx",function(d) { return d.x})
                 .attr("cy",function(d) { return d.y});
-        
-        labels = plot.selectAll('.labels');
-        
-        labels.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-        
-}
-
-function collide(alpha){
-    
-            var q = d3.geom.quadtree(twitterData.statuses),
-                i = 0,
-                n = twitterData.statuses.length;
-
-            while (++i < n) {
-                q.visit(function(twitterData.statuses[i])); //calls collide function, which passes back 
-                //updated values and boolean to indicate whether
-                //updates occurred. q is a quadtree, which has a callback function visit that calls the 
-                //collide function on each datapoint.
-                //(see https://github.com/mbostock/d3/wiki/Quadtree-Geom)
-            }
-    
-    //from assignment 6, modified to match variable names
-    //define a variable with properties based on input data, return a function that stores comparator conditions to check
-    //for collisions. That function returns true if modifications are necessary, and overwrites original data.
-
-    //read original data x and y values, store x and y positions twice (presumably so that you can change nx1 and nx2 separately)
-    //console.log(dataPoint.user.followers_count);
-    var nr = dataPoint.r + 15,
-        nx1 = dataPoint.x - nr,
-        ny1 = dataPoint.y - nr,
-        nx2 = dataPoint.x + nr,
-        ny2 = dataPoint.y + nr;
-
-    return function(quadPoint,x1,y1,x2,y2){
-        //check whether the point is equal to the data point input. If so, take the difference between x and y values,
-        //and the square root of a sum of squares (pythagorean theorem - does this calculate the difference in radius for the two objects?),
-        //and a new radius value that's bigger than the radius of the initial data point.
-        if(quadPoint.point && (quadPoint.point !== dataPoint)){
-            var x = dataPoint.x - quadPoint.point.x,
-                y = dataPoint.y - quadPoint.point.y,
-                l = Math.sqrt(x*x+y*y),
-                r = nr + quadPoint.point.r;//dataPoint.user.followers_count)
-            //if the radius is smaller than this sum, make the x values slightly bigger for both (why not y values also?)
             
-            //console.log(quadPoint.point.r);
-            if(l<r){
-                
-//****************************
-//What's happening with the -= and *= here??
-                l = (l-r)/l*.1;
-                dataPoint.x -= x *= (l*.1);
-                dataPoint.y -= y *= (l*.1);
-                quadPoint.point.x += (x*.1);
-                quadPoint.point.y += (y*.1);
-            }
-        }
-        //output the results, so that the x and y values of the new array are bigger than the minimum calculated by the collide function.
-        return x1>nx2 || x2<nx1 || y1>ny2 || y2<ny1;  // asks if a collision is happening - checks whether x1>nx2 OR x2<nx1 (etc)
-        //the result of the expression is a boolean; if any of these things is true, it returns true (checks to see if modified).
+ 
+        
 }
+
+function end(e) {
+        //labels = plot.selectAll('.labels');
+        //console.log("here");
+    
+        circles = plot.selectAll('.circ-group');
+    
+        labels = circles    
+            .append('text')
+            .attr('class','labels')
+            .attr('x', function(d){return d.x})
+            .attr('y',function(d){return 100})
+            .attr("font-size","10px")
+            .attr('fill','rgb(100,100,100)')
+            .attr('text-anchor',"middle")
+            .text(function(d){
+                return "@" + d.user.screen_name + " " + d.user.followers_count;
+        }); 
+
+        
+        labels.attr("x", function(d) { return d.x})
+               .attr("y", function(d) { return d.y});
+}
+
+//from http://bl.ocks.org/mbostock/1804919
+function collide(alpha){
+    var quadtree = d3.geom.quadtree(twitterData.statuses);
+  return function(d) {
+    var r = d.r + 20,
+        nx1 = d.x - r,
+        nx2 = d.x + r,
+        ny1 = d.y - r,
+        ny2 = d.y + r;
+    quadtree.visit(function(quad, x1, y1, x2, y2) {
+      if (quad.point && (quad.point !== d)) {
+        var x = d.x - quad.point.x,
+            y = d.y - quad.point.y,
+            l = Math.sqrt(x * x + y * y),
+            r = d.r + quad.point.r + 20;
+        if (l < r) {
+          l = (l - r) / l * alpha;
+          d.x -= x *= (l*.3);
+          d.y -= y *= (l*.3);
+          quad.point.x += x;
+          quad.point.y += y;
+        }
+      }
+      return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+    });
+  };
+          
 }
 
 function drawUsers(data) {
@@ -150,9 +145,11 @@ function drawUsers(data) {
 
     //console.log(data);
 
-    var circles = plot.selectAll('circ')
+    var circles = plot.selectAll('.circ')
         .data(twitterData.statuses)
-        .enter();
+        .enter()
+        .append('g')
+        .attr('class',"circ-group");
     
     circles
         .append('circle')
@@ -188,32 +185,28 @@ function drawUsers(data) {
         .attr('r',function(d){
             d.r = radiusScale(d.user.followers_count);
             return radiusScale(d.user.followers_count)})
-        .style('fill','rgba(153, 255, 230,.6)');
-    
-    circles    
-        .append('text')
-        .attr('class','labels')
-        .attr('x', function(d){return d.xPos})
-        .attr('y',function(d){return d.yPos})
-        .attr("font-size","10px")
-        .attr('fill','rgb(100,100,100)')
-        .attr('text-anchor',"middle")
-        .text(function(d){
-            return "@" + d.user.screen_name + " " + d.user.followers_count;
+        .style('fill', function(d){
+            if (d.retweet_count==0){var color = 'rgba(153, 225, 230,.6)'}
+            else { 
+                console.log(d.retweet_count);
+                var color = 'rgba(153, 255, 230,.6)'}
+            return color;
         });
-            
+        //.call(force.drag);
+    
+
+    
     //Collision detection
     //array into force layout, updates start to happen, updated accordingly
     //link nodes var to twitter data array
     force.nodes(twitterData.statuses)
-    
+        .on('tick',tick)
+        .on('end',end)  
+        .start();
 
+  
+    
 }
 
-
-//function collide(dataPoint){
-    
-
-//    }
 
     
