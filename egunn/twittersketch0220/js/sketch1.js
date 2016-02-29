@@ -36,6 +36,11 @@ var force = d3.layout.force()
     .gravity(0.01) //in absence of all forces, nodes should be fixed where they are. Can get rid of all forces, and implement own custom gravity
 
 
+// Define the div for the tooltip
+var div = d3.select(".plot").append("div")	
+    .attr("class", "tooltip")				
+    .style("opacity", 0);
+
 plot = canvas.append('svg')
     .attr('width',width+margin.r+margin.l)
     .attr('height',height + margin.t + margin.b)
@@ -68,7 +73,6 @@ function drawUsers(data) {
         var newObj = {x:x, y:y, r:r}
         data.push(newObj)
     };*/
-
 
     //console.log(data);
 
@@ -124,7 +128,32 @@ function drawUsers(data) {
                 var color = 'rgba(153, 255, 230,.6)'}
             return color;
         })
-        .call(force.drag);
+        //.call(attachTooltip)
+        .call(force.drag)
+        //tooltip based on http://bl.ocks.org/d3noob/a22c42db65eb00d4e369
+        .on("mouseover", function(d) {		
+            div.transition()		
+                .duration(200)		
+                .style("opacity", .9);		
+            div	.html("@" + d.user.screen_name +  "<br/>"  +  d.user.followers_count)	
+                .style("left", d.x  + "px")		
+                .style("top", d.y+ "px");
+                //.attr('transform','translate(30,300)');	
+            })					
+        .on("mouseout", function(d) {		
+            div.transition()		
+                .duration(500)		
+                .style("opacity", 0);	
+        })
+//*******************
+//want this to happen when the user drags, not clicks...
+//or, even better, keep satellites and translate with circle group.
+        .on("click", function(d){
+            satellites = d3.selectAll('.satellites');
+            satellites.remove();
+        });
+    
+    
     /*
     //based on http://jsfiddle.net/nrabinowitz/5CfGG/
     //and http://bl.ocks.org/milroc/4254604
@@ -209,6 +238,7 @@ function drawUsers(data) {
 
 function tick(e){
       //implement custom tick function.
+
         circles = plot.selectAll('.circ');
        
         circles.each(collide(.5));
@@ -225,7 +255,8 @@ function tick(e){
 function end(e) {
 
         circles = plot.selectAll('.circ-group');
-    
+
+    /*
         labels = circles    
             .append('text')
             .attr('class','labels')
@@ -240,7 +271,7 @@ function end(e) {
 
         labels.attr("x", function(d) { return d.x})
                .attr("y", function(d) { return d.y});
-    
+    */
        //based on http://jsfiddle.net/nrabinowitz/5CfGG/
     //and http://bl.ocks.org/milroc/4254604
     circles.each(function(d,i){
@@ -296,6 +327,7 @@ function end(e) {
                     .data(satellites)
                     .enter()
                     .append('circle')
+                    .attr('class','satellites')
                     .attr('cx',function(d,i){
                          return d.parentX+((d.parentR+3)*Math.sin(toAngle(i)));})
                     .attr('cy',function(d,i){
@@ -336,6 +368,47 @@ function collide(alpha){
           
 }
 
-
-
+/*
+function attachTooltip(selection){
     
+        //returns plot div, with svg, groups, all circles and circle groups in it. 
+        console.log(canvas.node());
+    
+        selection
+        .on('mouseenter',function(d){
+            var tooltip = d3.select('.custom-tooltip');
+            tooltip
+                .transition()
+                .style('opacity',1);
+                //tried making separate classes to set tooltip box color to match lines; something broke.
+                /*.attr('class', function(){
+                    if(d.key=='Coffee, green'){
+                        return 'coffee-tooltip'
+                    }
+                    else if (d.key=='Tea'){
+                        return 'tea-tooltip'
+                    }
+                });
+                
+
+
+        })
+        .on('mousemove',function(d){
+            var xy = d3.mouse(canvas.node());
+            //console.log(xy);
+
+            var tooltip = d3.select('.custom-tooltip');
+
+            tooltip
+                .style('left',xy[0]+50+'px')
+                .style('top',(xy[1]+50)+'px')
+                .html(d.value);
+
+        })
+        .on('mouseleave',function(){
+            var tooltip = d3.select('.custom-tooltip')
+                .transition()
+                .style('opacity',0);
+        })
+}
+   */ 
