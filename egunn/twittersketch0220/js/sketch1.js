@@ -34,8 +34,10 @@ var canvas = d3.select(".plot");
 //create force layout, give charge and gravity
 var force = d3.layout.force()
     .size([width,height])
-    .charge(-5)
-    .gravity(3); //in absence of all forces, nodes should be fixed where they are. Can get rid of all forces, and implement own custom gravity
+    .charge(-30)
+    .gravity(3) //in absence of all forces, nodes should be fixed where they are. Can get rid of all forces, and implement own custom gravity
+    .on('tick',tick)
+    .start();
 
 plot = canvas.append('svg')
     .attr('width',width+margin.r+margin.l)
@@ -53,6 +55,81 @@ d3.json("./twitter/sample_data.json", function(error, data) {
     drawUsers(data);
 })
 
+function tick(e){
+      //implement custom tick function.
+        
+       // console.log('here');
+        circles = plot.selectAll('.circ');
+        
+        //use this line if circles are starting out at 0,0 to put them in place. Since only updating
+        //from orig random position based on collision force, no need to update here.
+//**********************************
+//this line is translating by the entire value of the original position. Should translate by delta, //instead - not overwriting 
+        //circles.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+        circles.each(collide)
+                .attr("cx",function(d) { return d.x})
+                .attr("cy",function(d) { return d.y});
+        
+        labels = plot.selectAll('.labels');
+        
+        labels.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+        
+}
+
+function collide(alpha){
+    
+            var q = d3.geom.quadtree(twitterData.statuses),
+                i = 0,
+                n = twitterData.statuses.length;
+
+            while (++i < n) {
+                q.visit(function(twitterData.statuses[i])); //calls collide function, which passes back 
+                //updated values and boolean to indicate whether
+                //updates occurred. q is a quadtree, which has a callback function visit that calls the 
+                //collide function on each datapoint.
+                //(see https://github.com/mbostock/d3/wiki/Quadtree-Geom)
+            }
+    
+    //from assignment 6, modified to match variable names
+    //define a variable with properties based on input data, return a function that stores comparator conditions to check
+    //for collisions. That function returns true if modifications are necessary, and overwrites original data.
+
+    //read original data x and y values, store x and y positions twice (presumably so that you can change nx1 and nx2 separately)
+    //console.log(dataPoint.user.followers_count);
+    var nr = dataPoint.r + 15,
+        nx1 = dataPoint.x - nr,
+        ny1 = dataPoint.y - nr,
+        nx2 = dataPoint.x + nr,
+        ny2 = dataPoint.y + nr;
+
+    return function(quadPoint,x1,y1,x2,y2){
+        //check whether the point is equal to the data point input. If so, take the difference between x and y values,
+        //and the square root of a sum of squares (pythagorean theorem - does this calculate the difference in radius for the two objects?),
+        //and a new radius value that's bigger than the radius of the initial data point.
+        if(quadPoint.point && (quadPoint.point !== dataPoint)){
+            var x = dataPoint.x - quadPoint.point.x,
+                y = dataPoint.y - quadPoint.point.y,
+                l = Math.sqrt(x*x+y*y),
+                r = nr + quadPoint.point.r;//dataPoint.user.followers_count)
+            //if the radius is smaller than this sum, make the x values slightly bigger for both (why not y values also?)
+            
+            //console.log(quadPoint.point.r);
+            if(l<r){
+                
+//****************************
+//What's happening with the -= and *= here??
+                l = (l-r)/l*.1;
+                dataPoint.x -= x *= (l*.1);
+                dataPoint.y -= y *= (l*.1);
+                quadPoint.point.x += (x*.1);
+                quadPoint.point.y += (y*.1);
+            }
+        }
+        //output the results, so that the x and y values of the new array are bigger than the minimum calculated by the collide function.
+        return x1>nx2 || x2<nx1 || y1>ny2 || y2<ny1;  // asks if a collision is happening - checks whether x1>nx2 OR x2<nx1 (etc)
+        //the result of the expression is a boolean; if any of these things is true, it returns true (checks to see if modified).
+}
+}
 
 function drawUsers(data) {
     
@@ -108,7 +185,9 @@ function drawUsers(data) {
             d.yPos = yPos;
             return yPos;
         })
-        .attr('r',function(d){return radiusScale(d.user.followers_count)})
+        .attr('r',function(d){
+            d.r = radiusScale(d.user.followers_count);
+            return radiusScale(d.user.followers_count)})
         .style('fill','rgba(153, 255, 230,.6)');
     
     circles    
@@ -127,76 +206,14 @@ function drawUsers(data) {
     //array into force layout, updates start to happen, updated accordingly
     //link nodes var to twitter data array
     force.nodes(twitterData.statuses)
-    .on('tick',function(e){  //implement custom tick function.
-        
-       // console.log('here');
-        circles = plot.selectAll('.circ');
-        
-        //use this line if circles are starting out at 0,0 to put them in place. Since only updating
-        //from orig random position based on collision force, no need to update here.
-//**********************************
-//this line is translating by the entire value of the original position. Should translate by delta, //instead - not overwriting 
-        circles.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-        
-        labels = plot.selectAll('.labels');
-        
-        labels.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-        
-        var q = d3.geom.quadtree(twitterData.statuses),
-                i = 0,
-                n = twitterData.statuses.length;
-
-            while (++i < n) {
-                q.visit(collide(twitterData.statuses[i])); //calls collide function, which passes back 
-                //updated values and boolean to indicate whether
-                //updates occurred. q is a quadtree, which has a callback function visit that calls the 
-                //collide function on each datapoint.
-                //(see https://github.com/mbostock/d3/wiki/Quadtree-Geom)
-            }
-    })
-    .start();
+    
 
 }
 
 
-function collide(dataPoint){
-    //from assignment 6, modified to match variable names
-    //define a variable with properties based on input data, return a function that stores comparator conditions to check
-    //for collisions. That function returns true if modifications are necessary, and overwrites original data.
+//function collide(dataPoint){
+    
 
-    //read original data x and y values, store x and y positions twice (presumably so that you can change nx1 and nx2 separately)
-    //console.log(dataPoint.user.followers_count);
-    var nr = radiusScale(dataPoint.user.followers_count) + 15,
-        nx1 = dataPoint.x - nr,
-        ny1 = dataPoint.y - nr,
-        nx2 = dataPoint.x + nr,
-        ny2 = dataPoint.y + nr;
+//    }
 
-    return function(quadPoint,x1,y1,x2,y2){
-        //check whether the point is equal to the data point input. If so, take the difference between x and y values,
-        //and the square root of a sum of squares (pythagorean theorem - does this calculate the difference in radius for the two objects?),
-        //and a new radius value that's bigger than the radius of the initial data point.
-        if(quadPoint.point && (quadPoint.point !== dataPoint)){
-            var x = dataPoint.x - quadPoint.point.x,
-                y = dataPoint.y - quadPoint.point.y,
-                l = Math.sqrt(x*x+y*y),
-                r = nr + radiusScale(dataPoint.value);
-            //if the radius is smaller than this sum, make the x values slightly bigger for both (why not y values also?)
-            if(l<r){
-                
-//****************************
-//What's happening with the -= and *= here??
-                l = (l-r)/l*.1;
-                dataPoint.x -= x *= (l*.05);
-                dataPoint.y -= y *= (l*.05);
-                quadPoint.point.x += (x*.05);
-                quadPoint.point.y += (y*.05);
-            }
-        }
-        //output the results, so that the x and y values of the new array are bigger than the minimum calculated by the collide function.
-        return x1>nx2 || x2<nx1 || y1>ny2 || y2<ny1;  // asks if a collision is happening - checks whether x1>nx2 OR x2<nx1 (etc)
-        //the result of the expression is a boolean; if any of these things is true, it returns true (checks to see if modified).
-
-    }
-}
     
