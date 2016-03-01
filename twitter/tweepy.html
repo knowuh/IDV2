@@ -1,0 +1,52 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Twitter Test</title>
+        <meta name="description" content="Twitter Test">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="template/img/apple-touch-icon.png">
+        <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Raleway:400' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="../css/normalize.min.css">
+        <link rel="stylesheet" href="../css/boilerplate.css">
+        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="./tweepy.css">
+
+        <script src="https://sdk.amazonaws.com/js/aws-sdk-2.2.32.min.js"></script>
+        <script src="../js/vendor/modernizer.min.js"></script>
+        <script src="../js/vendor/jquery.min.js"></script>
+        <script src="../js/vendor/d3.min.js"></script>
+        <script src="../js/vendor/lodash.min.js"></script>
+        <script src="tweepy2.js"></script>
+    </head>
+    <body>
+        <div class="fixed-width">
+            <h2> Tweets matching <span id="term">#zika</span></h2>
+            <h5>
+               <span id="found"></span> /
+               <span id="counter"></span>
+           </h5>
+            <h5>
+                <span id="first"></span> –
+                <span id="last"></span>
+            </h5>
+            <div id="tweets"></div>
+            <div id="images"></div>
+            <svg width="600" height="400" id='svg'></svg>
+            <div id="sums"></div>
+
+          <div class="controls hidden">
+              <label>Key:</label>
+              <input name="awsId"    type="text" id="awsId" value="4764576000-BgKuC4pHN7X4iqZF1TckBvTenaQzkKU1pipc65S"></input>
+              <label>Secret:</label>
+              <input name="awsSecret" type="password" id="awsSecret" value="qoyPEeJ7zjvG1UeNqfuPsDKE58adIAJTVvyqi2L5Aordh"></input>
+          </div>
+            <div id="console" class="console">
+
+            </div>
+        </div>
+    </body>
+</html>
