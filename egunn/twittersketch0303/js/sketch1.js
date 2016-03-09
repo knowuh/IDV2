@@ -383,7 +383,7 @@ function end(e) {
                     //make a "strip" of satellite nodes of the right length, to wrap                                         //around the bubbles when ready. x controls length (360 for radial degrees...
                     //changing value doesn't seem to matter here, as circumference is set by radius),
                     //y controls radial distance. Node size is set when circles are drawn, below.
-                    .size([500, 15])//function(d){
+                    .size([360, 15])//function(d){
                         //console.log(d.r);
                         //return [360, 20]})
                     .separation(function(a, b) {
@@ -415,8 +415,35 @@ function end(e) {
                     
           
 
-    console.log(satNodes);
+    //console.log(satNodes);
     
+//********** I think the problem is that it's drawing each satNodes object array to each satGroup on the
+//********** .svg. Because the loop only returns a value when it's done, you get only one retweet when 
+//********** the loop ends here (takes final value of satNodes, adds it to all groups). If the loop 
+//********** closes after draw, then you draw one of everything to each group, whether or not it should
+//********** have anything in it. Need to find a way to select only the group associated with the
+//********** current circle.each() iteration. I thought that's what the code below was doing, but
+//********** now think that's mistaken. How do you select only the group of the circle object that you're //********** in?
+        
+              
+        //console.log(d);
+        
+        //console.log(satNodes);
+        
+        //if(typeof satNodes !== 'undefined'){
+            
+            //Not working!! Appends nodes, but outside of the page body...
+           //var testing = instance.select('.sat-group');
+            //console.log(testing[0][0].children[1]);
+            
+            //satGroupSteal = testing[0][0].children[1];
+            
+            //console.log(satGroupSteal);
+         
+            //satGroupIn = d3.select(satGroupSteal);
+        
+            //selction.node()
+        
 //function drawSatellites(satNodes) {
      // create dom elements for the node, and place them at the center of the parent circle
                 var satNode = satGroup.selectAll(".satNode")
@@ -439,7 +466,7 @@ function end(e) {
                     .style("fill",'rgba(153, 155, 230, .9)'); 
 
                 satGroup.attr('transform',function(d){ return 'translate(' + d.x + ',' + d.y + ')'})
-               
+        //}
 
 //}
 
