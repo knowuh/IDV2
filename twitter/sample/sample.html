@@ -15,38 +15,28 @@
         <link rel="stylesheet" href="../css/main.css">
         <link rel="stylesheet" href="./tweepy.css">
 
-        <script src="https://sdk.amazonaws.com/js/aws-sdk-2.2.41.min.js"></script>
+        <script src="https://sdk.amazonaws.com/js/aws-sdk-2.2.32.min.js"></script>
         <script src="../js/vendor/modernizer.min.js"></script>
         <script src="../js/vendor/jquery.min.js"></script>
         <script src="../js/vendor/d3.min.js"></script>
         <script src="../js/vendor/lodash.min.js"></script>
-        <script src="tweepy2.js"></script>
+        <style>
+            .tweet { margin-top: 1em;}
+            .user  { font-weight: bold; margin-right: 0.5em}
+            .text  { }
+        </style>
     </head>
     <body>
         <div class="fixed-width">
+            This html page is parsing 100 twitter API status updates.
+            Have a look at the <a href="sample_data.json" target="_blank">json file</a>
+            This json file has also been converted to javascript for easy-use in <a href="sample_data.js" target="_blank">sample_data.js</a>
+            All the processing happens in <a href="sample.js" target="_blank">sample.js</a>
             <h2> Tweets matching <span id="term">#zika</span></h2>
-            <h5>
-               <span id="found"></span> /
-               <span id="counter"></span>
-           </h5>
-            <h5>
-                <span id="first"></span> –
-                <span id="last"></span>
-            </h5>
-            <div id="tweets"></div>
-            <div id="images"></div>
-            <svg width="600" height="400" id='svg'></svg>
-            <div id="sums"></div>
-
-          <div class="controls hidden">
-              <label>Key:</label>
-              <input name="awsId"    type="text" id="awsId" value="4764576000-BgKuC4pHN7X4iqZF1TckBvTenaQzkKU1pipc65S"></input>
-              <label>Secret:</label>
-              <input name="awsSecret" type="password" id="awsSecret" value="qoyPEeJ7zjvG1UeNqfuPsDKE58adIAJTVvyqi2L5Aordh"></input>
-          </div>
-            <div id="console" class="console">
-
-            </div>
+            <div id="tweetContainer"></div>
         </div>
     </body>
+
+    <script src="sample_data.js"></script>
+    <script src="sample.js"></script>
 </html>
