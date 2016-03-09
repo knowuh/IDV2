@@ -70,7 +70,7 @@ function drawUsers(data) {
     
     twitterData=data;
 
-    console.log(twitterData);
+    //console.log(twitterData);
 
 /*
     for(i=0;i<twitterData.statuses.length;i++){ 
@@ -293,8 +293,11 @@ function tick(e){
 
 function end(e) {
 
-        circles = plot.selectAll('.circ-group');
+    circles = plot.selectAll('.circ-group');
 
+    var satGroup = circles.append('g').attr('class','sat-group');
+    var satNodes = [];
+    
     /*
         labels = circles    
             .append('text')
@@ -309,59 +312,140 @@ function end(e) {
         }); 
 
         labels.attr("x", function(d) { return d.x})
-               .attr("y", function(d) { return d.y});
-    */
-       //based on http://jsfiddle.net/nrabinowitz/5CfGG/
+               .attr("y", function(d) { return d.y});*/
+    
+    
+    //var dataTree = {};
+    //var tree;
+    
+    //based on http://jsfiddle.net/nrabinowitz/5CfGG/
     //and http://bl.ocks.org/milroc/4254604
     circles.each(function(d,index){
                 
             //create a satellites array with one entry for each retweet
             satellites = [];
+        
+            //don't think I should need this...keep for now, to clear out possible problems
+            dataTree={};
             
             for (var i = 0; i<d.retweet_count; i++){
+                //console.log(d.retweet_count);
                 satellite = {parentX:d.x, parentY:d.y, retweets:d.retweet_count, parentR:d.r}
                 satellites.push(satellite);
             }
-            //console.log(satellites.length);
             
 
+    //console.log(d);
+    
+    //gives a similarly recursive-looking data structure. Reassuring, I suppose? Either right or wrong
+    //in the same way twice...
+    //But only gives one array for the entire circles array, not one for each circle.
+    //console.log(circles.attr('satellites'));
+      
+        //console.log(satellites);
         
-            if(satellites.length>0){ 
+        if(satellites.length>0){ 
+            
+            var dataTree = {
+                 //parent: d[index],
+                 //take the satellites array, and map each entry onto a function that returns
+                 //the length of the array, so that each satellite child object knows how many
+                 //siblings it has.
+                 //console.log(satellites.length);
+                 children: []
+                 //children: function(d) {return {size: d.retweet_count};}
+            };    
                 
-                /*
+            for (var j=0; j<satellites.length;j++){
                 //map satellite data to a tree
-                var dataTree = {
-                    children: satellites.map(function(d) { return { size: satellites.length }; })
-                };
+                dataTree.children.push({size: 10})
 
+            }
+            //object with the children array inside it. Children array is an array of child objects, 
+            //each with a size attribute. (Matches example)
+            //console.log(dataTree);
+                             
+            }
+ 
+//**********dataTree is fine, and has different #s of children for each satellite object.
+//**********not drawing properly; tree function seems to be identical for all iterations.
+//**********May drawing a copy of everything for each circle - be careful of the circles.each!
+//**********Don't think so, based on console output of the dataTree from above - only 82 items, //**********consistent with the correct # of tweets with retweets.
+//**********Not clear if a node is a single node, or an entire set of nodes for a particular level... 
+        
+            tree = null;
+        
+            //if there is a dataTree for a circle, make a treemap layout 
+            if(dataTree != {}){
+               // console.log('here');
                 // make a radial tree layout
-                var tree = d3.layout.tree()
-                    //value of 5 has some effect on radius (1 is still pretty large, doesn't look linear...)
-                    .size([360, 1])//function(d){
+                tree = d3.layout.tree()
+                    //make a "strip" of satellite nodes of the right length, to wrap                                         //around the bubbles when ready. x controls length (360 for radial degrees...
+                    //changing value doesn't seem to matter here, as circumference is set by radius),
+                    //y controls radial distance. Node size is set when circles are drawn, below.
+                    .size([500, 15])//function(d){
                         //console.log(d.r);
                         //return [360, 20]})
                     .separation(function(a, b) {
-                        return radiusScale(a.size) + radiusScale(b.size);
-                });
+                        //console.log(a);
+                        //each node has a size value, which stores the number of nodes in the tree level
+                        //also has parent Object, and depth = 1, and an x and y that depend on the
+                        //treemap size set above. 
+                        //Use a fixed separation for now - need to go back and write a radiusScale for 
+                        //satellites, rather than using the one for the circles (too big, has min value).
+                        return 20;//radiusScale(a.size) + radiusScale(b.size);
+                        
+                        //base on # of circles
+                        //console.log(a);
+                    });
+                
+                //console.log(tree);
+                
+                
+                 // apply the layout to the data
+                satNodes = tree.nodes(dataTree);
+                //console.log(satNodes.slice(1));
+    
+                //console.log(satNodes);
 
-                // apply the layout to the data
-                var satNodes = tree.nodes(dataTree);
-                console.log(satNodes.slice(1));
+                //drawSatellites(satNodes);
+            
+            }
+            
+                    
+          
 
-                // create dom elements for the node
-                var satNode = plot.selectAll(".satNode")
+    console.log(satNodes);
+    
+//function drawSatellites(satNodes) {
+     // create dom elements for the node, and place them at the center of the parent circle
+                var satNode = satGroup.selectAll(".satNode")
                       .data(satNodes.slice(1)) // cut out the root node, we don't need it
                       .enter().append("g")
                       .attr("class", "node")
-                      .attr("transform", function(d) {
-//*****************check what's going on here...recursive???                          
-                          //console.log(d);          
+                      .attr("transform", function(d,i) {            
+                          //d here is the child node group of the tree map.
+                          //console.log(d.parent);        
+                          //not quite sure how this works, but it wraps the tree nodes around a center.
+                          //then, need to translate it to the appropriate radial distance.
                           return "rotate(" + (d.x - 90) + ") translate(" + d.y + ")";
-                      })
+                          //return "translate(" + d.x + "," + 
+                             // d.y + ")";
+                      });
+                      
 
                 satNode.append("circle")
-                    .attr("r", function(d) { return radiusScale(2); }); */
+                    .attr("r", 1)
+                    .style("fill",'rgba(153, 155, 230, .9)'); 
 
+                satGroup.attr('transform',function(d){ return 'translate(' + d.x + ',' + d.y + ')'})
+               
+
+//}
+
+    }) //close .each            
+              
+/*                
                 //set angle per step for satellites arranged around center circle
                 var toAngle = d3.scale.linear().domain([0, d.retweet_count]).range([0, 360]);
 //******************in the middle of debugging here. Code seems to be working fine, but some
@@ -371,7 +455,7 @@ function end(e) {
                 //console.log(d.retweets);
                 //console.log(toAngle(6));
                 
-                d3.select(this).selectAll('satellites')
+                d3.select(this).selectAll('.satellites')
                     .data(satellites)
                     .enter()
                     .append('circle')
@@ -387,14 +471,15 @@ function end(e) {
                          return d.parentY+((d.parentR+3)*Math.cos(toAngle(i)));})
                     .attr('r',1)
                     .style('fill','rgba(153, 155, 230,.9)');
+*/
                 
-            if(index ==61){
+/*            if(index ==61){
                 console.log(satellites);
-            }
-                
-            }
-    })
-}
+            }*/
+        
+            } 
+    //})//cut out circles.each
+//}
 
 //from http://bl.ocks.org/mbostock/1804919
 function collide(alpha){
