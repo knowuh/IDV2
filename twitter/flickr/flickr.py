@@ -1,13 +1,13 @@
-import flickrapi
+# see https://stuvel.eu/flickrapi
 import json
+import time
 # import os
 # import re
-import time
 from subprocess import call
 
 timestamp = int(time.time())
 
-with open('flikr_config.json') as data_file:
+with open('flickr_config.json') as data_file:
     config = json.load(data_file)
 
 api_key = config['key']
