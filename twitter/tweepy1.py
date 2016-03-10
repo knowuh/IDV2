@@ -124,7 +124,7 @@ search_terms = [
     "#zika", "gunviolence" , "#massshooting",
     "donald trump", "marko rubio", "TED CRUZ", "jeb bush", "#marketcrash", "#stockcrash",
     "bernie sanders", "hillary clinton", "#ocw", "#blm", "#Flint", "#istandwithsalman", "#SalmanRushdie",
-    "#foodporn", "#instafood"
+    "#foodporn", "#instafood", "#fashion", "#blackandwhite"
 ]
 
 stream(connection, table, search_terms=search_terms)
