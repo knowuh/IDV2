@@ -99,12 +99,14 @@ class MyStreamListener(tweepy.StreamListener):
 
 table = connect_db()
 
+
 search_terms = [
     "#zika", "gunviolence" , "#massshooting",
     "donald trump", "marko rubio", "TED CRUZ", "jeb bush", "#marketcrash", "#stockcrash",
-    "bernie sanders", "hillary clinton", "#ocw", "#blm", "#Flint"
+    "bernie sanders", "hillary clinton", "#ocw", "#blm", "#Flint", "#istandwithsalman", "#SalmanRushdie",
     "#foodporn", "#instafood"
 ]
+
 myStreamListener = MyStreamListener(search_terms)
 
 while True:

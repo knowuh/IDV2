@@ -1,6 +1,7 @@
 import boto3
 from boto3.dynamodb.conditions import Key, Attr
 from extractor.utils import deep_fetch
+from monkeylearn import MonkeyLearn
 
 
 class Query(object):
@@ -51,6 +52,12 @@ class Query(object):
         if isinstance(hashtags, list):
             item['hashtags'] = map(pull_hashtags, hashtags)
         return item
+
+    def loadSentiment(self):
+        ml = MonkeyLearn('a3659b7f5d85face95cd487662523f9614c9b05a')
+        text_list = ["This is a text to test your classifier", "This is some more text"]
+        module_id = 'cl_qkjxv9Ly'
+        res = ml.classifiers.classify(module_id, text_list)
 
     def restructured(self):
         return map(self._map_, self.results)
