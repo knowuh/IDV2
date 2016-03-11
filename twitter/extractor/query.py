@@ -1,11 +1,9 @@
 import boto3
 from boto3.dynamodb.conditions import Key, Attr
 from extractor.utils import deep_fetch
-from monkeylearn import MonkeyLearn
-
 
 class Query(object):
-    def __init__(self, tag, limit=100):
+    def __init__(self, tag, limit=100, plugins=[]):
         dynamodb = boto3.resource('dynamodb')
         self.limit = limit
         self.indexName = 'search_term-timestamp-index'
@@ -16,7 +14,7 @@ class Query(object):
         self.resultCount = 0
         self.lastKey = None
         self.filter  = Attr('image').exists()
-
+        self.plugins = plugins
 
     def _query_(self):
         results = {}
@@ -42,9 +40,9 @@ class Query(object):
     def _map_(self, item):
         pull_mentions = lambda m : m['screen_name']
         pull_hashtags = lambda m : m['text']
-        item['location'] = deep_fetch(item,'user.location')
+        item['location'] = deep_fetch(item, 'user.location')
         item['avitar'] = deep_fetch(item, 'user.profile_image_url')
-        item['folower_count'] = deep_fetch(item,'user.followers_count')
+        item['folower_count'] = deep_fetch(item, 'user.followers_count')
         mentions = deep_fetch(item,'entities.user_mentions')
         hashtags = deep_fetch(item,'entities.hashtags')
         if isinstance(mentions, list):
@@ -53,14 +51,14 @@ class Query(object):
             item['hashtags'] = map(pull_hashtags, hashtags)
         return item
 
-    def loadSentiment(self):
-        ml = MonkeyLearn('a3659b7f5d85face95cd487662523f9614c9b05a')
-        text_list = ["This is a text to test your classifier", "This is some more text"]
-        module_id = 'cl_qkjxv9Ly'
-        res = ml.classifiers.classify(module_id, text_list)
-
     def restructured(self):
-        return map(self._map_, self.results)
+        res =  map(self._map_, self.results)
+        for plugin in self.plugins:
+            batch_size = 100
+            size = len(self.results)
+            for ndx in range(0, size, batch_size):
+                plugin.process(self.results[ndx:min(ndx + batch_size, size)])
+        return res
 
     def get_results(self):
         self._query_()
