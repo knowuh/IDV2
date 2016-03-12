@@ -88,45 +88,45 @@ function drawUsers(data) {
         .data(twitterData)
         .enter()
         .append('g')
-        .attr('class',"circ-group");
+        .attr('class',"circ-group")
+        .attr('transform', function (d) { 
+            
+                 xPos = Math.random()*width;
+                 if(xPos>width-radiusScale(d.user.followers_count)){
+                      xPos -= radiusScale(d.user.followers_count);
+                 } 
+                 else if(xPos< -radiusScale(d.user.followers_count)) {
+                      xPos += radiusScale(d.user.followers_count);
+                 }
+
+                 //write xPos to the bound object for later use
+                 d.x=xPos;
+                 d.xPos = xPos;
+
+//******************fix this later!!
+                 d.retweets = d.retweet_count;
+                 //console.log(d.retweets);
+         
+                yPos = Math.random()*height
+                if(yPos>height-radiusScale(d.user.followers_count)){
+                        yPos -= radiusScale(d.user.followers_count);
+                } 
+                else if(yPos< radiusScale(d.user.followers_count)) {
+                        yPos += radiusScale(d.user.followers_count);
+                }
+
+                //write xPos to the bound object for later use
+                d.y=yPos;
+                d.yPos = yPos;
+            
+                return  'translate('+ xPos + ',' + yPos + ')'; 
+            });
     
     circles
         .append('circle')
         .attr('class','circ')
-        .attr('cx',function(d){
-            xPos = Math.random()*width;
-            if(xPos>width-radiusScale(d.user.followers_count)){
-                    xPos -= radiusScale(d.user.followers_count);
-            } 
-            else if(xPos< -radiusScale(d.user.followers_count)) {
-                    xPos += radiusScale(d.user.followers_count);
-            }
-            
-            //write xPos to the bound object for later use
-            d.x=xPos;
-            d.xPos = xPos;
-        
-//*************fix this later!!
-            d.retweets = d.retweet_count;
-            //console.log(d.retweets);
-        
-            return xPos;
-
-        })
-        .attr('cy',function(d){
-            yPos = Math.random()*height
-            if(yPos>height-radiusScale(d.user.followers_count)){
-                    yPos -= radiusScale(d.user.followers_count);
-            } 
-            else if(yPos< radiusScale(d.user.followers_count)) {
-                    yPos += radiusScale(d.user.followers_count);
-            }
-        
-            //write xPos to the bound object for later use
-            d.y=yPos;
-            d.yPos = yPos;
-            return yPos;
-        })
+        .attr('cx',0)
+        .attr('cy',0)
         .attr('r', function(d){
             //turn off scaling of radii for now - working on single user timeline
             //d.r = radiusScale(d.user.followers_count);
@@ -135,18 +135,6 @@ function drawUsers(data) {
             d.r = 10;
             return 10})
         .style('fill', function(d){
-            //Turn off color by retweet for now        
-            /*if (d.retweet_count==0){var color = 'rgba(153, 225, 230,.6)'}
-            else { 
-                var color = 'rgba(153, 255, 230,.6)'}
-            return color;*/
-        
-            //instead, color according to first characters in tweet text (retweeted value is
-            //unreliable/not applicable. For Jonathan, RT = retweet of another user's tweet,
-            //and @username = reply. For now, just try to distinguish between those and everything else)
-        
-            //console.log(d.text.substring(0,1))
-        
             //use substring(0,x) to get first few letters of each tweet.
             //should be RT for retweet
             if (d.text.substring(0,2)== "RT"){
@@ -163,10 +151,10 @@ function drawUsers(data) {
                 var color = 'rgba(153, 185, 230,.6)'
                 return color;
             }
-            //add .@ (public reply so that anyone who follows you can see it, rather than just 
+        
+//**********add .@ (public reply so that anyone who follows you can see it, rather than just 
             //their boards)
         })
-        //.call(attachTooltip)
         .call(force.drag)
         //tooltip based on http://bl.ocks.org/d3noob/a22c42db65eb00d4e369
         .on("mouseover", function(d) {		
@@ -192,109 +180,24 @@ function drawUsers(data) {
             satellites.remove();
         });
     
+/*    
+    //Turn off collision detection for now.
     
-    /*
-    //based on http://jsfiddle.net/nrabinowitz/5CfGG/
-    //and http://bl.ocks.org/milroc/4254604
-    circles.each(function(d,i){
-                
-            //create a satellites array with one entry for each retweet
-            satellites = [];
-            
-            for (var i = 0; i<d.retweet_count; i++){
-                satellite = {parentX:d.x, parentY:d.y, retweets:d.retweet_count, parentR:d.r}
-                satellites.push(satellite);
-            }
-            //console.log(satellites.length);
-            
-            if(satellites.length>0){ 
-                //map satellite data to a tree
-                var dataTree = {
-                    children: satellites.map(function(d) { return { size: satellites.length }; })
-                };
-
-                // make a radial tree layout
-                var tree = d3.layout.tree()
-                    //value of 5 has some effect on radius (1 is still pretty large, doesn't look linear...)
-                    .size([360, 1])//function(d){
-                        //console.log(d.r);
-                        //return [360, 20]})
-                    .separation(function(a, b) {
-                        return radiusScale(a.size) + radiusScale(b.size);
-                });
-
-                // apply the layout to the data
-                var satNodes = tree.nodes(dataTree);
-                console.log(satNodes.slice(1));
-
-                // create dom elements for the node
-                var satNode = plot.selectAll(".satNode")
-                      .data(satNodes.slice(1)) // cut out the root node, we don't need it
-                      .enter().append("g")
-                      .attr("class", "node")
-                      .attr("transform", function(d) {
-//*****************check what's going on here...recursive???                          
-                          //console.log(d);          
-                          return "rotate(" + (d.x - 90) + ") translate(" + d.y + ")";
-                      })
-
-                satNode.append("circle")
-                    .attr("r", function(d) { return radiusScale(2); });
-
-                //set angle per step for satellites arranged around center circle
-                var toAngle = d3.scale.linear().domain([0, d.retweets]).range([0, 360]);
-
-                d3.select(this).selectAll('satellites')
-                    .data(satellites)
-                    .enter()
-                    .append('rect')
-                    .attr('x',function(d,i){
-                         return d.parentX+(d.parentR*Math.sin(toAngle(i)));})
-                    .attr('y',function(d,i){
-                         return d.parentY+(d.parentR*Math.cos(toAngle(i)));})
-                    .attr('width',2)
-                    .attr('height',5);
-            }
-        })
-   */
-    //works with circ-group, and can pass group to drawSatellites function, but groups don't have
-    //twitter data stored in them - only have xPos, yPos, and width. Instead, need to use circles, 
-    //but that returns an error saying "cannot read property "call" of undefined".
-    //centralCircGrp = plot.selectAll('circ-group');
-    
-    //centralCircGrp.each(drawSatellites(this));
-        
     //Collision detection
     //array into force layout, updates start to happen, updated accordingly
     //link nodes var to twitter data array
     force.nodes(twitterData)
         .on('tick',tick)
         .on('end',end)  
-        .start();
-  
-}
-
-
-function tick(e){
-      //implement custom tick function.
-
-        circles = plot.selectAll('.circ');
-       
-        circles.each(collide(.5));
-        
-        circles.attr("cx",function(d) { return d.x})
-                .attr("cy",function(d) { return d.y});
-        
-}
-
-//******************
-//This doesn't update once the force layout minimization has stopped - need to figure out 
-//how to update nicely!!
-
-function end(e) {
-
-    circles = plot.selectAll('.circ-group');
-
+        .start();*/
+    
+    
+    
+    
+    
+    
+    
+    
     var satGroup = circles.append('g').attr('class','sat-group');
     var satNodes = [];
     
@@ -315,9 +218,6 @@ function end(e) {
                .attr("y", function(d) { return d.y});*/
     
     
-    //var dataTree = {};
-    //var tree;
-    
     //based on http://jsfiddle.net/nrabinowitz/5CfGG/
     //and http://bl.ocks.org/milroc/4254604
     circles.each(function(d,index){
@@ -335,32 +235,28 @@ function end(e) {
             }
             
 
-    //console.log(d);
+            //console.log(d);
     
-    //gives a similarly recursive-looking data structure. Reassuring, I suppose? Either right or wrong
-    //in the same way twice...
-    //But only gives one array for the entire circles array, not one for each circle.
-    //console.log(circles.attr('satellites'));
-      
-        //console.log(satellites);
+            //console.log(satellites);
         
-        if(satellites.length>0){ 
+            if(satellites.length>0){ 
             
-            var dataTree = {
-                 //parent: d[index],
-                 //take the satellites array, and map each entry onto a function that returns
-                 //the length of the array, so that each satellite child object knows how many
-                 //siblings it has.
-                 //console.log(satellites.length);
-                 children: []
-                 //children: function(d) {return {size: d.retweet_count};}
+                var dataTree = {
+                     //parent: d[index],
+                     //take the satellites array, and map each entry onto a function that returns
+                     //the length of the array, so that each satellite child object knows how many
+                     //siblings it has.
+                     //console.log(satellites.length);
+                     children: []
+                     //children: function(d) {return {size: d.retweet_count};}
             };    
                 
             for (var j=0; j<satellites.length;j++){
                 //map satellite data to a tree
-                dataTree.children.push({size: 10})
+                dataTree.children.push({size: 100})
 
             }
+                
             //object with the children array inside it. Children array is an array of child objects, 
             //each with a size attribute. (Matches example)
             //console.log(dataTree);
@@ -380,8 +276,8 @@ function end(e) {
                // console.log('here');
                 // make a radial tree layout
                 tree = d3.layout.tree()
-                    //make a "strip" of satellite nodes of the right length, to wrap                                         //around the bubbles when ready. x controls length (360 for radial degrees...
-                    //changing value doesn't seem to matter here, as circumference is set by radius),
+                    //make a "strip" of satellite nodes of the right length, to wrap                                         //around the bubbles when ready. x controls length (360 for radial degrees.
+                    //Changing value doesn't seem to matter here, as circumference is set by radius),
                     //y controls radial distance. Node size is set when circles are drawn, below.
                     .size([360, 15])//function(d){
                         //console.log(d.r);
@@ -415,40 +311,20 @@ function end(e) {
                     
           
 
-    //console.log(satNodes);
-    
-//********** I think the problem is that it's drawing each satNodes object array to each satGroup on the
-//********** .svg. Because the loop only returns a value when it's done, you get only one retweet when 
-//********** the loop ends here (takes final value of satNodes, adds it to all groups). If the loop 
-//********** closes after draw, then you draw one of everything to each group, whether or not it should
-//********** have anything in it. Need to find a way to select only the group associated with the
-//********** current circle.each() iteration. I thought that's what the code below was doing, but
-//********** now think that's mistaken. How do you select only the group of the circle object that you're //********** in?
-        
+        //console.log(satNodes);
+
               
         //console.log(d);
         
         //console.log(satNodes);
-        
-        //if(typeof satNodes !== 'undefined'){
-            
-            //Not working!! Appends nodes, but outside of the page body...
-           //var testing = instance.select('.sat-group');
-            //console.log(testing[0][0].children[1]);
-            
-            //satGroupSteal = testing[0][0].children[1];
-            
-            //console.log(satGroupSteal);
-         
-            //satGroupIn = d3.select(satGroupSteal);
-        
-            //selction.node()
-        
+                
 //function drawSatellites(satNodes) {
      // create dom elements for the node, and place them at the center of the parent circle
                 var satNode = satGroup.selectAll(".satNode")
                       .data(satNodes.slice(1)) // cut out the root node, we don't need it
-                      .enter().append("g")
+                      .enter();
+        
+                satNode.append("g")
                       .attr("class", "node")
                       .attr("transform", function(d,i) {            
                           //d here is the child node group of the tree map.
@@ -504,9 +380,70 @@ function end(e) {
                 console.log(satellites);
             }*/
         
-            } 
+             
     //})//cut out circles.each
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+
+  
+}
+
+
+function tick(e){
+      //implement custom tick function.
+
+        circleGroups = plot.selectAll('.circ-group');
+       
+        circles = plot.selectAll('.circ');
+        circles.each(collide(.5));
+    
+        var newX = circles.attr('cx');
+        var newY = circles.attr('cy');
+        
+        console.log(newX);
+    
+        circleGroups.attr('transform', 'translate(' + newX + ',' + newY + ')');
+        
+}
+
+
+//******************
+//This doesn't update once the force layout minimization has stopped - need to figure out 
+//how to update nicely!!
+
+function end(e) {
+
 //}
+}
 
 //from http://bl.ocks.org/mbostock/1804919
 function collide(alpha){
