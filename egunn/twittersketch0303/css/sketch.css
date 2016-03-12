@@ -10,11 +10,16 @@ body {
 	background:white;
 }
 
+.legendLabel {
+    font: 9px sans-serif;
+    fill: darkgray;
+}
+
 /*-----------tooltip-----------*/
 div.tooltip{
     position: absolute;			
     text-align: center;			
-    height: 28px;					
+    width: 250px;
     padding: 2px;				
     font: 12px sans-serif;		
     background: lightsteelblue;	

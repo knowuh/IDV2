@@ -1,3 +1,9 @@
+//Next steps:
+//Attach to live twitterstream data, update nodes accordingly.
+//Click on a tweet to view activity over time. (Check to see if possible, without locating retweets //themselves).
+//Expand to follow multiple levels of retweeting
+
+
 //figure out why the plot div height has to be set to a hard (rather than percentage) value //in the CSS
 //why can't mouse leave canvas during force minimization?
 
@@ -6,21 +12,6 @@ var margin = {t:25,r:40,b:25,l:40};
 
 var width = document.getElementById('plot1').clientWidth - margin.r - margin.l,  
     height = document.getElementById('plot1').clientHeight - margin.t - margin.b;
-
-/*
-//set up scales for plotting the data
-var xScale = d3.scale.ordinal()
-    .domain(d3.range(data.length))
-    .rangeRoundPoints([margin.l, width]);
-
-var yScale = d3.scale.linear()
-    .domain([10,1])
-    .range([0,100]);
-
-var colorScale = d3.scale.linear()
-    .domain([0, data.length])
-    .range([0, 360]);
- */
 
 //for now, not linked to actual data - later, set max according to numbers stored in data object. 
 var radiusScale = d3.scale.sqrt().domain([0,20000]).range([10,50]);
@@ -33,8 +24,7 @@ var canvas = d3.select(".plot");
 var force = d3.layout.force()
     .size([width,height])
     .charge(-5)
-    .gravity(0.01) //in absence of all forces, nodes should be fixed where they are. Can get rid of all forces, and implement own custom gravity
-
+    .gravity(0.01);
 
 // Define the div for the tooltip
 var div = d3.select(".plot").append("div")	
@@ -53,8 +43,8 @@ plot = canvas.append('svg')
 d3.json("./TwitterDataApp_static.json", function(error, data) {
     
     //check that you can access data (this gives follower count for a specific user)
-    //console.log(data.statuses[0].user.followers_count); // this is your data
-    //console.log(data);
+    //console.log(data.statuses[0].user.followers_count); 
+    
     drawUsers(data);
 })
 
@@ -69,20 +59,29 @@ d3.json("http://ericagunn.com/Twitter/TwitterDataApp.php",function(error,webTwit
 function drawUsers(data) {
     
     twitterData=data;
-
-    //console.log(twitterData);
-
-/*
-    for(i=0;i<twitterData.statuses.length;i++){ 
-        var x=Math.random()*350;
-        var y=Math.random()*350;
-        var r=radiusScale(twitterData.statuses[0].user.followers_count);
-
-        var newObj = {x:x, y:y, r:r}
-        data.push(newObj)
-    };*/
-
-    //console.log(data);
+    
+     //legend
+     var legend = plot.append('g').attr('class','legend');
+    
+     legend.append('circle')
+        .attr('cx',0).attr('cy',0).attr('r',5).style('fill','rgba(153, 255, 150,.6)');
+     legend.append('text').attr('class','legendLabel')
+        .attr('x',10).attr('y',3).text("is a retweet");
+    
+     legend.append('circle')
+        .attr('cx',0).attr('cy',15).attr('r',5).style('fill','rgba(153, 255, 230,.6)');
+     legend.append('text').attr('class','legendLabel')
+        .attr('x',10).attr('y',18).text("@reply");
+    
+     legend.append('circle')
+        .attr('cx',0).attr('cy',30).attr('r',5).style('fill','rgba(153, 185, 230,.6)');
+     legend.append('text').attr('class','legendLabel')
+        .attr('x',10).attr('y',33).text("new");
+    
+     legend.append('circle')
+        .attr('cx',0).attr('cy',45).attr('r',2).style('fill','rgba(153, 155, 230, .9)');
+     legend.append('text').attr('class','legendLabel')
+        .attr('x',10).attr('y',48).text("# retweets");            
 
     var circles = plot.selectAll('.circ')
         .data(twitterData)
@@ -102,11 +101,7 @@ function drawUsers(data) {
                  //write xPos to the bound object for later use
                  d.x=xPos;
                  d.xPos = xPos;
-
-//******************fix this later!!
-                 d.retweets = d.retweet_count;
-                 //console.log(d.retweets);
-         
+     
                 yPos = Math.random()*height
                 if(yPos>height-radiusScale(d.user.followers_count)){
                         yPos -= radiusScale(d.user.followers_count);
@@ -131,7 +126,6 @@ function drawUsers(data) {
             //turn off scaling of radii for now - working on single user timeline
             //d.r = radiusScale(d.user.followers_count);
             //return radiusScale(d.user.followers_count)})
-        
             d.r = 10;
             return 10})
         .style('fill', function(d){
@@ -151,81 +145,51 @@ function drawUsers(data) {
                 var color = 'rgba(153, 185, 230,.6)'
                 return color;
             }
-        
-//**********add .@ (public reply so that anyone who follows you can see it, rather than just 
-            //their boards)
+
         })
         .call(force.drag)
         //tooltip based on http://bl.ocks.org/d3noob/a22c42db65eb00d4e369
         .on("mouseover", function(d) {		
+            var xShift = d.x+40;
+            var yShift = d.y+20;
             div.transition()		
                 .duration(200)		
-                .style("opacity", .9);		
+                .style("opacity", .7);		
             //div	.html("@" + d.user.screen_name +  "<br/>"  +  d.user.followers_count)	
-            div	.html(d.text +  "<br/>"  +  d.favorite_count)	
-                .style("left", d.x  + "px")		
-                .style("top", d.y+ "px");
+            div	.html(d.text +  "<br/>"  + "<b>" + "Retweets: " + d.retweet_count +"</b>")	
+                .style("left", xShift + "px")		
+                .style("top", yShift + "px");
                 //.attr('transform','translate(30,300)');	
             })					
         .on("mouseout", function(d) {		
             div.transition()		
                 .duration(500)		
                 .style("opacity", 0);	
-        })
-//*******************
-//want this to happen when the user drags, not clicks...
-//or, even better, keep satellites and translate with circle group.
-        .on("click", function(d){
-            satellites = d3.selectAll('.satellites');
-            satellites.remove();
         });
-    
-/*    
-    //Turn off collision detection for now.
-    
+
     //Collision detection
     //array into force layout, updates start to happen, updated accordingly
     //link nodes var to twitter data array
     force.nodes(twitterData)
         .on('tick',tick)
-        .on('end',end)  
-        .start();*/
+        .start();
     
     
-    
-    
-    
-    
-    
-    
-    var satGroup = circles.append('g').attr('class','sat-group');
     var satNodes = [];
     
-    /*
-        labels = circles    
-            .append('text')
-            .attr('class','labels')
-            .attr('x', function(d){return d.x})
-            .attr('y',function(d){return 100})
-            .attr("font-size","10px")
-            .attr('fill','rgb(100,100,100)')
-            .attr('text-anchor',"middle")
-            .text(function(d){
-                return "@" + d.user.screen_name + " " + d.user.followers_count;
-        }); 
+    //append a group to the circles selection to hold satellites
+    //var satGroup = circles.append('g').attr('class','sat-group');
+    
 
-        labels.attr("x", function(d) { return d.x})
-               .attr("y", function(d) { return d.y});*/
-    
-    
     //based on http://jsfiddle.net/nrabinowitz/5CfGG/
     //and http://bl.ocks.org/milroc/4254604
     circles.each(function(d,index){
-                
-            //create a satellites array with one entry for each retweet
-            satellites = [];
+         
+            //select the current circle in the .each loop, append a group to it.
+            var satGroup = d3.select(this).append('g').attr('class','sat-group');
         
-            //don't think I should need this...keep for now, to clear out possible problems
+            //create a blanks to fill
+            satellites = [];
             dataTree={};
             
             for (var i = 0; i<d.retweet_count; i++){
@@ -233,187 +197,70 @@ function drawUsers(data) {
                 satellite = {parentX:d.x, parentY:d.y, retweets:d.retweet_count, parentR:d.r}
                 satellites.push(satellite);
             }
-            
-
-            //console.log(d);
-    
-            //console.log(satellites);
         
-            if(satellites.length>0){ 
+            if(satellites.length > 0){ 
             
                 var dataTree = {
-                     //parent: d[index],
                      //take the satellites array, and map each entry onto a function that returns
                      //the length of the array, so that each satellite child object knows how many
                      //siblings it has.
-                     //console.log(satellites.length);
                      children: []
-                     //children: function(d) {return {size: d.retweet_count};}
             };    
                 
             for (var j=0; j<satellites.length;j++){
                 //map satellite data to a tree
-                dataTree.children.push({size: 100})
+                dataTree.children.push({size: satellites.length})
 
             }
                 
             //object with the children array inside it. Children array is an array of child objects, 
-            //each with a size attribute. (Matches example)
+            //each with a size attribute.
             //console.log(dataTree);
                              
             }
- 
-//**********dataTree is fine, and has different #s of children for each satellite object.
-//**********not drawing properly; tree function seems to be identical for all iterations.
-//**********May drawing a copy of everything for each circle - be careful of the circles.each!
-//**********Don't think so, based on console output of the dataTree from above - only 82 items, //**********consistent with the correct # of tweets with retweets.
-//**********Not clear if a node is a single node, or an entire set of nodes for a particular level... 
-        
+         
             tree = null;
         
             //if there is a dataTree for a circle, make a treemap layout 
             if(dataTree != {}){
-               // console.log('here');
                 // make a radial tree layout
                 tree = d3.layout.tree()
-                    //make a "strip" of satellite nodes of the right length, to wrap                                         //around the bubbles when ready. x controls length (360 for radial degrees.
-                    //Changing value doesn't seem to matter here, as circumference is set by radius),
-                    //y controls radial distance. Node size is set when circles are drawn, below.
-                    .size([360, 15])//function(d){
-                        //console.log(d.r);
-                        //return [360, 20]})
+                    //x controls length (360 for radial degrees. y controls radial distance. 
+                    //Node size is set when circles are drawn, below.
+                    .size([360,13]) //why won't this work with an anonymous function? returns NaN...
                     .separation(function(a, b) {
-                        //console.log(a);
-                        //each node has a size value, which stores the number of nodes in the tree level
-                        //also has parent Object, and depth = 1, and an x and y that depend on the
-                        //treemap size set above. 
-                        //Use a fixed separation for now - need to go back and write a radiusScale for 
-                        //satellites, rather than using the one for the circles (too big, has min value).
-                        return 20;//radiusScale(a.size) + radiusScale(b.size);
-                        
-                        //base on # of circles
-                        //console.log(a);
+                        //set ideal separation between satellites (doesn't do much, but have to have it,
+                        //or node x,y position calculation returns NaN)
+                        return 5;//radiusScale(a.size) + radiusScale(b.size);
                     });
                 
-                //console.log(tree);
                 
-                
-                 // apply the layout to the data
+                //apply the layout to the data
                 satNodes = tree.nodes(dataTree);
-                //console.log(satNodes.slice(1));
-    
-                //console.log(satNodes);
 
-                //drawSatellites(satNodes);
-            
             }
             
-                    
-          
-
-        //console.log(satNodes);
-
-              
-        //console.log(d);
+      
+                // create empty selectio to append satellites into
+                var satNode = satGroup.selectAll(".node");
         
-        //console.log(satNodes);
-                
-//function drawSatellites(satNodes) {
-     // create dom elements for the node, and place them at the center of the parent circle
-                var satNode = satGroup.selectAll(".satNode")
-                      .data(satNodes.slice(1)) // cut out the root node, we don't need it
-                      .enter();
-        
-                satNode.append("g")
+                var nodes = satNode.data(satNodes.slice(1)) // cut out the root node, we don't need it
+                      .enter()
+                      .append("g")
                       .attr("class", "node")
-                      .attr("transform", function(d,i) {            
-                          //d here is the child node group of the tree map.
-                          //console.log(d.parent);        
-                          //not quite sure how this works, but it wraps the tree nodes around a center.
-                          //then, need to translate it to the appropriate radial distance.
+                      .attr("transform", function(d,i) {                    
+                          //draw the satellite nodes around the center and translate to the 
+                          //appropriate radial distance.
                           return "rotate(" + (d.x - 90) + ") translate(" + d.y + ")";
-                          //return "translate(" + d.x + "," + 
-                             // d.y + ")";
                       });
                       
 
-                satNode.append("circle")
+                nodes.append("circle")
                     .attr("r", 1)
                     .style("fill",'rgba(153, 155, 230, .9)'); 
 
-                satGroup.attr('transform',function(d){ return 'translate(' + d.x + ',' + d.y + ')'})
-        //}
-
-//}
-
-    }) //close .each            
-              
-/*                
-                //set angle per step for satellites arranged around center circle
-                var toAngle = d3.scale.linear().domain([0, d.retweet_count]).range([0, 360]);
-//******************in the middle of debugging here. Code seems to be working fine, but some
-//circles are consistently drawing in non-circular patterns. 
-                //d.retweets
-                //console.log(d.retweet_count);
-                //console.log(d.retweets);
-                //console.log(toAngle(6));
                 
-                d3.select(this).selectAll('.satellites')
-                    .data(satellites)
-                    .enter()
-                    .append('circle')
-                    .attr('class','satellites')
-                    .attr('cx',function(d,i){
-                        //for debugging only! remove later.
-                         satellites[i].angle = toAngle(i);
-                         satellites[i].sinCalc = d.parentX+((d.parentR+3)*Math.sin(toAngle(i)));
-                         return d.parentX+((d.parentR+3)*Math.sin(toAngle(i)));})
-                    .attr('cy',function(d,i){
-                        satellites[i].cos = Math.cos(toAngle(i));
-                        satellites[i].cosCalc = d.parentY+((d.parentR+3)*Math.cos(toAngle(i)));
-                         return d.parentY+((d.parentR+3)*Math.cos(toAngle(i)));})
-                    .attr('r',1)
-                    .style('fill','rgba(153, 155, 230,.9)');
-*/
-                
-/*            if(index ==61){
-                console.log(satellites);
-            }*/
-        
-             
-    //})//cut out circles.each
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        
-
+    }) //close .each              
   
 }
 
@@ -421,28 +268,16 @@ function drawUsers(data) {
 function tick(e){
       //implement custom tick function.
 
-        circleGroups = plot.selectAll('.circ-group');
+        circleGroups = d3.selectAll('.circ-group');
        
         circles = plot.selectAll('.circ');
         circles.each(collide(.5));
     
-        var newX = circles.attr('cx');
-        var newY = circles.attr('cy');
+        circleGroups.each(function(d,i){
+            d3.select(this).attr('transform', 'translate(' + d.x + ',' + d.y + ')');
+        })
+            
         
-        console.log(newX);
-    
-        circleGroups.attr('transform', 'translate(' + newX + ',' + newY + ')');
-        
-}
-
-
-//******************
-//This doesn't update once the force layout minimization has stopped - need to figure out 
-//how to update nicely!!
-
-function end(e) {
-
-//}
 }
 
 //from http://bl.ocks.org/mbostock/1804919
@@ -474,48 +309,3 @@ function collide(alpha){
   };
           
 }
-
-/*
-function attachTooltip(selection){
-    
-        //returns plot div, with svg, groups, all circles and circle groups in it. 
-        console.log(canvas.node());
-    
-        selection
-        .on('mouseenter',function(d){
-            var tooltip = d3.select('.custom-tooltip');
-            tooltip
-                .transition()
-                .style('opacity',1);
-                //tried making separate classes to set tooltip box color to match lines; something broke.
-                /*.attr('class', function(){
-                    if(d.key=='Coffee, green'){
-                        return 'coffee-tooltip'
-                    }
-                    else if (d.key=='Tea'){
-                        return 'tea-tooltip'
-                    }
-                });
-                
-
-
-        })
-        .on('mousemove',function(d){
-            var xy = d3.mouse(canvas.node());
-            //console.log(xy);
-
-            var tooltip = d3.select('.custom-tooltip');
-
-            tooltip
-                .style('left',xy[0]+50+'px')
-                .style('top',(xy[1]+50)+'px')
-                .html(d.value);
-
-        })
-        .on('mouseleave',function(){
-            var tooltip = d3.select('.custom-tooltip')
-                .transition()
-                .style('opacity',0);
-        })
-}
-   */ 
