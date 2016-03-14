@@ -37,6 +37,19 @@ class LabelImage(object):
         return 1
 
     def process(self, tweets):
+        for tweet in tweets:
+            image = tweet['image']
+            label = ""
+            try:
+                if image:
+                    annotations = self.label(image)['responses'][0]['labelAnnotations']
+                    for annotation in annotations:
+                        label = label + " " + annotation['description']
+
+                    tweet['image_tags'] = label
+                    print label
+            except Exception as inst:
+                print inst
 
     def print_labels(self, photo_file):
         response = self.label(photo_file)
