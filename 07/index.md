@@ -19,7 +19,7 @@ For the next week, in and out of class, we are working on midterm prototypes. We
 
 ### What we have right now
 * Small data sets (~400 tweets) for specific hashtags for experimentation.
-* Ability to run sentiment analysis on those tweets (up to 100,000) using monkey learn.
+* Ability to run sentiment analysis on those tweets (up to 100,000) using [monkeylearn](http://www.monkeylearn.com/).
 * Python scripts to run up to 1000 google Vision queries ($5 each addn 1000)
 
 ### What we want (additional)
