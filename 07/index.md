@@ -16,6 +16,8 @@ For the next week, in and out of class, we are working on midterm prototypes. We
 * Friday, March 25th
 
 ### Presentations from June and Andrew
+* June: [Selfie City](http://selfiecity.net/)
+* Andrew: []()
 
 ### What we have right now
 * Small data sets (~400 tweets) for specific hashtags for experimentation.
