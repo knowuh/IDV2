@@ -1,4 +1,4 @@
-# Class 06 –  Feb 29  2016:
+# Class 07 March 14 2016:
 
 ## Project Proposals
 
