@@ -1,6 +1,7 @@
 # see https://stuvel.eu/flickrapi
 import json
 import time
+from utils.utils import print_dict
 # import os
 # import re
 from subprocess import call
@@ -14,16 +15,7 @@ api_key = config['key']
 api_secret = config['secret']
 
 flickr = flickrapi.FlickrAPI(api_key, api_secret)
-def pretty(d, last=""):
-   for key, value in d.iteritems():
 
-      this_key = last + "." + str(key)
-      if isinstance(value, dict):
-         pretty(value, this_key)
-      elif isinstance(value, int):
-         print this_key + ": " + str(value)
-      elif isinstance(value, basestring):
-         print this_key + ": " + value
 
 # for photo in flickr.walk(tag_mode='all',
 #         tags='fish'):
@@ -40,4 +32,4 @@ for photo in flickr.photos.search(
     info = flickr.photos.getInfo(photo_id=photo['id'], format='parsed-json')
     # pretty(info)
     print url(info['photo'])
-    pretty(info)
+    print_dict(info)

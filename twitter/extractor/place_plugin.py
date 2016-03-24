@@ -1,5 +1,6 @@
-from extractor.utils import deep_fetch
 from random import uniform
+
+from utils.utils import deep_fetch
 
 
 class PlacePlugin(object):

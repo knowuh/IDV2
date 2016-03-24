@@ -1,6 +1,7 @@
 import boto3
 from boto3.dynamodb.conditions import Key, Attr
-from extractor.utils import deep_fetch
+from utils.utils import deep_fetch
+
 
 class Query(object):
     ImageFitler = Attr('image').exists()

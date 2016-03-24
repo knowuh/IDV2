@@ -3,7 +3,7 @@ import json
 # import os
 # import re
 
-with open('instagram_config.json') as data_file:
+with open('.instagram_config.json') as data_file:
     config = json.load(data_file)
 
 api = InstagramAPI(client_id=config['client_id'],
