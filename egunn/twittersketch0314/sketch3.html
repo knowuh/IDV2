@@ -9,6 +9,8 @@
 
         <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Raleway:400' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="../css/normalize.min.css">
+        <link rel="stylesheet" href="../css/boilerplate.css">
         <link rel="stylesheet" href="../css/main.css">
         <link rel="stylesheet" href="./css/sketch.css">
 
@@ -18,29 +20,27 @@
         <script src="../js/vendor/lodash.min.js"></script>
         
     </head>
-    <body class="body">
+    <body>
         
         <header>
             <!--create header text to display on the page-->
-            <h1>User Profile</h1>
+            <h1>Part B</h1>
         </header>
-        
         <br>
-        <div class="user" id="user"></div>
-        
-        <div class="plot1" id="plot1">
+        <div class="fixed-width">
+
+          <div class="plot" id="plot">
             </div>
 
-        <div class="sidebar" id="sidebar"></div>
-        
-        <div class="plot2" id="plot2"></div>
-                   
+        </div>
+            
     <!--link to index page-->
     <div>
         <p><a href="./index.html">index</a></p>
     </div>
+        </div>
     
-    <!--when script is called before the body section, using getElementById.clientWidth returns the error: "cannot return "clientWidth" of null because hasn't loaded the HMTL before querying the width from the script. --> 
-    <script src="./js/sketch1.js"></script>
+        <script src="js/sketch3.js"></script>
+    
     </body>
 </html>

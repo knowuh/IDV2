@@ -1,9 +1,9 @@
 body {
-  font-family: 'Railway', sans-serif;
+  font-family: "Raleway",Arial;
   background-color: hsla(180, 10%, 95%, 1.0);
   color: hsla(0, 10%, 10%, 1.0);
   margin: 2em;
-  font-size: 12pt;
+  font-size: 10pt;
 }
 
 h1,
@@ -14,9 +14,12 @@ h5,
 strong {
   color: hsla(0, 15%, 40%, 1.0);
   text-transform: uppercase;
-  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Raleway", Arial, sans-serif;
   margin-top: 1.5em;
   margin-bottom: 0em;
+  letter-spacing: 2.5px;
+  font-weight: lighter;
+  word-spacing: 4px;
 }
 
 a {
@@ -96,7 +99,7 @@ span.date {
 span.title {
   font-weight: bold;
   text-transform: uppercase;
-  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Raleway", Arial, sans-serif;
   color: hsla(0, 5%, 60%, 1.0);
 }
 
