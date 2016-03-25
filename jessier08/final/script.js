@@ -5,7 +5,7 @@ queue()
     .await(dataLoaded)
 
 
-function dataLoaded(err,posts){
+function dataLoaded(err,posts){ 
     
     console.log(posts);
     
