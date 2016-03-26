@@ -3,6 +3,8 @@
 //Click on a tweet to view activity over time. (Check to see if possible, without locating retweets //themselves).
 //Expand to follow multiple levels of retweeting
 
+//see week 11 Ex 2 script complete for multifocus custom gravity example
+
 
 //div is in html, when page loads, get window height and width, and adjust div height and width according to that using JS.
 
@@ -153,6 +155,28 @@ function drawUsers(data) {
         .attr('width',photoWidth)
         .attr('height',photoWidth)
         .style('fill','lightgray');
+    
+    /*
+    //Can't make sense of this, not sure it's worth the time. Come back later?
+    //https://gist.github.com/mbostock/3468167
+    var rect = userPlot.append("path")
+        .attr("d", topLeftRoundedRect(0, 0, 50, 100, 5));
+    // Returns path data for a rectangle with rounded right corners.
+    // Note: it’s probably easier to use a <rect> element with rx and ry attributes!
+    // The top-left corner is ⟨x,y⟩.
+    function topLeftRoundedRect(x, y, width, height, radius) {
+      //M = coord to begin path, h = horizontal line, a = arc (rx,ry,xrotation),    
+      return "M" + 0 + "," + 200
+           + "v" + -50
+           + "a" + 30 + "," + 30 + " 90 1 0 " + 30 + "," + 20
+           + "h" + 75
+           + "v" + -100
+
+  
+           //+ "v" + (0)
+           //+ "h" + (width/2);
+           //+ "z";
+    }*/
     
     userData.append("svg:image")
        .attr('x',userWidth/2-photoWidth/2+5)
@@ -575,7 +599,7 @@ function drawUsers(data) {
 
 
 function timelineClick(d) {
-    console.log("I'm here");
+
     var xShift = d.x+20;
     var yShift = d.y+20;
     
@@ -589,8 +613,7 @@ function timelineClick(d) {
 }
 
 function tweetClick(d) {
-    console.log("I'm here");
-    
+
     var xShift = d.xcoord+40;
     var yShift = 25+(d.yaxis-1)*25;
     div2.transition()		
