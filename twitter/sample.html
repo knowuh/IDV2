@@ -1,0 +1,42 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Twitter Test</title>
+        <meta name="description" content="Twitter Test">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="template/img/apple-touch-icon.png">
+        <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Raleway:400' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="../css/normalize.min.css">
+        <link rel="stylesheet" href="../css/boilerplate.css">
+        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="./tweepy.css">
+
+        <script src="https://sdk.amazonaws.com/js/aws-sdk-2.2.32.min.js"></script>
+        <script src="../js/vendor/modernizer.min.js"></script>
+        <script src="../js/vendor/jquery.min.js"></script>
+        <script src="../js/vendor/d3.min.js"></script>
+        <script src="../js/vendor/lodash.min.js"></script>
+        <style>
+            .tweet { margin-top: 1em;}
+            .user  { font-weight: bold; margin-right: 0.5em}
+            .text  { }
+        </style>
+    </head>
+    <body>
+        <div class="fixed-width">
+            This html page is parsing 100 twitter API status updates.
+            Have a look at the <a href="sample_data.json" target="_blank">json file</a>
+            This json file has also been converted to javascript for easy-use in <a href="sample_data.js" target="_blank">sample_data.js</a>
+            All the processing happens in <a href="sample.js" target="_blank">imagetest.js</a>
+            <h2> Tweets matching <span id="term">#zika</span></h2>
+            <div id="tweetContainer"></div>
+        </div>
+    </body>
+
+    <script src="sample_data.js"></script>
+    <script src="sample.js"></script>
+</html>

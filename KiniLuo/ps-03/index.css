@@ -1,3 +1,57 @@
+
+
+body {
+    font-family: 'futura';
+    background-color: hsla(180, 10%, 95%, 1.0);
+    color: hsla(0, 10%, 10%, 1.0);
+    font-size: 12pt;
+}
+
+div.head{
+    font-size: 30px;
+    width:80%;
+    height:100px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 50px;
+    text-align:left;
+}
+
+svg {
+    width: 80%;
+    height: 500px;
+    margin-left: 10%;
+    margin-right: 10%;
+    top: 100px;
+
+    /*border-bottom: 1px solid hsla(0, 5%, 60%, 1.0);*/
+    /*border-left:   1px solid hsla(0, 5%, 60%, 1.0);*/
+}
+
+/*survey*/
+circle {
+    transition: 0.2s;
+}
+circle:hover {
+    fill: hsla(0, 5%, 60%, 1.0);
+    stroke-width: 4px;
+}
+.axis-label {
+    font-size: 20px;
+    font-weight: bold;
+    fill: hsla(0, 5%, 60%, 1.0);
+}
+
+div.tooltip{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    top: 200px;
+    border-left: 600px;
+    text-align: left;
+}
+
+
 body{
     height:100%;
     margin:50px;
