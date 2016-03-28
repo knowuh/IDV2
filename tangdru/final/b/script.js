@@ -58,15 +58,26 @@ function DataLoaded(err, infected, zikaTweets, mapData){
             .attr("stroke", "#ADACAC")
             .attr("d", geoPath);
     
-    svg.append('circle')
+   
+    
+    svg.selectAll('circle')
             .data(infected)
             .enter()
-            .attr("transform", function(d) {return "translate(" + projection([ d.lng, d.lat]) + ")"})
-//            .attr('cx', function(d){return projection(d.lat);})
-//            .attr('cy', function(d){return projection(d.lng);})
-            .attr('r', d.confirmed/10)
-            .style('fill','black');
+            .append('circle')
+            .attr('cx', function(d){ return projection([d.lng, d.lat])[0]; })
+            .attr('cy', function(d){ return projection([d.lng, d.lat])[1]; })
+            .attr('r', function(d) { return d.confirmed/100; })
+            .style('fill','#618096');
        
+    
+     svg.selectAll('circle')
+            .data(zikaTweets)
+            .enter()
+            .append('circle')
+            .attr('cx', function(d){ return projection([d.lng, d.lat])[0]; })
+            .attr('cy', function(d){ return projection([d.lng, d.lat])[1]; })
+            .attr('r', function(d) { return d.confirmed/100; })
+            .style('fill','red');
 }
 
 
