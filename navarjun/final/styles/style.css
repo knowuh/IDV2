@@ -1,0 +1,20 @@
+.cameraXAxis path {
+  fill: none;
+}
+
+.canonBar {
+  fill: rgb(180, 50, 50);
+}
+
+.nikonBar {
+  fill: rgb(80, 80, 180);
+}
+
+.cameraChartTooltip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
