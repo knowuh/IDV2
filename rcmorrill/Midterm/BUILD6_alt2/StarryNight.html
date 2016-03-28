@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Digital Museum?</title>
+
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="container" id="container2">
+      <header></header>
+
+
+  <div class="leftSide">
+
+
+    <div class="canvas" id="plot">
+            <div class="mainTitle">
+        <h1>Starry Night</h1>
+        <p>Vincent van Gogh</p>
+      </div>   
+      <div class='buttons'>
+            <button class='button' id="hue" onclick="pictureHue()">
+          <div >HUE</div></button>  
+            <button class='button'  id="bright"onclick="pictureBright()">
+          <div>BRIGHTNESS</div></button>  
+            <button class='button' id="sat"onclick="pictureSat()">
+          <div  >SATURATION</div></button>  
+      </div>
+
+
+
+          <div class="canvas2 imageSection" id="threeImages">
+
+                <div class="imageThree imageWrap"><p class=labels>High</p><div class='p1'><img id="high" class='targetImage image'src='starryNight/images/images (4).jpg'data-colorcount=""></img></div>
+                <div class="colors">
+                <div class="function dominantColor">
+                <p class="labels">Dominant Color</p>
+                <div class="swatches"></div>
+                </div>
+                <div class="function medianCutPalette clearfix">
+                <p class="labels">Palette</p>
+                <div class="swatches"></div>
+                </div>
+                </div></div>
+
+                <div class="imageThree imageWrap" ><p class=labels>Medium</p><div class='p1'><img id="med" class='targetImage image'src='starryNight/images/images (7).jpg'data-colorcount=""></img></div>
+                <div class="colors">
+                <div class="function dominantColor2">
+                <p class="labels">Dominant Color</p>
+                <div class="swatches2"></div>
+                </div>
+                <div class="function medianCutPalette2 clearfix">
+                <p class="labels">Palette</p>
+                <div class="swatches2"></div>
+                </div>
+                </div></div>
+
+                <div class="imageThree imageWrap" ><p class=labels>Low</p><div class='p1'><img id="low" class='targetImage image'src='starryNight/images/2Q== (2).jpg'data-colorcount=""></img></div>
+                <div class="colors">
+                <div class="function dominantColor3">
+                <p class="labels">Dominant Color</p>
+                <div class="swatches3"></div>
+                </div>
+                <div class="function medianCutPalette3 clearfix">
+                <p class="labels">Palette</p>
+                <div class="swatches3"></div>
+                </div>
+                </div></div>
+
+
+
+
+          </div>
+
+           <!--  <div class="imageThree" ><img id="med" class='image'src='paintings/starryNight.jpg'></img></div>
+            <div class="imageThree" ><img id="low" class='image'src='starryNight/images/2Q== (2).jpg'></img></div>
+          </div> -->
+
+ 
+
+    </div>
+    </div>
+
+
+
+<!-- 
+             <div class="btn-div2" id="one">
+                <a href="#" class="btn-default">TRIP IN</a>
+            </div>    
+             <div class="btn-div2" id="2">
+                <a href="#" class="btn-default">HOURS</a>
+            </div>  
+             <div class="btn-div2" id="3">
+                <a href="#" class="btn-default">SLEEP</a>
+            </div>  
+             <div class="btn-div2" id="4">
+                <a href="#" class="btn-default">HEIGHT</a>
+            </div>  
+             <div class="btn-div2" id="5">
+                <a href="#" class="btn-default">DRAW</a>
+            </div>  
+ -->
+
+<div class ="cluster" id="cluster"></div>
+
+</div><!-- END CANVAS-->
+
+
+  </div><!-- END CONTAINER-->
+
+</body>
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="colorThief/jquery.js"></script>
+    <script src="queue/queue.min.js"></script>
+    <script src="./imageCluster.js"></script>
+    <script src="colorThief/color-thief.js"></script>
+    <script src="./imageThree.js"></script>
+
+
+
+
+</html>
