@@ -271,7 +271,8 @@ function drawUsers(data) {
         .attr('y',260+10)
         .attr('width',130)
         .attr('height',20)
-        .style('fill','lightgray');
+        .style('fill','lightgray')
+        .on('click', multUsers);
     
     sidebarData.append('text')
         .style('text-anchor','middle')
@@ -280,6 +281,9 @@ function drawUsers(data) {
         .style('font-size',8)
         .style('fill','white')
         .text('Compare multiple users');
+    
+    
+
 
     
     //************************
@@ -596,6 +600,11 @@ function drawUsers(data) {
         .on('click',timelineClick);
   
 }
+
+
+    function multUsers(){
+        window.location = "../sketch1b.html";
+    }
 
 
 function timelineClick(d) {
