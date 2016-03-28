@@ -89,8 +89,7 @@ var setupSurvey =function() {
 //        .on('click',function(d){
 //              d3.select(this).select('Text')
 //            .style('fill','rgb(200,200,200)')})
-       
-    
+           
     var circlesExit=circles.exit()
         .transition()
         .attr('transform',function(d,i){return "translate("+i*width/data.length+20+","+height/2+")"})

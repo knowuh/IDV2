@@ -1,0 +1,37 @@
+#u1239-4
+{
+	background-color: transparent;
+}
+
+#u1239-2
+{
+	line-height: 0px;/* 0 for mixed font sized paras; applied on spans instead */
+}
+
+#u1239
+{
+	font-size: 35px;
+	font-family: roboto, sans-serif;
+	font-weight: 700;
+	line-height: 42px;
+}
+
+#u1241-4
+{
+	background-color: transparent;
+	font-size: 13px;
+	line-height: 16px;
+	font-family: roboto, sans-serif;
+	font-weight: 300;
+}
+
+#u1240-4
+{
+	background-color: transparent;
+	font-size: 12px;
+	line-height: 14px;
+	font-family: roboto, sans-serif;
+	font-weight: 400;
+}
+
+
