@@ -1,14 +1,12 @@
 var width = 960, 
     height = 540;
 
-
-
 var svg = d3.select( "#plot" )
   .append( "svg" )
   .attr( "width", width )
   .attr( "height", height );
 
-var canvas = d3.select('#plot2')
+var canvas = d3.select('#plot')
     .append('canvas')
     .attr('width',width)
     .attr('height',height)
@@ -16,9 +14,9 @@ var canvas = d3.select('#plot2')
     ctx = canvas.getContext('2d');
 
 var linearGradient = ctx.createLinearGradient(0,0,width,height);
-linearGradient.addColorStop(0,'blue');
-linearGradient.addColorStop(.5,'purple');
-linearGradient.addColorStop(1,'red');
+linearGradient.addColorStop(0,'#618096');
+linearGradient.addColorStop(.5,'#7D9BAD');
+linearGradient.addColorStop(1,'#618096');
 ctx.fillStyle = linearGradient;
 ctx.fillRect(0,350,width,height);
 
@@ -42,23 +40,36 @@ d3.json("map.json", function(json) {
     .enter()
     .append("path")
     .attr("fill", "#DEDDDD")
+    .attr("stroke", "#ADACAC")
     .attr("d", geoPath);
 });
 
 var cx = function (d) { return projection([d.x, d.y])[0]; }
 var cy = function (d) { return projection([d.x, d.y])[1]; }
 
-d3.json("/data/zika-new.json", function(json) {
+d3.json("/data/zika-new.json", function(tweet) {
   points.selectAll("circle")
-    .data(json)
+    .data(tweet)
     .enter()
     .append("circle")
-    .attr('r', function(data)  { return data.favorite_count || 1 })
+    .attr('r', function(data)  { return data.favorite_count || 10 })
     .attr('cx', cx)
     .attr('cy', cy)
     .attr("fill", "hsla(0, 80%, 50%, 0.5)");
 });
 
-
-
-
+//d3_queue.queue()
+//    .defer(d3.csv,'/data/infected_24march2016.csv',parse)
+//    .await(dataLoaded);
+//
+//function parse(d){
+//    return {
+//        region: d.Region,
+//        country: d.Country,
+//        state: d.State,
+//        lat: +d.lat,
+//        lng: +d.lng,
+//        confirmed: d.confirmed
+//    }
+//}
+//
