@@ -1,4 +1,4 @@
-var setupSurvey =function() {
+var setupSurvey = function() {
   var spreadsheetData = [];
   var columnVariables = [
     {key: "criticalcommunication", title: 'Communication'},
@@ -18,6 +18,7 @@ var setupSurvey =function() {
 
   var columnToGraph = columnVariables[1];
 
+    //console.log(columnVariables);
 
   /***************************************************
    * instructions for drawing the Y axis label in D3 *
