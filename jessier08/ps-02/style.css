@@ -1,0 +1,69 @@
+html,body,div,ul,li,svg{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+html,body{
+	height: 100%;
+    font-family: 'Montserrat', sans-serif;
+}
+canvas{
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin:auto;
+    margin-top:5em;
+}
+.container{
+    margin-top:6em;
+}
+.links{
+    text-align:center;
+    font-size: 2.5em;
+}
+.name{
+    color:rgba(130,60,120,.7);
+    text-align: center;
+    top:200px;
+}
+.back{
+    text-align:center;
+    font-size: .8em;
+    padding-top:52em;
+    padding-left:5em;
+    opacity: .5;
+    float:left;
+    position:absolute;
+}
+.pj{
+    text-align:center;
+    font-size: .5em;
+    color:rgba(130,60,120,.5);
+}
+.left{
+    float:left;
+    width:500px;
+    text-align: left;
+    padding-top:5em;
+    padding-left:5em;
+}
+.left p{
+    font-size: .9em;
+    width:400px;
+}
+.right img {
+    width:300px;
+    padding-top:5em;
+}
+a:link{
+    text-decoration: none;
+    color:rgb(130,60,120);
+}
+a:visited{
+    color:rgba(130,60,120,.7);
+}
+a:hover{
+    color:rgba(130,60,120,.5);
+}

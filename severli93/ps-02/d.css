@@ -1,0 +1,39 @@
+#canvas-1 {
+    border: 2px solid hsla(140,10%,80%,1.0);
+    padding: 10px;
+    margin: auto;
+ width:550px;
+    margin-top: 1em;
+
+}
+
+
+h5,
+{
+    color: hsla(0, 15%, 40%, 1.0);
+
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin-top: 1.5em;
+    margin-bottom: 0em;
+    text-align:center;
+}
+
+h4,
+{
+    color: hsla(0, 15%, 40%, 1.0);
+
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin-top: 1.5em;
+    margin-bottom: 0em;
+    text-align:right;
+}
+
+h6,
+{
+    color: hsla(0, 15%, 40%, 1.0);
+
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin-top: 1.5em;
+    margin-bottom: 0em;
+
+}

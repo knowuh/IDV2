@@ -1,0 +1,180 @@
+body {
+  font-family: 'Railway', sans-serif;
+  background-color: hsla(180, 10%, 95%, 1.0);
+  color: rgba(50,50,50,.7); 
+  margin: 2em;
+  font-size: 12pt;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+strong {
+  color: rgba(50,50,50,.7);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin-top: 1.5em;
+  margin-bottom: 0em;
+}
+
+a {
+  text-decoration: none;
+  color: rgba(50,50,50,.7); 
+}
+
+
+
+.btn:hover {
+  background-color: rgb(236,0, 140);
+}
+
+.title{
+  font-family:'Helvetica Neue';
+  font-size:1em;
+  font-weight:200;
+}
+
+#name{
+  font-family: 'Railway', sans-serif;
+  color: rgba(50,50,50,.7); 
+  font-size: 12pt;
+  font-weight:400;
+  width:100%;
+  border-top:solid gray 1px;
+  padding-top:20px;
+  position:relative;
+  float:left;
+}
+
+#name2{
+  font-family: 'Railway', sans-serif;
+  color: rgba(50,50,50,.7); 
+  font-size: 12pt;
+  font-weight:400;
+  width:100%;
+  padding-top:20px;
+  position:relative;
+  float:left;
+}
+
+
+.btn{
+  padding:10px 20px 10px 20px;
+  border:5px solid rgb(240,243,243);
+  border-style:solid black;
+  background-color: rgb(200,200,200);
+  font-size:75pt;
+  color:hsla(180, 10%, 95%, 1.0); width:70%;
+  margin-left:auto;
+  margin-right:auto;
+  width:90px;
+  position:relative;
+  float:left;
+  line-height:1;
+  font-weight:400;
+}
+
+.btn-div{
+
+  border:solid gray 1px;
+  margin-top:20px;
+  padding-left:15px;
+  position:relative;
+  float:left;
+  width:100px;
+  font-family:'Helvetica Neue';
+  font-size:.7em;
+  font-weight:700;
+}
+
+#one{
+  margin-left:0px;
+}
+.btn-div2{
+
+  border:solid gray 1px;
+  margin-top:20px;
+  padding-left:15px;
+  position:relative;
+  float:left;
+  width:100px;
+  font-family:'Helvetica Neue';
+  font-size:.7em;
+  font-weight:700;
+  margin-right:15px;
+}
+
+.btn-div:hover {
+  opacity:.8;
+}
+
+
+
+#head{
+  width:80%;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.canvas{
+  width:80%;
+  margin-left:10%;
+  margin-right:10%;
+  margin-top:20px;
+  height: 600px;
+  position: relative;
+  float:left;
+  background: rgb(255,255,255);
+  border-top:1px;
+  margin-bottom:50px;
+}
+
+/* survey stuff for ps03*/
+
+.none{
+  display:none;
+}
+
+
+circle {
+  transition: 0.2s;
+}
+circle:hover {
+  fill: hsla(0, 5%, 60%, 1.0);
+  stroke-width: 4px;
+}
+
+.split{
+  font-family:'Helvetica Neue';
+  font-size:.5em;
+  font-weight:400;
+  fill: rgb(236,0, 140);
+}
+/*------axis---------*/
+
+.axis .domain{
+    fill:none
+}
+
+.axis{
+  font-family:'Helvetica Neue';
+  font-size:.5em;
+  font-weight:100;
+}
+.axis .tick line{
+    fill:none;
+    stroke:none;
+}
+
+.first_label{
+  font-family:'Helvetica Neue';
+  font-size:.6em;
+  font-weight:100;
+}
+
+.second_label{
+  font-family:'Helvetica Neue';
+  font-size:.6em;
+  font-weight:100;
+}

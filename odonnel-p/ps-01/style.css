@@ -1,0 +1,14 @@
+h1,h3,a,p,div {
+    text-align: center
+    }
+
+div {
+    padding-top: 20px;
+    padding-bottom: 50px;
+    background-color: #ffcbd3
+}
+
+body {
+    margin-left:0px;
+    margin-right:0px;
+}
