@@ -313,41 +313,41 @@ function drawUsers(data) {
      legend.append('text').attr('class','legendLabel')
         .attr('x',-5).attr('y',48).text("# retweets");            
 
+    var circleSize = 8;
+    
     var circles = plot1.selectAll('.circ')
         .data(twitterData)
         .enter()
         .append('g')
         .attr('class',"circ-group")
         .attr('transform', function (d) { 
-            
-                 xPos = Math.random()*width1;
-                 if(xPos>width1-radiusScale(d.user.followers_count)){
-                      xPos -= radiusScale(d.user.followers_count);
-                 } 
-                 else if(xPos< -radiusScale(d.user.followers_count)) {
-                      xPos += radiusScale(d.user.followers_count);
-                 }
+                
+            xPos = Math.random()*width1;
+            if(xPos>width1-circleSize){
+                xPos -= circleSize;
+            } 
+            else if(xPos< -xPos>width1-circleSize) {
+                xPos += xPos>width1-circleSize;
+            }
 
-                 //write xPos to the bound object for later use
-                 d.x=xPos;
-                 d.xPos = xPos;
+            //write xPos to the bound object for later use
+            d.x=xPos;
+            d.xPos = xPos;
      
-                yPos = Math.random()*height1
-                if(yPos>height1-radiusScale(d.user.followers_count)){
-                        yPos -= radiusScale(d.user.followers_count);
-                } 
-                else if(yPos< radiusScale(d.user.followers_count)) {
-                        yPos += radiusScale(d.user.followers_count);
-                }
+            yPos = Math.random()*height1
+            if(yPos>height1-circleSize){
+                yPos -= circleSize;
+            } 
+            else if(yPos< circleSize) {
+                yPos += circleSize;
+            }
 
-                //write xPos to the bound object for later use
-                d.y=yPos;
-                d.yPos = yPos;
+            //write xPos to the bound object for later use
+            d.y=yPos;
+            d.yPos = yPos;
             
-                return  'translate('+ xPos + ',' + yPos + ')'; 
-            });
-    
-    circleSize = 8;
+            return  'translate('+ xPos + ',' + yPos + ')'; 
+        });
     
     circles
         .append('circle')
@@ -457,12 +457,12 @@ function drawUsers(data) {
                 tree = d3.layout.tree()
                     //x controls length (360 for radial degrees. y controls radial distance. 
                     //Node size is set when circles are drawn, below.
-                    .size([360,circleSize*1.3]) //why won't this work with an anonymous function? returns NaN...
-                    .separation(function(a, b) {
+                    .size([360*4,circleSize]); //why won't this work with an anonymous function? returns NaN...
+                    //.separation(function(a,b) {
                         //set ideal separation between satellites (doesn't do much, but have to have it,
                         //or node x,y position calculation returns NaN)
-                        return 5;//radiusScale(a.size) + radiusScale(b.size);
-                    });
+                    //    return 2;//radiusScale(a.size) + radiusScale(b.size);
+                    //});
                 
                 
                 //apply the layout to the data
@@ -481,7 +481,7 @@ function drawUsers(data) {
                       .attr("transform", function(d,i) {                    
                           //draw the satellite nodes around the center and translate to the 
                           //appropriate radial distance.
-                          return "rotate(" + (d.x - 90) + ") translate(" + d.y + ")";
+                          return "rotate(" + (d.x) + ") translate(" + (10 + (i*.05)) + ")";
                       });
                       
 
@@ -763,10 +763,46 @@ function tick(e){
         circles = plot1.selectAll('.circ');
         circles.each(collide(.25));
     
+        circles.each(multiGravity(.01));//gravity(.01);
+    
         circleGroups.each(function(d,i){
             d3.select(this).attr('transform', 'translate(' + d.x + ',' + d.y + ')');
         })
+        
+        function gravity(k){  
+
+            //custom gravity: data points gravitate towards a straight line
+            return function(d){
+                d.y += (height1/2 - d.y)*k;
+                d.x += (d.xPos*.5 + width1/4 - d.x)*k;//(d.xPos - d.x)*k;
+            }
+        }
             
+        function multiGravity(k){
+            //custom gravity: data points gravitate towards a straight line
+            return function(d){
+                var focus = {};
+                
+                if (d.text.substring(0,2)== "RT"){
+                    focus.x = width1/2;
+                }
+                //should be @username for a reply or direct message
+                else if (d.text.substring(0,1) == "@"){
+                    focus.x = width1/3 - width1/4;
+                }
+                //should be nothing for fresh tweet
+                else {
+                    focus.x = (2*width1)/3+width1/4;
+                }
+
+                //focus.x = (d.xPos < width/2)?(width/3-100):(width*2/3+100);
+                focus.y = height1/2;
+
+                d.y += (focus.y - d.y)*k;
+                d.x += (focus.x - d.x)*k;
+            }
+        }
+
         
 }
 
@@ -785,7 +821,7 @@ function collide(alpha){
         var x = d.x - quad.point.x,
             y = d.y - quad.point.y,
             l = Math.sqrt(x * x + y * y),
-            r = d.r + quad.point.r + 15;
+            r = d.r + quad.point.r + 20;
         if (l < r) {
           l = (l - r) / l * alpha;
           d.x -= x *= (l*.3);
