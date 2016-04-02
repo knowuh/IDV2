@@ -7,8 +7,8 @@ body {
 	width:15%;
 	height:350px;
     float:left;
-	position: relative;
-	background:#e6fff9;
+    position: relative;
+	background:none;
 }
 
 .sidebar {
@@ -16,7 +16,7 @@ body {
 	height:350px;
     float:left;
 	position: relative;
-	background:#fdf4ff;
+	background:none;
 }
 
 
@@ -25,27 +25,27 @@ body {
 	height:400px;
     float:left;
 	position: relative;
-	background:white;
+	background:none;
 }
 
 .plot1 {
-	width:70%;
+	width:60%;
 	height:350px;
     float:left;
 	position: relative;
-	background:white;
+	background:none;
 }
 
 .plot2 {
     clear:both;
-	width:100%;
+	width:90%;
 	height:140px;
 	position: relative;
-	background:#e6f9ff;
+	background:none;
 }
 
-.legendLabel {
-    font: 9px sans-serif;
+.legendLabel    {
+    font: 10px sans-serif;
     fill: darkgray;
 }
 

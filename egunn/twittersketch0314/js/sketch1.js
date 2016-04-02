@@ -31,6 +31,8 @@ var width2 = document.getElementById('plot2').clientWidth - margin.r - margin.l,
 //for now, not linked to actual data - later, set max according to numbers stored in data object. 
 var radiusScale = d3.scale.sqrt().domain([0,20000]).range([10,50]);
 
+var multiGravityOn = false;
+
 
 //select the HTML plot element by class
 var userCanvas = d3.select(".user");
@@ -93,7 +95,7 @@ plot2 = canvas2.append('svg')
 
 //load twitter data, then call draw function.
 //d3.json("./twitter_data2.json", function(error, data) {
-d3.json("./MichaelPollan_0320_100timeline.json", function(error, data) {
+d3.json("./AlbertoCairo_0320_100timeline.json", function(error, data) {
     
     //check that you can access data (this gives follower count for a specific user)
     //console.log(data.statuses[0].user.followers_count); 
@@ -150,7 +152,7 @@ function drawUsers(data) {
     
     userData.append('rect')
         .attr('rx',5).attr('ry',5)
-        .attr('x',userWidth/2-photoWidth/2)
+        .attr('x',0)//userWidth/2-photoWidth/2)
         .attr('y',10)
         .attr('width',photoWidth)
         .attr('height',photoWidth)
@@ -179,7 +181,7 @@ function drawUsers(data) {
     }*/
     
     userData.append("svg:image")
-       .attr('x',userWidth/2-photoWidth/2+5)
+       .attr('x',5)//userWidth/2-photoWidth/2+5)
        .attr('y',15)
        .attr('width', 90)
        .attr('height', 90)
@@ -188,7 +190,7 @@ function drawUsers(data) {
     
     userData.append('text')
         .style('text-anchor','middle')
-        .attr('x',userWidth/2)
+        .attr('x',50)//userWidth/2)
         .attr('y',photoWidth/2+photoWidth)
         .style('font-size',14)
         .style('fill','gray')
@@ -196,7 +198,7 @@ function drawUsers(data) {
     
     userData.append('text')
         .style('text-anchor','middle')
-        .attr('x',userWidth/2)
+        .attr('x',50)//userWidth/2)
         .attr('y',photoWidth/2+photoWidth+13)
         .style('font-size',10)
         .style('fill','gray')
@@ -205,7 +207,7 @@ function drawUsers(data) {
     
     userData.append('text')
         .style('text-anchor','middle')
-        .attr('x',userWidth/2)
+        .attr('x',50)//userWidth/2)
         .attr('y',photoWidth/2+photoWidth+36)
         .style('font-size',10)
         .style('fill','gray')
@@ -220,47 +222,50 @@ function drawUsers(data) {
     sidebarData.append('rect')
         .attr('rx',5).attr('ry',5)
         .attr('x',userWidth/2-65)
-        .attr('y',100+10)
+        .attr('y',20)
         .attr('width',130)
         .attr('height',20)
-        .style('fill','lightgray');
+        .style('fill','rgba(95, 95, 95, .7)')
+        .on('click', mouseClickCategories);
     
     sidebarData.append('text')
         .style('text-anchor','middle')
+        .attr('class','multi-toggle')
         .attr('x',userWidth/2)
-        .attr('y',100+23)
-        .style('font-size',8)
+        .attr('y',33)
+        .style('font-size',10)
         .style('fill','white')
-        .text('Separate into Categories');
+        .text('Separate Categories')
+        .on('click', mouseClickCategories);
     
     sidebarData.append('text')
         .style('text-anchor','left')
-        .attr('x',-5)
-        .attr('y',200)
+        .attr('x',userWidth/2-65)
+        .attr('y',75)
         .style('font-size',14)
         .style('fill','gray')
-        .text("Enter new user to view:");
+        .text("New user:");
     
     sidebarData.append('rect')
         .attr('rx',5).attr('ry',5)
         .attr('x',userWidth/2-65)
-        .attr('y',200+10)
+        .attr('y',75+10)
         .attr('width',130)
         .attr('height',20)
-        .style('fill','lightgray');
+        .style('fill','rgba(95, 95, 95, .7)');
     
     sidebarData.append('text')
         .style('text-anchor','middle')
         .attr('x',userWidth/2-55)
-        .attr('y',200+23)
+        .attr('y',75+23)
         .style('font-size',8)
         .style('fill','white')
         .text('|');
         
     sidebarData.append('text')
         .style('text-anchor','left')
-        .attr('x',-5)
-        .attr('y',260)
+        .attr('x',userWidth/2-65)
+        .attr('y',150-10)
         .style('font-size',14)
         .style('fill','gray')
         .text("or:");
@@ -268,19 +273,20 @@ function drawUsers(data) {
     sidebarData.append('rect')
         .attr('rx',5).attr('ry',5)
         .attr('x',userWidth/2-65)
-        .attr('y',260+10)
+        .attr('y',150)
         .attr('width',130)
         .attr('height',20)
-        .style('fill','lightgray')
+        .style('fill','rgba(95, 95, 95, .7)')
         .on('click', multUsers);
     
     sidebarData.append('text')
         .style('text-anchor','middle')
         .attr('x',userWidth/2)
-        .attr('y',260+23)
-        .style('font-size',8)
+        .attr('y',150+13)
+        .style('font-size',10)
         .style('fill','white')
-        .text('Compare multiple users');
+        .text('Compare users')
+        .on('click', multUsers);;
     
     
 
@@ -294,24 +300,24 @@ function drawUsers(data) {
      var legend = plot1.append('g').attr('class','legend');
     
      legend.append('circle')
-        .attr('cx',-15).attr('cy',0).attr('r',5).style('fill','rgba(153, 255, 150,.6)');
-     legend.append('text').attr('class','legendLabel')
-        .attr('x',-5).attr('y',3).text("is a retweet");
+        .attr('cx',-15).attr('cy',15).attr('r',5).style('fill','rgba(102, 0, 102,.6)').attr('class','legendCircle'); 
+     legend.append('text').attr('class','legendLabel-retweet legendLabel')
+        .attr('x',-5).attr('y',18).text("retweet");
     
      legend.append('circle')
-        .attr('cx',-15).attr('cy',15).attr('r',5).style('fill','rgba(153, 255, 230,.6)');
-     legend.append('text').attr('class','legendLabel')
-        .attr('x',-5).attr('y',18).text("@reply");
+        .attr('cx',-15).attr('cy',30).attr('r',5).style('fill','rgba(0, 179, 179,.6)').attr('class','legendCircle');
+     legend.append('text').attr('class','legendLabel-reply legendLabel')
+        .attr('x',-5).attr('y',33).text("@reply");
     
      legend.append('circle')
-        .attr('cx',-15).attr('cy',30).attr('r',5).style('fill','rgba(153, 185, 230,.6)');
-     legend.append('text').attr('class','legendLabel')
-        .attr('x',-5).attr('y',33).text("new");
+        .attr('cx',-15).attr('cy',45).attr('r',5).style('fill','rgba(255, 140, 26,.6)').attr('class','legendCircle');
+     legend.append('text').attr('class','legendLabel-new legendLabel')
+        .attr('x',-5).attr('y',48).text("new tweet");
     
      legend.append('circle')
-        .attr('cx',-15).attr('cy',45).attr('r',2).style('fill','rgba(153, 155, 230, .9)');
-     legend.append('text').attr('class','legendLabel')
-        .attr('x',-5).attr('y',48).text("# retweets");            
+        .attr('cx',-15).attr('cy',60).attr('r',2).style('fill','rgba(95, 95, 95, .7)').attr('class','legendCircle legendCircle-satellite');
+     legend.append('text').attr('class','legendLabel-satellite legendLabel')
+        .attr('x',-5).attr('y',63).text("# retweets");            
 
     var circleSize = 8;
     
@@ -364,7 +370,7 @@ function drawUsers(data) {
             //use substring(0,x) to get first few letters of each tweet.
             //should be RT for retweet
             if (d.text.substring(0,2)== "RT"){
-                var color = 'rgba(153, 255, 150,' 
+                var color = 'rgba(102, 0, 102,' 
                 var alpha = .5;
                 d.alpha = alpha;
                 d.color = color;
@@ -372,7 +378,7 @@ function drawUsers(data) {
             }
             //should be @username for a reply or direct message
             else if (d.text.substring(0,1) == "@"){
-                var color = 'rgba(153, 255, 230,'
+                var color = 'rgba(0, 179, 179,'
                 var alpha = .5;
                 d.alpha = alpha;
                 d.color = color;
@@ -380,7 +386,7 @@ function drawUsers(data) {
             }
             //should be nothing for fresh tweet
             else {
-                var color = 'rgba(153, 185, 230,'
+                var color = 'rgba(255, 140, 26,'
                 var alpha = .5;
                 d.alpha = alpha;
                 d.color = color;
@@ -487,7 +493,7 @@ function drawUsers(data) {
 
                 nodes.append("circle")
                     .attr("r", 1)
-                    .style("fill",'rgba(153, 155, 230, .9)'); 
+                    .style("fill",'rgba(95, 95, 95, .7)'); 
 
 
                 
@@ -508,14 +514,14 @@ function drawUsers(data) {
         timeline.append('line')
             .attr('x1',65)
             .attr('y1',15+i*25)
-            .attr('x2',width2-30)
+            .attr('x2',width2)
             .attr('y2',15+i*25)
             .style('stroke','gray')
             .style('stroke-width',0.2);
         
         timeline.append('text')
             .style('text-anchor','left')
-            .attr('x',5)
+            .attr('x',0)
             .attr('y',15+i*25+3)
             .style('font-size',10)  
             .style('fill','gray')
@@ -706,6 +712,8 @@ function mouseHighlightTimeline(d){
     //console.log(d);
     var xShift = d.xcoord+40;
     var yShift = 25+(d.yaxis-1)*25;
+    var circleSize = 8;
+        
     div2.transition()		
         .duration(200)		
         .style("opacity", .8);		
@@ -763,13 +771,21 @@ function tick(e){
         circles = plot1.selectAll('.circ');
         circles.each(collide(.25));
     
-        circles.each(multiGravity(.01));//gravity(.01);
+        if (!multiGravityOn){
+            circles.each(gravity(.01));//gravity(.01);
+        }
+    
+        else if (multiGravityOn){
+            circles.each(multiGravity(.01));//gravity(.01);
+        }
+
     
         circleGroups.each(function(d,i){
             d3.select(this).attr('transform', 'translate(' + d.x + ',' + d.y + ')');
         })
         
         function gravity(k){  
+            //console.log('singlesgrvity');
 
             //custom gravity: data points gravitate towards a straight line
             return function(d){
@@ -779,20 +795,21 @@ function tick(e){
         }
             
         function multiGravity(k){
+            //console.log('multigrvity');
             //custom gravity: data points gravitate towards a straight line
             return function(d){
                 var focus = {};
                 
                 if (d.text.substring(0,2)== "RT"){
-                    focus.x = width1/2;
+                    focus.x = width1/3 - width1/6;
                 }
                 //should be @username for a reply or direct message
                 else if (d.text.substring(0,1) == "@"){
-                    focus.x = width1/3 - width1/4;
+                    focus.x = width1/2;
                 }
                 //should be nothing for fresh tweet
                 else {
-                    focus.x = (2*width1)/3+width1/4;
+                    focus.x = (2*width1)/3+width1/6;
                 }
 
                 //focus.x = (d.xPos < width/2)?(width/3-100):(width*2/3+100);
@@ -834,4 +851,94 @@ function collide(alpha){
     });
   };
           
+}
+
+function mouseClickCategories() {
+    if (multiGravityOn == true){
+        multiGravityOn = false;
+        
+        sidebarData.select('.multi-toggle')
+            .text('Separate into Categories');
+        
+        plot1.select('.legendLabel-reply')
+            .transition(100)
+            .style('font-size',10)
+            .attr('text-align','left')
+            .attr('x',-5)
+            .attr('y',18);
+        
+        plot1.select('.legendLabel-retweet')
+            .transition(100)
+            .style('font-size',10)
+            .attr('text-align','left')
+            .attr('x',-5)
+            .attr('y',33);
+        
+                
+        plot1.select('.legendLabel-new')
+            .transition(100)
+            .style('font-size',10)
+            .attr('text-align','left')
+            .attr('x',-5)
+            .attr('y',48);
+        
+        plot1.selectAll('.legendCircle')
+            .transition(100)
+            .attr('r',5);
+        
+        plot1.select('.legendCircle-satellite')
+            .transition(100)
+            .attr('r',2);
+        
+        plot1.select('.legendLabel-satellite')
+            .transition(100)
+            .style('fill','darkgray');
+  
+    }
+    
+    else if (multiGravityOn == false){
+        multiGravityOn = true;
+        
+        sidebarData.select('.multi-toggle')
+            .text('Mix all Categories');
+        
+        plot1.select('.legendLabel-reply')
+            .transition(100)
+            .style('font-size',14)
+            .attr('text-align','middle')
+            .attr('x',width1/3 - width1/6-25)
+            .attr('y',18);
+        
+        plot1.select('.legendLabel-retweet')
+            .transition(100)
+            .style('font-size',14)
+            .attr('text-align','middle')
+            .attr('x',width1/2-25)
+            .attr('y',18);
+        
+                
+        plot1.select('.legendLabel-new')
+            .transition(100)
+            .style('font-size',14)
+            .attr('text-align','middle')
+            .attr('x',(2*width1)/3+width1/6-25)
+            .attr('y',18);
+        
+        plot1.selectAll('.legendCircle')
+            .transition(100)
+            .attr('r',0);
+        
+        plot1.select('.legendLabel-satellite')
+            .transition(100)
+            .style('fill','none');
+        
+        
+    }
+    
+    //console.log(multiGravity);
+    
+    force.nodes(twitterData)
+        .on('tick',tick)
+        .start();
+
 }
