@@ -1,0 +1,24 @@
+{
+    "clinton": {
+        "economy": 9,
+        "environment": 2,
+        "justice": 6,
+        "security": 56
+    },
+    "cruz": {
+        "economy": 17,
+        "justice": 7,
+        "security": 12
+    },
+    "sanders": {
+        "economy": 54,
+        "environment": 36,
+        "justice": 24,
+        "security": 18
+    },
+    "trump": {
+        "economy": 1,
+        "environment": 5,
+        "security": 19
+    }
+}

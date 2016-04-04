@@ -20,8 +20,10 @@ class PlacePlugin(object):
 
     def process(self, arrayOfTweets):
         for i, tweet in enumerate(arrayOfTweets):
-            tweet['country'] = deep_fetch(tweet,'place.country')
-            tweet['city']    = deep_fetch(tweet,'place.city')
-            tweet['country_code'] = deep_fetch(tweet,'place.country_code')
-            tweet['bounding_box'] = deep_fetch(tweet,'place.bounding_box.coordinates')
+            tweet['country'] = deep_fetch(tweet, 'place.country')
+            place_type = deep_fetch(tweet, 'place.place_type')
+            if place_type == 'city':
+                tweet['city'] = deep_fetch(tweet, 'place.name')
+            tweet['country_code'] = deep_fetch(tweet, 'place.country_code')
+            tweet['bounding_box'] = deep_fetch(tweet, 'place.bounding_box.coordinates')
             self.random_coord(tweet)

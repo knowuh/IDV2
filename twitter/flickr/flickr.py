@@ -2,10 +2,8 @@
 import json
 import time
 import flickrapi
-from utils.utils import print_dict, parseTime
 
 timestamp = int(time.time())
-
 
 class Flickr(object):
     OutDoors = 2;
@@ -33,6 +31,7 @@ class Flickr(object):
         return { 'info': info, 'url': url }
 
     def add_info(self, photo):
+        # see dict.update in python docs
         photo.update(self.get_info(photo))
 
     def add_info_to_results(self):
@@ -65,14 +64,3 @@ class Flickr(object):
             print photo.get('url')
             print photo.get('title')
 
-
-if __name__ == '__main__':
-    boston = '5MvaTZJTUbx1uPnP'
-    hongkong = '4Jji9AVTVrLRrBR9Zg'
-    bejing = 'vQ6vOjpTU7_QE6S8'
-
-    fboston = Flickr({
-        'place_id': bejing,
-        'min_taken_date': parseTime('2016-03-23')
-    })
-    fboston.test()
