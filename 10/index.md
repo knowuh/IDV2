@@ -21,13 +21,13 @@ We have **Two** classes, and **Three** weeks before final projects are due.
 
 ### Words of Advice
 * The 'todo after classes end list'.
-* Calm steady work
 * Visibility of Dietmar & IDV program
 * Importance of being visible
    * website / gh-pages
    * book to hand to people
 * Backup your work like a maniac.
    * Google drive, USB, dropbox, box, GITHUB. (github pages / jeckyl)
+* Calm steady work, eg: [David Bull's Ukiyo-e](https://www.youtube.com/watch?v=QGe06AOy-Jg&list=PLK-Wicsj5rAbMtuVfuMq_F4-yfcKcjjNP&index=2)
 
 
 ### Fixing common git issues:
