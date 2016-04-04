@@ -1,4 +1,4 @@
-# Class 08 April 04 2016:
+# Class 10 April 04 2016:
 
 We have **Two** classes, and **Three** weeks before final projects are due.
 
