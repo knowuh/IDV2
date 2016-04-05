@@ -123,8 +123,9 @@ table = connect_db()
 search_terms = [
     "#zika", "gunviolence" , "#massshooting",
     "donald trump", "marko rubio", "TED CRUZ", "jeb bush", "#marketcrash", "#stockcrash",
-    "bernie sanders", "hillary clinton", "#ocw", "#blm", "#Flint", "#istandwithsalman", "#SalmanRushdie",
-    "#foodporn", "#instafood", "#fashion", "#blackandwhite"
+    "bernie sanders", "hillary clinton", "#blm", "#Flint", "#istandwithsalman", "#SalmanRushdie",
+    "#foodporn", "#instafood", "#fashion",
+    "#Trump2016", "#TedCruz", "#Hillary2016", "#Bernie2016",
+    "#MakeAmericaGreatAgain", "#CruzCrew", "#ImWithHer", "#FeelTheBern"
 ]
-
 stream(connection, table, search_terms=search_terms)

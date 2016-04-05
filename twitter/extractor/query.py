@@ -1,9 +1,14 @@
 import boto3
 from boto3.dynamodb.conditions import Key, Attr
-from extractor.utils import deep_fetch
+from utils.utils import deep_fetch
+
 
 class Query(object):
-    def __init__(self, tag, limit=100, plugins=[]):
+    ImageFitler = Attr('image').exists()
+    GeoFilter = Attr('coordinates').exists()
+    PlaceFilter = Attr('place').exists()
+
+    def __init__(self, tag, limit=100, plugins=[], qFilter=None):
         dynamodb = boto3.resource('dynamodb')
         self.limit = limit
         self.indexName = 'search_term-timestamp-index'
@@ -13,16 +18,16 @@ class Query(object):
         self.results = []
         self.resultCount = 0
         self.lastKey = None
-        self.filter  = Attr('image').exists()
+        self.filter = qFilter
         self.plugins = plugins
 
     def _query_(self):
-        results = {}
         args = {
             'KeyConditionExpression': self.conditions,
-            'IndexName': self.indexName,
-            'Limit': self.limit
+            'IndexName': self.indexName
         }
+        if self.limit:
+            args['Limit'] = self.limit
         if self.lastKey:
             args['ExclusiveStartKey'] = self.lastKey
         if self.filter:

@@ -50,9 +50,9 @@ Students are expected to attend all classes. Absence for health or personal reas
 6. `Feb 29` __[Project proposals](./06/):__ Students present their proposals and mockups for initial review. We refine them in class. _Presentations from Lorzenzo, Sever, Cara_.
 7. `Mar 14` __[Challenges](./07/):__ Students discuss the greatest challenges they face in their chosen project. We address technical fears and challenges together in the class, and begin working on our prototypes. _Presentations from June and Andrew_.
 7. `Mar 21` __[Work](./08):__ Studio work. Solving problems. Making Prototypes. _Presentations from Kimi and Jiani_.
-8. `Mar 28` __★ Midterm review:__ Students present prototypes of their final projects for review. Key technical challenges should be addressed or hidden by means of fakery, so we can focus on the visual design in critique.
-9. `Apr  4` __Blockers:__ A last call to mitigate any remaining technical design challenges that threaten the final project. _Presentations from Jessie and Patric_.
-10. `Apr 11` __Refinement:__ At this point no substantial changes should be happening. We are only tightening the presentation of the designs. _Presentation from Ryan and Navi_.
+8. `Mar 28` __★ [Midterm review](./09):__ Students present prototypes of their final projects for review. Key technical challenges should be addressed or hidden by means of fakery, so we can focus on the visual design in critique.
+9. `Apr  4` __[Blockers and words of advice](./10):__ A last call to mitigate any remaining technical design challenges that threaten the final project. _Presentations from Jessie and Patric_.
+10. `Apr 11` __Refinement:__ At this point no substantial changes should be happening. We are only tightening the presentation of the designs. _Presentation from Ryan, Navi, and Lia_.
 11. `Apr 25` __★ Final Project presentations.__
 
 
