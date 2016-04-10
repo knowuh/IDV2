@@ -102,3 +102,18 @@ circle:hover {
     font-size:12px;
 }
 
+
+input {
+    border-radius: 5px;
+    border:none;
+    background: rgba(95, 95, 95, .7); 
+    font-family: "Roboto",Arial,sans-serif; 
+    color:white; 
+    padding: 0px 1px; 
+    font-size: 12px; 
+    height: 20px;
+    width:130px;
+    margin: 20px 10px 20px 0;
+}
+
+input:focus { background-color:lightgray; outline: none; color:gray;}

@@ -95,7 +95,7 @@ plot2 = canvas2.append('svg')
 
 //load twitter data, then call draw function.
 //d3.json("./twitter_data2.json", function(error, data) {
-d3.json("./AlbertoCairo_0320_100timeline.json", function(error, data) {
+d3.json("./MichaelPollan_0320_100timeline.json", function(error, data) {
     
     //check that you can access data (this gives follower count for a specific user)
     //console.log(data.statuses[0].user.followers_count); 
@@ -232,13 +232,13 @@ function drawUsers(data) {
         .style('text-anchor','middle')
         .attr('class','multi-toggle')
         .attr('x',userWidth/2)
-        .attr('y',33)
-        .style('font-size',10)
+        .attr('y',34)
+        .style('font-size',12)
         .style('fill','white')
         .text('Separate Categories')
         .on('click', mouseClickCategories);
     
-    sidebarData.append('text')
+    /*sidebarData.append('text')
         .style('text-anchor','left')
         .attr('x',userWidth/2-65)
         .attr('y',75)
@@ -268,7 +268,7 @@ function drawUsers(data) {
         .attr('y',150-10)
         .style('font-size',14)
         .style('fill','gray')
-        .text("or:");
+        .text("or:");*/
     
     sidebarData.append('rect')
         .attr('rx',5).attr('ry',5)
@@ -282,11 +282,34 @@ function drawUsers(data) {
     sidebarData.append('text')
         .style('text-anchor','middle')
         .attr('x',userWidth/2)
-        .attr('y',150+13)
-        .style('font-size',10)
+        .attr('y',150+14)
+        .style('font-size',12)
         .style('fill','white')
         .text('Compare users')
-        .on('click', multUsers);;
+        .on('click', multUsers);
+    
+    var inputName = undefined;
+
+    //add a text input box, and save the input as a variable
+    sidebarData.append("foreignObject")
+        //.attr("width", '100px')
+        //.attr("height", 40)
+        .attr('transform','translate(-54,65)')
+        .append("xhtml:body") 
+        .attr('class','input-box')
+        .html("<form><input type=text id=\"check\" placeholder=\"  Enter a new user\" /></form>")
+        //.attr('style','width:50px')
+        .on("submit", function(){inputName = document.getElementById("check").value;
+            reloadData(inputName);
+        });
+        
+    //tell the text entry box not to reload the page when you hit "enter"
+    $('.input-box')
+        //.attr('style', 'width=50px')
+        .submit(function(e){
+            e.preventDefault();
+            //do something
+    });
     
     
 
@@ -761,6 +784,30 @@ function noMouseHighlightTimeline(d){
         .delay(500)
         .style('fill', function(d){return d.color + d.alpha+ ')'});
 
+}
+
+function reloadData(inputName){
+    console.log('reloadData ' + inputName);
+    if (inputName[0] == '@'){
+        console.log('@ included');
+    }
+    //add an @ symbol, if the user didn't
+    else {
+        inputName = '@' + inputName;
+        console.log(inputName);
+    }
+    
+    plot1.selectAll("*").remove();
+    plot2.selectAll("*").remove();
+    sidebarPlot.selectAll("*").remove();
+    userPlot.selectAll("*").remove();
+    tweetInterval = 0;
+    
+    //load this link to call data live from Twitter
+    //http://ericagunn.com/Twitter/TwitterDataAppAnyUser.php?screen_name=engunneer&count=100
+    d3.json('http://ericagunn.com/Twitter/TwitterDataAppAnyUser.php?screen_name=' + inputName + '&count=100', function(error, data){
+        parse(data);
+    });
 }
 
 function tick(e){
