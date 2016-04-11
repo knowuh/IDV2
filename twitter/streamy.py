@@ -106,7 +106,7 @@ search_terms = [
     "bernie sanders", "hillary clinton", "#blm", "#Flint", "#istandwithsalman", "#SalmanRushdie",
     "#foodporn", "#instafood", "#fashion",
     "#Trump2016", "#TedCruz", "#Hillary2016", "#Bernie2016",
-    "#MakeAmericaGreatAgain", "#CruzCrew", "#ImWithHer", "#FeelTheBern"
+    "#MakeAmericaGreatAgain", "#CruzCrew", "#ImWithHer", "#FeelTheBern, #panamapapers"
 ]
 
 myStreamListener = MyStreamListener(search_terms)

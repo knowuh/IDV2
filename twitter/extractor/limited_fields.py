@@ -2,7 +2,7 @@ from utils.utils import deep_fetch
 
 class LimitedFields(object):
 
-    def __init__(self,fields=[]):
+    def __init__(self, fields=[]):
         self.fields = fields
 
     def process(self, arrayOfTweets):
