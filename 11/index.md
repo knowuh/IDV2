@@ -53,8 +53,8 @@ Discussion: What do we expect to see in final presentations and projects? What i
 
 - [SNIF Labs](http://bit.ly/1YqhnGH)
 - Concord
-    - Dashboard report
-    - Sage
+    - []Dashboard report](http://portal-report.concord.org/branch/master)
+    - [Sage](http://concord-consortium.github.io/building-models/sage.html)
 - [Synthetic Photography](http://paessel.com/portfolio/synthetic_photography.html)
 
 ###
