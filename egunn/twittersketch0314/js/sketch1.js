@@ -905,7 +905,7 @@ function mouseClickCategories() {
         multiGravityOn = false;
         
         sidebarData.select('.multi-toggle')
-            .text('Separate into Categories');
+            .text('Separate Categories');
         
         plot1.select('.legendLabel-reply')
             .transition(100)
