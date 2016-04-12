@@ -1,5 +1,5 @@
 //set some margins and record width and height of window
-var margin = {t:25,r:40,b:25,l:40};
+var margin = {t:25,r:10,b:25,l:10};
 
 var userWidth = document.getElementById('user1').clientWidth - margin.r - margin.l,  
     userHeight = document.getElementById('user1').clientHeight - margin.t - margin.b;
