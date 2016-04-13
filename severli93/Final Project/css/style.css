@@ -1,0 +1,83 @@
+
+
+.header-cont{
+    width:100%;
+    position:fixed;
+    top:0px;
+    background-color:
+    rgba(255,255,255,.7);
+    z-index: 2;
+}
+.header {  width:100%;  }
+
+body { font-family: sans-serif; }
+
+.content{ margin: 50px auto;}
+
+.title{margin-left: 20px ;}
+
+#MapPlot1 {height: 500px;  }
+
+#MapPlot2 {  height: 500px;  }
+
+.node {  stroke-width: 1.5px;  }
+
+.Photos{  height:300px;  }
+* { box-sizing: border-box; }
+
+
+/* ---- grid ---- */
+
+.grid {
+    /*background: #EEE;*/
+    max-width: 100%;
+    max-height:100%;
+
+}
+
+/* clearfix */
+.grid:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+/* ---- grid-item ---- */
+
+.grid-item {
+    width: 70px;
+    height: 60px;
+    float: left;
+    background: #00b3ee;
+    /*border: 1px solid #333;*/
+    /*border-color: hsla(0, 0%, 0%, 0.5);*/
+    border-radius: 5px;
+    margin-bottom: 3px;
+    margin-right: 2px;
+}
+
+/*.grid-item--width2 { width: 45%; }*/
+/*.grid-item--width3 { width: 70%; }*/
+/*.grid-item--width4 { width: 95%; }*/
+
+/*.grid-item--height2 { height: 100px; }*/
+/*.grid-item--height3 { height: 130px; }*/
+/*.grid-item--height4 { height: 180px; }*/
+
+
+.grid-item--gigante {
+    width: 320px;
+    height: 360px;
+    z-index: 2; /* above other items */
+}
+
+.grid-item:hover {
+    background: #A2C;
+    border-color: white;
+    cursor: pointer;
+}
+.grid-item2:hover {
+    background: #A2C;
+    border-color: white;
+    cursor: pointer;
+}
