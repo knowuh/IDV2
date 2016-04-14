@@ -1,21 +1,36 @@
 /*jshint laxbreak: true, browser: true*/
 
 var canvas       = document.getElementById("canvas").getContext("2d");
-var canvasHeight = 500;
-var canvasWidth  = 500;
+var canvasHeight = 400;
+var canvasWidth  = 400;
+
+/***********************************************
+* Function to set the fill color of the triangles *
+***********************************************/
+
+
+var setColor = function (hue, sat, light, alpha) {
+  var colorString = "hsla("
+    + hue   + ", "
+    + sat   + "%, "
+    + light + "%, "
+    + alpha + ")";
+  canvas.fillStyle = colorString;
+};
+
 
 
 /***********************************************
 * Function draw a single Triangle at x,y       *
 ***********************************************/
 var drawTriangle = function (centerX, centerY, diameter) {
-  var radius = diameter / 2;
+  var radius = diameter;
   
-  var top    = centerY - radius;
-  var bottom = centerY + radius;
+  var top    = centerY + radius;
+  var bottom = centerY - radius;
   
-  var left   = centerX - radius;
-  var right  = centerX + radius;
+  var left   = centerX + radius;
+  var right  = centerX - radius;
   
   canvas.beginPath();
   canvas.moveTo(centerX, top);
@@ -24,103 +39,39 @@ var drawTriangle = function (centerX, centerY, diameter) {
   canvas.fill();
 };
 
-/***********************************************
-* Function draw a centered line of triangles   *
-***********************************************/
-var centeredTriangles = function (numberOfTriangles) {
-  var x        = canvasWidth / 2.1;
-  var spacing  = canvasHeight / numberOfTriangles;
-  var diameter = spacing * 0.9;
-  var radius   = diameter / 2.1;
-  var triangleCounter = 0;
-  
-  while (triangleCounter < numberOfTriangles) {
-    drawTriangle(x, spacing * triangleCounter + radius, diameter);
-    triangleCounter = triangleCounter + 1;
-  }
-};
-
-// GO!
-centeredTriangles(10);
 
 
-//second triangle group
-/***********************************************
-* Function draw a single Triangle at x,y       *
-***********************************************/
-var drawTriangle = function (centerX, centerY, diameter) {
-  var radius = diameter / 3.5;
-  
-  var top    = centerY - radius;
-  var bottom = centerY + radius;
-  
-  var left   = centerX - radius;
-  var right  = centerX + radius;
-  
-  canvas.beginPath();
-  canvas.moveTo(centerX, top);
-  canvas.lineTo(right,  bottom);
-  canvas.lineTo(left,   bottom);
-  canvas.fill();
-};
 
 /***********************************************
-* Function draw a centered line of triangles   *
+* Function  draw a grid of triangles           *
 ***********************************************/
-var centeredTriangles = function (numberOfTriangles) {
-  var x        = canvasWidth / 2;
-  var spacing  = canvasHeight / numberOfTriangles;
-  var diameter = spacing * 0.8;
-  var radius   = diameter / 2;
-  var triangleCounter = 0;
+var drawGrid = function (rows, cols) {
+  var horizontalSpacing  = canvasWidth  / cols;
+  var verticalSpacing    = canvasHeight/.5 / rows;
+  var diameter = Math.min(verticalSpacing, horizontalSpacing) * 0.8;
+  var radius   = diameter ;
+  var col = 0;
+  var row = 0;
+  var triangleX = 0;
+  var triangleY = 0;
+  var hue = 5;
+  var sat = 30;
+  var light = 10;
   
-  while (triangleCounter < numberOfTriangles) {
-    drawTriangle(x, spacing * triangleCounter + radius, diameter);
-    triangleCounter = triangleCounter + 1;
-  }
+  for (col = 0; col < cols; col++) {
+    triangleX = col * horizontalSpacing + radius;
+
+    for (row = 0; row < rows; row++) {
+      light = row/rows * 80;
+      triangleY = row * verticalSpacing + radius;
+      setColor(hue, sat, light, 1);
+      drawTriangle(triangleX, triangleY, diameter);  
+    }// row
+    
+  }// col
 };
 
-// GO!
-centeredTriangles(10);
-
-//third triangle group
-/***********************************************
-* Function draw a single Triangle at x,y       *
-***********************************************/
-var drawTriangle = function (centerX, centerY, diameter) {
-  var radius = diameter / 3.5;
-  
-  var top    = centerY - radius;
-  var bottom = centerY + radius;
-  
-  var left   = centerX - radius;
-  var right  = centerX + radius;
-  
-  canvas.beginPath();
-  canvas.moveTo(centerX, top);
-  canvas.lineTo(right,  bottom);
-  canvas.lineTo(left,   bottom);
-  canvas.fill();
-};
-
-/***********************************************
-* Function draw a centered line of triangles   *
-***********************************************/
-var centeredTriangles = function (numberOfTriangles) {
-  var x        = canvasWidth /2.2;
-  var spacing  = canvasHeight / numberOfTriangles;
-  var diameter = spacing * 0.8;
-  var radius   = diameter / 2.2;
-  var triangleCounter = 0;
-  
-  while (triangleCounter < numberOfTriangles) {
-    drawTriangle(x, spacing * triangleCounter + radius, diameter);
-    triangleCounter = triangleCounter + 1;
-  }
-};
-
-// GO!
-centeredTriangles(10);
-
+// Here we just do our work:
+drawGrid(3,3);
 
 

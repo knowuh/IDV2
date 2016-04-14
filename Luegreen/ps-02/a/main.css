@@ -3,14 +3,17 @@ body {
   background-color: hsla(180, 10%, 95%, 1.0);
   color: hsla(0, 10%, 10%, 1.0);
   margin: 2em;
-  font-size: 12pt;
+  font-size: 18pt;
 }
 
+/*
 h1,
 h2,
 h3,
 h4,
 h5,
+*/
+/*
 strong {
   color: rgb(150,150,32);
   text-transform: uppercase;
@@ -18,10 +21,17 @@ strong {
   margin-top: 1.5em;
   margin-bottom: 0em;
 }
+*/
+
+/*
+nav {
+    color: rgb(150,150,32);
+}
+*/
 
 a {
   text-decoration: none;
-  color: hsla(180, 60%, 30%, 1.0);
+  color: hotpink;
 }
 
 a:hover {
@@ -92,28 +102,38 @@ span.date {
   font-family: monospace;
 }
 
+/*
 span.title {
   font-weight: bold;
   text-transform: uppercase;
   font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: hsla(0, 5%, 60%, 1.0);
 }
+*/
 
+/*
 code {
   color: black;
   padding: .1em;
   border-radius: 4px;
 }
+*/
 
+/*
 span.description {
   font-weight: normal;
   margin-left: 0.3em;
 }
+*/
 
+/*
 span.title::before {
   content: " – ";
 }
+*/
 
+/*
 span.title::after {
   content: ":";
 }
+*/
