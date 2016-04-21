@@ -23,11 +23,27 @@ def foodporn():
     query = Query(search_term, limit=400, qFilter=Query.ImageFitler, plugins=[SentimentPlugin()])
     save(search_term, query.get_results())
 
+def panama():
+    search_term = "#panamapapers"
+    fields = {
+        'x': 'x',
+        'y': 'y',
+        'country_code': 'country_code',
+        'city': 'city',
+        'text': 'text',
+        'lang': 'lang',
+        'screen_name': 'screen_name',
+        'timestamp': 'timestamp',
+        'created_at': 'created_at'
+    }
 
-def fashion():
-    search_term = "#fashion"
-    query = Query(search_term, limit=50, qFilter=Query.ImageFitler)
-    save(search_term, query.get_results())
+    query = Query(
+        tag=search_term,
+        limit=4000,
+        qFilter=Query.PlaceFilter,
+        plugins=[PlacePlugin(), LimitedFields(fields)])
+    tweets = query.get_results()
+    save(search_term, tweets)
 
 
 def zika():
@@ -91,4 +107,4 @@ def cara():
     save('cara', issues)
 
 if __name__ == '__main__':
-    zika()
+    panama()
