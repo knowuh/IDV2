@@ -53,7 +53,7 @@ Students are expected to attend all classes. Absence for health or personal reas
 8. `Mar 28` __★ [Midterm review](./09):__ Students present prototypes of their final projects for review. Key technical challenges should be addressed or hidden by means of fakery, so we can focus on the visual design in critique.
 9. `Apr  4` __[Blockers and words of advice](./10):__ A last call to mitigate any remaining technical design challenges that threaten the final project. _Presentations from Jessie and Patric_.
 10. `Apr 11` __[Refinement](./11):__ At this point no substantial changes should be happening. We are only tightening the presentation of the designs. A discussion about our mutual expectations. _Presentation from Ryan, Navi, and Lia_.
-11. `Apr 25` __★ Final Project presentations.__
+11. `Apr 25` __[★ Final project presentations](./12/) !__
 
 
 ### Weekly Structure
