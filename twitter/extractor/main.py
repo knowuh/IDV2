@@ -24,7 +24,7 @@ def foodporn():
     save(search_term, query.get_results())
 
 def panama():
-    search_term = "#panamapapers"
+    search_term = "panama papers"
     fields = {
         'x': 'x',
         'y': 'y',
