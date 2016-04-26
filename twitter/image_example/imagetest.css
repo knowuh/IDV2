@@ -1,0 +1,12 @@
+img.tweet {
+    /*max-width: 100px;*/
+    display: inline-block;
+    width: 100px;
+    margin: 2px;
+}
+
+div#tweetContainer {
+   text-align: center;
+   margin: 20px;
+   padding: 20px;
+}

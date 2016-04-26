@@ -5,16 +5,20 @@ import os
 
 import tweepy
 import boto3
+import re
 
 from time import mktime, sleep
 from dateutil import parser
 
-# put your credentials in twitter_config.json
-# see twitter_config_sample.json
-
-# This will load AWS config info from ~/.aws/config
+"""
+put your credentials in twitter_config.json
+see twitter_config_sample.json
+This will load AWS config info from ~/.aws/config
+"""
 
 os.environ["AWS_PROFILE"] = "idv2"
+
+image_matcher = re.compile(".*\.(?:jpg|gif|png|svg)")
 
 def remove_none(obj):
   if isinstance(obj, (list, tuple, set)):
@@ -48,10 +52,26 @@ def connect_db():
     return dynamodb.Table('tweets')
 
 
+def extract_image(data):
+    if not data.has_key('entities'):
+        return None
+    if not data['entities'].has_key('media'):
+        return None
+    if len(data['entities']['media'])< 1:
+        return None
+    if not data['entities']['media'][0].has_key('media_url'):
+        return None
+    media =  data['entities']['media'][0]['media_url']
+    if not image_matcher.match(media):
+        return None
+    return media
+
+
 def tweet_to_dict(tweet, search_term):
     # Remove items with '' (empty) values
     data = tweet._json.copy()
     data['screen_name'] = tweet.user.screen_name
+    data['image'] = extract_image(data)
     created_at = parser.parse(data['created_at'])
     data['timestamp'] = int(mktime(created_at.timetuple()))
     data['search_term'] = search_term
@@ -65,10 +85,10 @@ def stream(api, table, search_terms=["idv2"]):
     max_results = 1000
     rate_limit_time = 15 * 60 # 15 minutes
     last_tweet_dict = dict.fromkeys(search_terms, 0)
-    sleep_time_s=2
+    sleep_time_s=1
     while True:
         for search_term in search_terms:
-            print "%(max_results)02d  ------------------------" % {'max_results': loop_counter}
+            print "%(lcounter)02d  ------------------------" % {'lcounter': loop_counter}
             try:
                 last_tweet_dict[search_term] = search_twitter(api, last_tweet_dict[search_term], max_results, search_term, tweet_counter)
             except tweepy.TweepError:
@@ -97,8 +117,15 @@ def save_to_db(data):
         print e
         print data
 
-
 connection = connect()
 table = connect_db()
-print table
-stream(connection, table, search_terms=["#ocw","#blm","gunviolence","#gunviolence","bernie sanders","hillary clinton"])
+
+search_terms = [
+    "#zika", "gunviolence" , "#massshooting",
+    "donald trump", "marko rubio", "TED CRUZ", "jeb bush", "#marketcrash", "#stockcrash",
+    "bernie sanders", "hillary clinton", "#blm", "#Flint", "#istandwithsalman", "#SalmanRushdie",
+    "#foodporn", "#instafood", "#fashion",
+    "#Trump2016", "#TedCruz", "#Hillary2016", "#Bernie2016",
+    "#MakeAmericaGreatAgain", "#CruzCrew", "#ImWithHer", "#FeelTheBern", "panama papers"
+]
+stream(connection, table, search_terms=search_terms)

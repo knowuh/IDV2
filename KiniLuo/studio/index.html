@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Color of Cities</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="./stylesheet/style.css">
+</head>
+<body>
+
+    <div class="head">
+        <h1>
+            What is the color of your city?
+        </h1>
+        <h2> </h2>
+
+        <div class="control">
+            <div class="select">
+                <!--<span>City</span>-->
+                <select class="form-control city">
+                    <option value="">City</option>
+                    <option value="">Boston</option>
+                    <option value="">Newyork</option>
+                    <option value="">Beijing</option>
+                    <option value="">Shanghai</option>
+                </select>
+            </div>
+
+            <div class="select">
+                <!--<span>Season</span>-->
+                <select class="form-control season">
+                    <option value="">Season</option>
+                    <option value="">Spring</option>
+                    <option value="">Summer</option>
+                    <option value="">Fall</option>
+                    <option value="">Winter</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!--<div id="one">-->
+            <!--<h2>Boston</h2>-->
+        <!--</div>-->
+        <!--<div id="two">-->
+            <!--<h3>Newyork</h3>-->
+        <!--</div>-->
+        <!--<div id="three">-->
+            <!--<h4>Shanghai</h4>-->
+        <!--</div>-->
+        <!--<div id="four">-->
+            <!--<h5>Beijing</h5>-->
+        <!--</div>-->
+            <div class="plot"><canvas id="canvas" width="800" height="1200"></canvas></div>
+
+
+
+            <!--<div class="control">-->
+                    <!--<div class="select">-->
+                            <!--&lt;!&ndash;<span>City</span>&ndash;&gt;-->
+                            <!--<select class="form-control city">-->
+                                <!--<option value="">City</option>-->
+                                <!--<option value="">Boston</option>-->
+                                <!--<option value="">Newyork</option>-->
+                                <!--<option value="">Beijing</option>-->
+                                <!--<option value="">Shanghai</option>-->
+                            <!--</select>-->
+                    <!--</div>-->
+
+                    <!--<div class="select">-->
+                            <!--&lt;!&ndash;<span>Season</span>&ndash;&gt;-->
+                            <!--<select class="form-control season">-->
+                                <!--<option value="">Season</option>-->
+                                <!--<option value="">Spring</option>-->
+                                <!--<option value="">Summer</option>-->
+                                <!--<option value="">Fall</option>-->
+                                <!--<option value="">Winter</option>-->
+                            <!--</select>-->
+                    <!--</div>-->
+            <!--</div>-->
+    </div>
+
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="https://d3js.org/d3-queue.v2.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<script src="./lib/crossfilter/crossfilter.js"></script>
+
+<script src="d3.js"></script>
+</body>
+</html>

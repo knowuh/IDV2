@@ -18,3 +18,7 @@ html,body{
 	background:white;
 	height:600px;
 }
+
+h3, a {
+    color: whitesmoke;
+}

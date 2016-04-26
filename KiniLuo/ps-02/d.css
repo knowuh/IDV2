@@ -1,0 +1,22 @@
+div#heading{
+    margin-left: 50px;
+    font-family: sans-serif;
+}
+div#image1{
+    position: absolute;
+    top:100px;
+    width:50%;
+    margin-left:50px;
+}
+div#text{
+    width:400px;
+    position:absolute;
+    left:650px;
+    top:100px;
+    font-family: serif;
+    font-size: 16px;
+}
+h1{
+    font-size: 16px;
+    font-family: sans-serif;
+}
