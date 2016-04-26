@@ -90,9 +90,9 @@ var setupSurvey =function() {
       .attr("stroke", "orange")
       .attr("stroke-width", function (d){return d/2;
                                        })
-      .attr("title", function (d) {
-        return d.name;
-      })
+   //   .attr("title", function (d) {
+   //     return d.name;
+   //   })
       .attr("cx", function (d, i) {
         return xScale(i);
       })

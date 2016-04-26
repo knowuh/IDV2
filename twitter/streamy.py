@@ -8,10 +8,11 @@ import boto3
 from time import mktime, sleep
 from dateutil import parser
 
-# put your credentials in twitter_config.json
-# see twitter_config_sample.json
-
-# This will load AWS config info from ~/.aws/config
+"""
+put your credentials in twitter_config.json
+see twitter_config_sample.json
+This will load AWS config info from ~/.aws/config
+"""
 
 os.environ["AWS_PROFILE"] = "idv2"
 
@@ -22,7 +23,6 @@ def remove_none(obj):
     return type(obj)((remove_none(k), remove_none(v))
       for k, v in obj.items() if v)
   else:
-      # return obj
       if isinstance(obj, float):
           return str(obj)
       else:
@@ -72,7 +72,7 @@ class MyStreamListener(tweepy.StreamListener):
 
     def get_search_term(self,text):
         for item in self.terms:
-            if re.search(item, text,re.I):
+            if re.search(item, text, re.I):
                 return item
         else:
             return 'no tag'
@@ -98,11 +98,18 @@ class MyStreamListener(tweepy.StreamListener):
 
 
 table = connect_db()
-terms = [
-    "#zika", "gunviolence", "#gunviolence",
-    "bernie sanders", "hillary clinton", "#ocw", "#blm", "#Flint"
+
+
+search_terms = [
+    "#zika", "gunviolence" , "#massshooting",
+    "donald trump", "marko rubio", "TED CRUZ", "jeb bush", "#marketcrash", "#stockcrash",
+    "bernie sanders", "hillary clinton", "#blm", "#Flint", "#istandwithsalman", "#SalmanRushdie",
+    "#foodporn", "#instafood", "#fashion",
+    "#Trump2016", "#TedCruz", "#Hillary2016", "#Bernie2016",
+    "#MakeAmericaGreatAgain", "#CruzCrew", "#ImWithHer", "#FeelTheBern", "panama papers"
 ]
-myStreamListener = MyStreamListener(terms)
+
+myStreamListener = MyStreamListener(search_terms)
 
 while True:
     try:

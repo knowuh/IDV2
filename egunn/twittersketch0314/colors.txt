@@ -1,0 +1,11 @@
+old colors
+retweet  'rgba(153, 255, 150,.6)'	
+@ reply  'rgba(153, 255, 230,.6)'
+new tweet  'rgba(153, 185, 230,.6)'
+retweeted   'rgba(153, 155, 230, .9)'
+
+
+retweet  'rgba(102, 0, 102,.6)'	
+@ reply  'rgba(0, 179, 179,.6)'
+new tweet  'rgba(255, 140, 26,.6)'
+retweeted  'rgba(95, 95, 95, .7)'

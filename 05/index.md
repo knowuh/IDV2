@@ -83,7 +83,7 @@ We need to reschedule all our presentations. New schedule:
 Get started on modifications to your project proposal.
 
 ### Problem set 05:
-Project Proposal. Bring in 1 or 2 project proposals for next week.  Do the layout for both in HTML / CSS. The purpose of this proposal is to make us believe. It is acceptable at this phase to have large fake images (jpg?). Use 'click-handling' fakery to give us a sense of the UI.
+Project Proposal. Bring in 1 or 2 project proposals for next week.  The purpose of this proposal is to make us believe. It is acceptable at this phase to have large fake images (jpg?). Use 'click-handling' fakery to give us a sense of the UI if applicable.
 
 
 ## Snow Day Slack Links:

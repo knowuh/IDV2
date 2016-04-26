@@ -23,9 +23,10 @@ module.exports = function(grunt) {
         files: [
           {
             expand: true,
-            src: '0*/*.md',
+            src: '[1|0]*/*.md',
             ext: '.html'
-          }
+          },
+
         ],
         options: {
           template: 'markdown2.jst',

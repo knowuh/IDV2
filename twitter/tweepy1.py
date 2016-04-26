@@ -10,10 +10,11 @@ import re
 from time import mktime, sleep
 from dateutil import parser
 
-# put your credentials in twitter_config.json
-# see twitter_config_sample.json
-
-# This will load AWS config info from ~/.aws/config
+"""
+put your credentials in twitter_config.json
+see twitter_config_sample.json
+This will load AWS config info from ~/.aws/config
+"""
 
 os.environ["AWS_PROFILE"] = "idv2"
 
@@ -116,8 +117,15 @@ def save_to_db(data):
         print e
         print data
 
-
 connection = connect()
 table = connect_db()
-print table
-stream(connection, table, search_terms=["#zika","gunviolence","#gunviolence","bernie sanders","hillary clinton", "#ocw", "#blm", "#Flint"])
+
+search_terms = [
+    "#zika", "gunviolence" , "#massshooting",
+    "donald trump", "marko rubio", "TED CRUZ", "jeb bush", "#marketcrash", "#stockcrash",
+    "bernie sanders", "hillary clinton", "#blm", "#Flint", "#istandwithsalman", "#SalmanRushdie",
+    "#foodporn", "#instafood", "#fashion",
+    "#Trump2016", "#TedCruz", "#Hillary2016", "#Bernie2016",
+    "#MakeAmericaGreatAgain", "#CruzCrew", "#ImWithHer", "#FeelTheBern", "panama papers"
+]
+stream(connection, table, search_terms=search_terms)
