@@ -39,3 +39,6 @@ Who didn't sign up?
 * [Erica](http://egunn.github.io/IDV2FinalProject/sketch1.html)
 * [Jessica](http://jessier08.github.io/ChicagoFoodPorn/)
 * [Kini](http://jinniluo.github.io/StudioII-final/)
+* [Sever](http://severli93.github.io/studio2-final-project/)
+* [Navi](http://navarjun.github.io/500px-data-visualisation/)
+* [Patrick](http://odonnel-p.github.io/odonnel-idv2-final/)
