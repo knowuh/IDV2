@@ -21,7 +21,6 @@ results = {}
 for place in places:
     place_results = results[place.get('name')] = {}
     for time in times:
-
         query = Flickr({
             'place_id': place.get('id'),
             'sort': 'interestingness-desc',

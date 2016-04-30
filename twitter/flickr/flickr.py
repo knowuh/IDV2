@@ -6,7 +6,7 @@ import flickrapi
 timestamp = int(time.time())
 
 class Flickr(object):
-    OutDoors = 2;
+    OutDoors = 2
     DefaultOpts = {'format': 'parsed-json', 'per_page': '10'}
     TinySquare = 's'
     SmallSquare = 'q'

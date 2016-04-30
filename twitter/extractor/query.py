@@ -8,13 +8,16 @@ class Query(object):
     GeoFilter = Attr('coordinates').exists()
     PlaceFilter = Attr('place').exists()
 
-    def __init__(self, tag, limit=100, plugins=[], qFilter=None):
+    def __init__(self, tag, limit=100, plugins=[], qFilter=None, start_s=None, duration_s=60):
         dynamodb = boto3.resource('dynamodb')
         self.limit = limit
         self.indexName = 'search_term-timestamp-index'
         self.tag = tag
         self.table = dynamodb.Table('tweets')
         self.conditions = Key('search_term').eq(self.tag)
+        if start_s:
+            end_t = start_s + duration_s
+            self.conditions = self.conditions & Key('timestamp').between(start_s, end_t)
         self.results = []
         self.resultCount = 0
         self.lastKey = None

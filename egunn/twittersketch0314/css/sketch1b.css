@@ -8,9 +8,7 @@ body {
 	height:150px;
     float:left;
 	position: relative;
-	background:#e6fff9;
-    border-style:solid;
-    border-color: rgb(245,245,245);
+	background:none;
     border-width: 0.25px;
 }
 
@@ -19,9 +17,7 @@ body {
 	height:150px;
     float:left;
 	position: relative;
-	background:white;
-    border-style:solid;
-    border-color: rgb(250,250, 250);
+	background:none;
     border-width: .25px;
 }
 
@@ -30,9 +26,7 @@ body {
 	width:65%;
 	height:150px;
 	position: relative;
-	background:#e6f9ff;
-    border-style:solid;
-    border-color: rgb(245,245,245);
+	background:none;
     border-width: .25px;
 }
 
@@ -66,7 +60,6 @@ circle:hover {
   font-weight: bold;
   fill: hsla(0, 5%, 60%, 1.0);
 }
-
 
 .axis {
     stroke:rgb(200,200,200);
