@@ -18,5 +18,5 @@ simplejson==3.8.2
 six==1.10.0
 texttable==0.8.4
 tweepy==3.5.0
-urllib3==1.14
+urllib3==1.26.5
 virtualenv==1.11.6
